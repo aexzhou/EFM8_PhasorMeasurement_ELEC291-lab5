@@ -166,6 +166,20 @@ void waitms (unsigned int ms)
 		for (k=0; k<4; k++) Timer3us(250);
 }
 
+/* can wait at a micro-second precision up to a total of 1 second */
+void waitus (unsigned long us){		
+	unsigned int j;
+	unsigned int j_max = us % 50000; // pre-calc this to save cpu resources
+	unsigned char k;
+	unsigned char k_max = (char)us/50000;
+	
+	for(k = 0; k<k_max; k++){
+		for(j = 0; j<j_max; j++){
+			Timer3us(1);
+		}
+	}
+}
+
 void TIMER0_Init(void)
 {
 	TMOD&=0b_1111_0000; // Set the bits of Timer/Counter 0 to zero
@@ -301,12 +315,17 @@ void main (void)
 	float halfPeriod_ref;
 	float period_ref;
 	float freq_ref;
-	float quarterPeriod1_ref;
+	float quarterPeriod_ref;
+	float prev_period_ref;
+	float vrms_ref;
 
-	float halfPeriod_in;
-	float period_in;
-	float freq_in;
-	float quarterPeriod1_in;
+	float halfPeriod_spl;
+	float period_spl;
+	float freq_spl;
+	float quarterperiod_spl;
+	float prev_period_spl;
+
+	float phase_diff;
 
 	LCD_4BIT();
  	TIMER0_Init();
@@ -325,15 +344,19 @@ void main (void)
 	InitPinADC(2, 5); // Configure P2.5 as analog input
 	InitPinADC(0, 1);
     InitADC();
-	
 
+	prev_period_ref = 10000;	// initilize these to a period value thats impossible to get
+	prev_period_spl = 10000;
+	
 	while(1)
 	{	
-		/* REFERENCE SIGNAL MEASUREMENT */
-		ADC0MX=QFP32_MUX_P2_5;
+		/*** REFERENCE SIGNAL MEASUREMENT ***/
+		
+		ADC0MX=QFP32_MUX_P2_5; 	// <---- PORT FOR REFERENCE SIGNAL
+
 		ADINT = 0;
 		ADBUSY=1;
-		while (!ADINT);		// wait for conversion to complete
+		while (!ADINT);			// wait for conversion to complete
 		while (Get_ADC()!=0);	// wait for signal to be 0
 		while (Get_ADC()==0);	// wait for signal to be pos
 		overflow_count = 0;		// reset timer 
@@ -352,16 +375,34 @@ void main (void)
 		overflow_count = 0;		
 		TL0=0;
 		TH0=0;
-
+		// period & freq calcs
 		period_ref = 2.0*halfPeriod_ref;
+		// noise correction
+		if(period_ref <= 0.0002){	// freq never exceeds 5000 Hz, ignore all that is above that		
+			period_ref = prev_period_ref;
+		}else{
+			prev_period_ref = period_ref;
+		}
 		freq_ref = 1.0/period_ref;
+		quarterPeriod_ref = period_ref/4.0;
+
+		/*** FIND Vmax for REFERENCE ***/
+		ADINT = 0;
+		ADBUSY=1;
+		while (!ADINT);			// wait for conversion to complete
+		while (Get_ADC()!=0);	// wait for signal to be 0
+		while (Get_ADC()==0);	// wait for signal to be pos
+		waitms(quarterPeriod_ref*1000);
+		vrms_ref = Volts_at_Pin(QFP32_MUX_P2_5); // grabs vmax 1/4 T later from 0-cross
+
+		
 
 
-		/* SAMPLE SIGNAL MEASUREMENT */
+		/*** SAMPLE SIGNAL MEASUREMENT ***/
 		ADC0MX=QFP32_MUX_P2_4;
 		ADINT = 0;
 		ADBUSY=1;
-		while (!ADINT);		// wait for conversion to complete
+		while (!ADINT);			// wait for conversion to complete
 		while (Get_ADC()!=0);	// wait for signal to be 0
 		while (Get_ADC()==0);	// wait for signal to be pos
 		overflow_count = 0;		// reset timer 
@@ -375,14 +416,21 @@ void main (void)
 			}
 		}
 		TR0=0; // stop timer 0
-		halfPeriod_in=(overflow_count*65536.0 + TH0*256.0 + TL0)*(12.0/SYSCLK);	// {TH0,TL0} -> [15:0]
+		halfPeriod_spl=(overflow_count*65536.0 + TH0*256.0 + TL0)*(12.0/SYSCLK);	// {TH0,TL0} -> [15:0]
 		// reset timer post count for redundancy
 		overflow_count = 0;		
 		TL0=0;
 		TH0=0;
+		// period & freq calcs
+		period_spl = 2.0*halfPeriod_spl;
+		// noise correction
+		if(period_spl <= 0.0002){			
+			period_spl = prev_period_spl;
+		}else{
+			prev_period_spl = period_spl;
+		}
+		freq_spl = 1.0/period_spl;
 
-		period_in = 2.0*halfPeriod_in;
-		freq_in = 1.0/period_in;
 
 
 
@@ -391,36 +439,22 @@ void main (void)
 		// time from beginning of the sinusoid to its peak
 		// overflow_count starts at 17th bit in extension of {TH0,TL0}. 2^16 = 65536
 		// overflow_count=65536-(half_period/2.0); 
-		printf("T(ms): %7.9f\r",period_ref*1000);
 
-		// // Read 14-bit value from the pins configured as analog inputs
-		// v[0] = Volts_at_Pin(QFP32_MUX_P2_2);
-		// v[1] = Volts_at_Pin(QFP32_MUX_P2_3);
-		// v[2] = Volts_at_Pin(QFP32_MUX_P2_4);
-		// v[3] = Volts_at_Pin(QFP32_MUX_P2_5);
+		printf("Reference Signal Data        |Sample Signal Data            \n");
+		printf("---------------------------------------------------------\n");
+		printf("Ref Period(T):  %7.6f s  | Spl Period(T):  %7.6f s \n",period_ref*1000, period_spl*1000);
+		printf("Ref Freq(f)  :  %7.6f Hz | Spl Freq(f)  :  %7.6f Hz\n",freq_ref, freq_spl);
+		printf("Vmax (ref)   :  %4.4f V\n",vrms_ref);
+		printf("\033[A\033[A\033[A\033[A\033[A");
 		
+		sprintf(buffer,"Rf:%2d Sp:%2d Hz",(int)freq_ref%1000, (int)freq_spl%1000);
+		LCDprint(buffer,1,1);
+
+		sprintf(buffer,"Vr:%4.4f V",vrms_ref);
+		LCDprint(buffer,2,1);
 		//printf("T/2 = %7.5f, f = %7.5f\r", half_period, freq);
 		waitms(500);
-		
-		//printf("Ref Voltage Period = %7.5f s | VOLTS: %7.5f\r", overflow_count, Volts_at_Pin(QFP32_MUX_P2_5));
-		sprintf(buffer,"T(ms): %f",period_ref*1000);
-		LCDprint(buffer,1,1);
-		sprintf(buffer,"f(Hz): %f",freq_ref);
-		LCDprint(buffer,2,1);
 
-
-
-		// // sends the voltage data to serial
-		// printf ("V@P2.2=%7.5fV, V@P2.3=%7.5fV, V@P2.4=%7.5fV, V@P2.5=%7.5fV\r", v[0], v[1], v[2], v[3]);
-		// waitms(500);
-
-		
-
-		
-		
-		
-		
-		
 		
 
 		// ------------------------------
