@@ -169,18 +169,10 @@ void waitms (unsigned int ms)
 		for (k=0; k<4; k++) Timer3us(250);
 }
 
-/* can wait at a micro-second precision up to a total of 1 second */
-void waitus (unsigned long us){		
-	unsigned int j;
-	unsigned int j_max = us % 50000; // pre-calc this to save cpu resources
-	unsigned char k;
-	unsigned char k_max = (char)us/50000;
-	
-	for(k = 0; k<k_max; k++){
-		for(j = 0; j<j_max; j++){
-			Timer3us(1);
-		}
-	}
+/* can wait more precisely*/
+void wait100us (unsigned long time){		
+	unsigned long j;
+	for(j = 0; j<time; j++) Timer3us(100);	
 }
 
 void TIMER0_Init(void)
@@ -313,19 +305,14 @@ void main (void)
 {	
 	char buffer[20];
 
-	float halfPeriod_ref;
-	float period_ref;
-	float freq_ref;
-	float quarterPeriod_ref;
-	float prev_period_ref;
-	float vrms_ref;
-
-	float halfPeriod_spl;
-	float period_spl;
-	float freq_spl;
-	float quarterPeriod_spl;
-	float prev_period_spl;
+	float halfPeriod;
+	float period;
+	float freq;
+	float quarterPeriod;
+	float prev_period;
+	
 	float vrms_spl;
+	float vrms_ref;
 
 	float phase_diff_deg;
 	float phase_diff_time;
@@ -348,19 +335,19 @@ void main (void)
 	InitPinADC(0, 1);
     InitADC();
 
-	prev_period_ref = 10000;	// initilize these to a period value thats impossible to get
-	prev_period_spl = 10000;
+	prev_period = 10000;	// initilize these to a period value thats impossible to get
+	prev_period = 10000;
 	
 	while(1)
 	{	
-		/*** REFERENCE SIGNAL MEASUREMENT ***/
+		/*** PERIOD MEASUREMENT ***/
 		
 		ADC0MX=REF_SIGNAL; 	// <---- PORT FOR REFERENCE SIGNAL
 		ADINT = 0;
 		ADBUSY=1;
 		while (!ADINT);			// wait for conversion to complete
 		while (Get_ADC()!=0);	// wait for signal to be 0
-		while (Get_ADC()==0);	// wait for signal to be pos
+		while (Get_ADC()==0);	// wait for signal to be pos		
 		overflow_count = 0;		// reset timer 
 		TL0=0;
 		TH0=0;
@@ -372,132 +359,124 @@ void main (void)
 			}
 		}
 		TR0=0; // stop timer 0
-		halfPeriod_ref=(overflow_count*65536.0 + TH0*256.0 + TL0)*(12.0/SYSCLK);	
-		overflow_count = 0;		 // reset timer post count for redundancy
+		halfPeriod=(overflow_count*65536.0 + TH0*256.0 + TL0)*(12.0/SYSCLK);	
+		overflow_count = 0;		 	// reset timer post count for redundancy
 		TL0=0;
 		TH0=0;
-		period_ref = 2.0*halfPeriod_ref; // period & freq calcs
-		if(period_ref <= 0.0002){	// freq never exceeds 5000 Hz, ignore bad ones		
-			period_ref = prev_period_ref; // noise correction
+		period = 2.0*halfPeriod; 	// period & freq calcs
+		if(period <= 0.0002){		// freq never exceeds 5000 Hz, ignore bad ones		
+			period = prev_period; 	// noise correction
 		}else{
-			prev_period_ref = period_ref;
+			prev_period = period;
 		}
-		freq_ref = 1.0/period_ref;
-		quarterPeriod_ref = period_ref/4.0;
+		freq = 1.0/period;
+		quarterPeriod = period/4.0;
 
 		/*** FIND Vmax for REFERENCE ***/
 		ADINT = 0;
 		ADBUSY=1;
-		while (!ADINT);			// wait for conversion to complete
-		while (Get_ADC()!=0);	// wait for signal to be 0
-		while (Get_ADC()==0);	// wait for signal to be pos
-		waitms(quarterPeriod_ref*1000);
+		while (!ADINT);				// wait for conversion to complete
+		do{
+			while (Get_ADC()!=0);	// wait for signal to be 0
+			while (Get_ADC()==0);	// wait for signal to be pos
+			Timer3us(20);			
+		}while(Get_ADC()==0);		// (**SUPER NECESARY**) check if adc aint lying, mitigates noise
+		wait100us(quarterPeriod*1000*10);
 		vrms_ref = Volts_at_Pin(REF_SIGNAL)*0.707106781187; // grabs vmax 1/4 T later from 0-cross
 
-
-	
-		/*** SAMPLE SIGNAL MEASUREMENT ***/
-		ADC0MX=SPL_SIGNAL;
-		ADINT = 0;
-		ADBUSY=1;
-		while (!ADINT);			// wait for conversion to complete
-		while (Get_ADC()!=0);	// wait for signal to be 0
-		while (Get_ADC()==0);	// wait for signal to be pos
-		overflow_count = 0;		// reset timer 
-		TL0=0;
-		TH0=0;
-		TR0=1; // start timer 0		
-		while (Get_ADC()!=0){
-			if (TF0==1){
-				TF0=0;
-				overflow_count++;	// count overflows
-			}
-		}
-		TR0=0; // stop timer 0
-		halfPeriod_spl=(overflow_count*65536.0 + TH0*256.0 + TL0)*(12.0/SYSCLK);	// {TH0,TL0} -> [15:0]
-		
-		overflow_count = 0;		// reset timer post count for redundancy
-		TL0=0;
-		TH0=0;
-		// period & freq calcs
-		period_spl = 2.0*halfPeriod_spl;
-		// noise correction
-		if(period_spl <= 0.0002){			
-			period_spl = prev_period_spl;
-		}else{
-			prev_period_spl = period_spl;
-		}
-		freq_spl = 1.0/period_spl;
-		quarterPeriod_spl = period_spl/4.0;
+		waitms(50); // some delay very good
 
 		/*** FIND Vmax for SAMPLE ***/
+		ADC0MX=SPL_SIGNAL;			// start tracking SPL signal
 		ADINT = 0;
 		ADBUSY=1;
-		while (!ADINT);			// wait for conversion to complete
-		while (Get_ADC()!=0);	// wait for signal to be 0
-		while (Get_ADC()==0);	// wait for signal to be pos
-		waitms(quarterPeriod_spl*1000);
-		vrms_spl = Volts_at_Pin(SPL_SIGNAL)*0.707106781187; // grabs vmax 1/4 T later from 0-cross
+		while (!ADINT);				// wait for conversion to complete
+		do{
+			while (Get_ADC()!=0);	// wait for signal to be 0
+			while (Get_ADC()==0);	// wait for signal to be pos
+			Timer3us(20);
+		}while(Get_ADC()==0);		// check if adc aint lying, mitigates noise
+		wait100us(quarterPeriod*1000*10);
+		vrms_spl = Volts_at_Pin(SPL_SIGNAL)*0.707106781187; // grabs vrms 1/4 T later from 0-cross
 
-		
+
+
 		/*** MEASURE PHASE DIFF ***/
-		//(1) FIND 0-CROSS OF REF SIGNAL
-		ADC0MX=SPL_SIGNAL;		// start tracking REF signal
+		//(1) FIND 0-CROSS OF SPL SIGNAL
 		ADINT = 0;
 		ADBUSY=1;
-		while (!ADINT);			// wait for adc conversion to complete
-		while (Get_ADC()!=0);	// wait for REF signal to be 0
-		while (Get_ADC()==0);	// wait for REF signal to be pos (0-cross posedge)
+		while (!ADINT);				// wait for adc conversion to complete
+		do{
+			while (Get_ADC()!=0);	// wait for 0 cross
+			while (Get_ADC()==0);	
+			Timer3us(20);
+		}while(Get_ADC()==0);
 
-		P0_0=1;
-		//(2) START TIMING AS SOON AS REF SIGNAL 0-CROSSES
+		//(2) START TIMING AS SOON AS SPL 0-CROSS
 		overflow_count = 0;
+		
 		TL0=0;					// clear timer 0
 		TH0=0;
 		TR0=1; 					// start timer 0
+		P0_0 = 1;
 
-		//(3) WAIT TILL 0-CROSS OF SPL SIGNAL
-		ADC0MX=REF_SIGNAL;		// start tracking SPL signal
+		//(3) WAIT TILL POSEDGE 0-CROSS OF REF SIGNAL
+		ADC0MX=REF_SIGNAL;			// start tracking REF signal
 		ADINT = 0;
 		ADBUSY=1;
-		while (!ADINT);			// wait for adc conversion to complete
-		while (Get_ADC()!=0){	// wait for SPL signal to be 0
-			if (TF0==1){
-				TF0=0;
-				printf("fhbdshjfgdishfh\n");
-				overflow_count++;	// count overflows
+		while (!ADINT);				// wait for adc conversion to complete
+		do{
+			while (Get_ADC()!=0);		// wait for REF signal to be 0
+			while (Get_ADC()==0){		// wait for REF signal to be positive
+				if (TF0==1){
+					TF0=0;
+					overflow_count++;	// count overflows
+				}
 			}
-		}	
-		while (Get_ADC()==0);	// wait for SPL signal to be pos (0-cross posedge)
+			Timer3us(20);
+		}while(Get_ADC()==0); // Check if REALLYMREALLYM POSITIVE!!!!!!!! :DDDDDD
+			
 		
-		P0_0=0;
 		//(4) STOP TIMER, CALCULATE DIFFERENCE
 		TR0=0; // stop timer 0	
-		phase_diff_time = (overflow_count*65536.0 + TH0*256.0 + TL0)*(12.0/SYSCLK);
-		phase_diff_deg = phase_diff_time * (360/period_ref);
-		// reset timer post count for redundancy
+		P0_0 = 0;
+		phase_diff_time = (overflow_count*65536.0 + TH0*256.0 + TL0)*(12.0/SYSCLK) + 0.00002; 
+		// account for when the second rising edge gets missed, 
+		// +/- 360 until within the range of [-180, 180]
+		phase_diff_deg = (phase_diff_time * 360)/period;
 		TL0=0;
 		TH0=0;
-		overflow_count = 0;
+		overflow_count = 0;	// stop timer
 
-	
-
-
-
-
-
-
-
-
-		printf("Reference Signal Data        |Sample Signal Data            \n");
-		printf("---------------------------------------------------------\n");
-		printf("Ref Period(T):  %7.6f s  | Spl Period(T):  %7.6f s \n",period_ref*1000, period_spl*1000);
-		printf("Ref Freq(f)  :  %7.6f Hz | Spl Freq(f)  :  %7.6f Hz\n",freq_ref, freq_spl);
-		printf("Vmax (ref)   :  %4.4f V\n",vrms_ref);
-		printf("Phase Difference: %7.6f degrees\n", phase_diff_deg);
-		printf("\033[A\033[A\033[A\033[A\033[A\033[A");
 		
-		sprintf(buffer,"Rf:%2d Sp:%2d Hz",(int)freq_ref%1000, (int)freq_spl%1000);
+		while(phase_diff_deg < -180){
+			phase_diff_deg += 360;
+			// if(phase_diff_deg > 0){
+			// 	phase_diff_deg -= 180;
+			// }
+		}
+		while(phase_diff_deg > 180){
+			phase_diff_deg -= 360;
+			// if(phase_diff_deg < 0){
+			// 	phase_diff_deg += 180;
+			// }
+		}
+		
+		
+		
+
+		printf("Period(T):  %7.6f ms  Freq(f):  %7.6f s \n",period*1000, freq);
+		printf("1/4 Period: %7.6f ms\n", quarterPeriod*1000);
+		printf("Vrms (ref):  %4.4f V  Vrms (spl): %4.4f V \n",vrms_ref, vrms_spl);
+		printf("Phase Difference: %7.6f degrees  Phase diff time: %7.6f s \n", phase_diff_deg, phase_diff_time);
+
+		printf("\033[A");
+		printf("\033[A");
+		printf("\033[A");
+		printf("\033[A");
+	
+		
+		sprintf(buffer,"Rf:%2d Sp:%2d Hz",(int)freq%1000, (int)freq%1000);
 		LCDprint(buffer,1,1);
 
 		sprintf(buffer,"Vr:%4.4f V",vrms_ref);
