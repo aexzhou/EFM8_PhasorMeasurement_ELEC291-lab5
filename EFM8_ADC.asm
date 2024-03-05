@@ -1,7 +1,7 @@
 ;--------------------------------------------------------
 ; File Created by C51
 ; Version 1.0.0 #1170 (Feb 16 2022) (MSVC)
-; This file was generated Mon Mar 04 21:35:38 2024
+; This file was generated Mon Mar 04 22:34:14 2024
 ;--------------------------------------------------------
 $name EFM8_ADC
 $optc51 --model-small
@@ -1392,7 +1392,7 @@ _main:
 	mov	(_main_prev_period_spl_1_79 + 2),#0x1C
 	mov	(_main_prev_period_spl_1_79 + 3),#0x46
 ;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:354: while(1)
-L018072?:
+L018074?:
 ;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:358: ADC0MX=REF_SIGNAL; 	// <---- PORT FOR REFERENCE SIGNAL
 	mov	_ADC0MX,#0x12
 ;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:359: ADINT = 0;
@@ -1433,9 +1433,9 @@ L018012?:
 	jz	L018014?
 ;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:369: if (TF0==1){
 ;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:370: TF0=0;
-	jbc	_TF0,L018113?
+	jbc	_TF0,L018117?
 	sjmp	L018012?
-L018113?:
+L018117?:
 ;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:371: overflow_count++;	// count overflows
 	inc	_overflow_count
 	sjmp	L018012?
@@ -1754,9 +1754,9 @@ L018038?:
 	jz	L018040?
 ;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:411: if (TF0==1){
 ;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:412: TF0=0;
-	jbc	_TF0,L018122?
+	jbc	_TF0,L018126?
 	sjmp	L018038?
-L018122?:
+L018126?:
 ;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:413: overflow_count++;	// count overflows
 	inc	_overflow_count
 	sjmp	L018038?
@@ -2016,8 +2016,8 @@ L018050?:
 ;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:440: vrms_spl = Volts_at_Pin(SPL_SIGNAL)*0.707106781187; // grabs vmax 1/4 T later from 0-cross
 	mov	dpl,#0x11
 	lcall	_Volts_at_Pin
-;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:445: ADC0MX=REF_SIGNAL;		// start tracking REF signal
-	mov	_ADC0MX,#0x12
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:445: ADC0MX=SPL_SIGNAL;		// start tracking REF signal
+	mov	_ADC0MX,#0x11
 ;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:446: ADINT = 0;
 	clr	_ADINT
 ;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:447: ADBUSY=1;
@@ -2039,40 +2039,63 @@ L018059?:
 	mov	b,dph
 	orl	a,b
 	jz	L018059?
-;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:453: overflow_count = 0;		// clear timer overflow
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:452: P0_0=1;
+	setb	_P0_0
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:454: overflow_count = 0;
 	mov	_overflow_count,#0x00
-;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:454: TL0=0;					// clear timer 0
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:455: TL0=0;					// clear timer 0
 	mov	_TL0,#0x00
-;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:455: TH0=0;
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:456: TH0=0;
 	mov	_TH0,#0x00
-;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:456: TR0=1; 					// start timer 0
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:457: TR0=1; 					// start timer 0
 	setb	_TR0
-;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:459: ADC0MX=SPL_SIGNAL;		// start tracking SPL signal
-	mov	_ADC0MX,#0x11
-;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:460: ADINT = 0;
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:460: ADC0MX=REF_SIGNAL;		// start tracking SPL signal
+	mov	_ADC0MX,#0x12
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:461: ADINT = 0;
 	clr	_ADINT
-;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:461: ADBUSY=1;
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:462: ADBUSY=1;
 	setb	_ADBUSY
-;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:462: while (!ADINT);			// wait for adc conversion to complete
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:463: while (!ADINT);			// wait for adc conversion to complete
 L018062?:
 	jnb	_ADINT,L018062?
-;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:463: while (Get_ADC()!=0);	// wait for SPL signal to be 0
-L018065?:
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:464: while (Get_ADC()!=0){	// wait for SPL signal to be 0
+L018067?:
 	lcall	_Get_ADC
 	mov	a,dpl
 	mov	b,dph
 	orl	a,b
-	jnz	L018065?
-;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:464: while (Get_ADC()==0);	// wait for SPL signal to be pos (0-cross posedge)
-L018068?:
+	jz	L018070?
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:465: if (TF0==1){
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:466: TF0=0;
+	jbc	_TF0,L018136?
+	sjmp	L018067?
+L018136?:
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:467: printf("fhbdshjfgdishfh\n");
+	mov	a,#__str_5
+	push	acc
+	mov	a,#(__str_5 >> 8)
+	push	acc
+	mov	a,#0x80
+	push	acc
+	lcall	_printf
+	dec	sp
+	dec	sp
+	dec	sp
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:468: overflow_count++;	// count overflows
+	inc	_overflow_count
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:471: while (Get_ADC()==0);	// wait for SPL signal to be pos (0-cross posedge)
+	sjmp	L018067?
+L018070?:
 	lcall	_Get_ADC
 	mov	a,dpl
 	mov	b,dph
 	orl	a,b
-	jz	L018068?
-;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:467: TR0=0; // stop timer 0	
+	jz	L018070?
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:473: P0_0=0;
+	clr	_P0_0
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:475: TR0=0; // stop timer 0	
 	clr	_TR0
-;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:468: phase_diff_time = (overflow_count*65536.0 + TH0*256.0 + TL0)*(12.0/SYSCLK);
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:476: phase_diff_time = (overflow_count*65536.0 + TH0*256.0 + TL0)*(12.0/SYSCLK);
 	mov	dpl,_overflow_count
 	lcall	___uchar2fs
 	mov	r6,dpl
@@ -2187,15 +2210,15 @@ L018068?:
 	mov	a,sp
 	add	a,#0xfc
 	mov	sp,a
-;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:469: phase_diff_deg = phase_diff_time * (360/period_spl);
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:477: phase_diff_deg = phase_diff_time * (360/period_ref);
 	push	ar2
 	push	ar3
 	push	ar4
 	push	ar5
-	push	_main_period_spl_1_79
-	push	(_main_period_spl_1_79 + 1)
-	push	(_main_period_spl_1_79 + 2)
-	push	(_main_period_spl_1_79 + 3)
+	push	_main_period_ref_1_79
+	push	(_main_period_ref_1_79 + 1)
+	push	(_main_period_ref_1_79 + 2)
+	push	(_main_period_ref_1_79 + 3)
 	mov	dptr,#0x0000
 	mov	b,#0xB4
 	mov	a,#0x43
@@ -2227,25 +2250,14 @@ L018068?:
 	mov	a,sp
 	add	a,#0xfc
 	mov	sp,a
-;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:472: overflow_count = 0;		
-;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:473: TL0=0;
-;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:474: TH0=0;
-;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:498: printf("Reference Signal Data        |Sample Signal Data            \n");
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:479: TL0=0;
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:480: TH0=0;
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:481: overflow_count = 0;
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:492: printf("Reference Signal Data        |Sample Signal Data            \n");
 	clr	a
-	mov	_overflow_count,a
 	mov	_TL0,a
 	mov	_TH0,a
-	mov	a,#__str_5
-	push	acc
-	mov	a,#(__str_5 >> 8)
-	push	acc
-	mov	a,#0x80
-	push	acc
-	lcall	_printf
-	dec	sp
-	dec	sp
-	dec	sp
-;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:499: printf("---------------------------------------------------------\n");
+	mov	_overflow_count,a
 	mov	a,#__str_6
 	push	acc
 	mov	a,#(__str_6 >> 8)
@@ -2256,7 +2268,18 @@ L018068?:
 	dec	sp
 	dec	sp
 	dec	sp
-;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:500: printf("Ref Period(T):  %7.6f s  | Spl Period(T):  %7.6f s \n",period_ref*1000, period_spl*1000);
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:493: printf("---------------------------------------------------------\n");
+	mov	a,#__str_7
+	push	acc
+	mov	a,#(__str_7 >> 8)
+	push	acc
+	mov	a,#0x80
+	push	acc
+	lcall	_printf
+	dec	sp
+	dec	sp
+	dec	sp
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:494: printf("Ref Period(T):  %7.6f s  | Spl Period(T):  %7.6f s \n",period_ref*1000, period_spl*1000);
 	push	_main_period_spl_1_79
 	push	(_main_period_spl_1_79 + 1)
 	push	(_main_period_spl_1_79 + 2)
@@ -2295,25 +2318,6 @@ L018068?:
 	push	ar3
 	push	ar4
 	push	ar5
-	mov	a,#__str_7
-	push	acc
-	mov	a,#(__str_7 >> 8)
-	push	acc
-	mov	a,#0x80
-	push	acc
-	lcall	_printf
-	mov	a,sp
-	add	a,#0xf5
-	mov	sp,a
-;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:501: printf("Ref Freq(f)  :  %7.6f Hz | Spl Freq(f)  :  %7.6f Hz\n",freq_ref, freq_spl);
-	push	_main_freq_spl_1_79
-	push	(_main_freq_spl_1_79 + 1)
-	push	(_main_freq_spl_1_79 + 2)
-	push	(_main_freq_spl_1_79 + 3)
-	push	_main_freq_ref_1_79
-	push	(_main_freq_ref_1_79 + 1)
-	push	(_main_freq_ref_1_79 + 2)
-	push	(_main_freq_ref_1_79 + 3)
 	mov	a,#__str_8
 	push	acc
 	mov	a,#(__str_8 >> 8)
@@ -2324,11 +2328,15 @@ L018068?:
 	mov	a,sp
 	add	a,#0xf5
 	mov	sp,a
-;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:502: printf("Vmax (ref)   :  %4.4f V\n",vrms_ref);
-	push	_main_vrms_ref_1_79
-	push	(_main_vrms_ref_1_79 + 1)
-	push	(_main_vrms_ref_1_79 + 2)
-	push	(_main_vrms_ref_1_79 + 3)
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:495: printf("Ref Freq(f)  :  %7.6f Hz | Spl Freq(f)  :  %7.6f Hz\n",freq_ref, freq_spl);
+	push	_main_freq_spl_1_79
+	push	(_main_freq_spl_1_79 + 1)
+	push	(_main_freq_spl_1_79 + 2)
+	push	(_main_freq_spl_1_79 + 3)
+	push	_main_freq_ref_1_79
+	push	(_main_freq_ref_1_79 + 1)
+	push	(_main_freq_ref_1_79 + 2)
+	push	(_main_freq_ref_1_79 + 3)
 	mov	a,#__str_9
 	push	acc
 	mov	a,#(__str_9 >> 8)
@@ -2337,13 +2345,13 @@ L018068?:
 	push	acc
 	lcall	_printf
 	mov	a,sp
-	add	a,#0xf9
+	add	a,#0xf5
 	mov	sp,a
-;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:503: printf("Phase Difference: %7.6f degrees\n", phase_diff_deg);
-	push	_main_phase_diff_deg_1_79
-	push	(_main_phase_diff_deg_1_79 + 1)
-	push	(_main_phase_diff_deg_1_79 + 2)
-	push	(_main_phase_diff_deg_1_79 + 3)
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:496: printf("Vmax (ref)   :  %4.4f V\n",vrms_ref);
+	push	_main_vrms_ref_1_79
+	push	(_main_vrms_ref_1_79 + 1)
+	push	(_main_vrms_ref_1_79 + 2)
+	push	(_main_vrms_ref_1_79 + 3)
 	mov	a,#__str_10
 	push	acc
 	mov	a,#(__str_10 >> 8)
@@ -2354,7 +2362,11 @@ L018068?:
 	mov	a,sp
 	add	a,#0xf9
 	mov	sp,a
-;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:504: printf("\033[A\033[A\033[A\033[A\033[A\033[A");
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:497: printf("Phase Difference: %7.6f degrees\n", phase_diff_deg);
+	push	_main_phase_diff_deg_1_79
+	push	(_main_phase_diff_deg_1_79 + 1)
+	push	(_main_phase_diff_deg_1_79 + 2)
+	push	(_main_phase_diff_deg_1_79 + 3)
 	mov	a,#__str_11
 	push	acc
 	mov	a,#(__str_11 >> 8)
@@ -2362,10 +2374,21 @@ L018068?:
 	mov	a,#0x80
 	push	acc
 	lcall	_printf
+	mov	a,sp
+	add	a,#0xf9
+	mov	sp,a
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:498: printf("\033[A\033[A\033[A\033[A\033[A\033[A");
+	mov	a,#__str_12
+	push	acc
+	mov	a,#(__str_12 >> 8)
+	push	acc
+	mov	a,#0x80
+	push	acc
+	lcall	_printf
 	dec	sp
 	dec	sp
 	dec	sp
-;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:506: sprintf(buffer,"Rf:%2d Sp:%2d Hz",(int)freq_ref%1000, (int)freq_spl%1000);
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:500: sprintf(buffer,"Rf:%2d Sp:%2d Hz",(int)freq_ref%1000, (int)freq_spl%1000);
 	mov	dpl,_main_freq_spl_1_79
 	mov	dph,(_main_freq_spl_1_79 + 1)
 	mov	b,(_main_freq_spl_1_79 + 2)
@@ -2390,33 +2413,6 @@ L018068?:
 	mov	r5,dph
 	push	ar4
 	push	ar5
-	mov	a,#__str_12
-	push	acc
-	mov	a,#(__str_12 >> 8)
-	push	acc
-	mov	a,#0x80
-	push	acc
-	mov	a,#_main_buffer_1_79
-	push	acc
-	mov	a,#(_main_buffer_1_79 >> 8)
-	push	acc
-	mov	a,#0x40
-	push	acc
-	lcall	_sprintf
-	mov	a,sp
-	add	a,#0xf6
-	mov	sp,a
-;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:507: LCDprint(buffer,1,1);
-	mov	_LCDprint_PARM_2,#0x01
-	setb	_LCDprint_PARM_3
-	mov	dptr,#_main_buffer_1_79
-	mov	b,#0x40
-	lcall	_LCDprint
-;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:509: sprintf(buffer,"Vr:%4.4f V",vrms_ref);
-	push	_main_vrms_ref_1_79
-	push	(_main_vrms_ref_1_79 + 1)
-	push	(_main_vrms_ref_1_79 + 2)
-	push	(_main_vrms_ref_1_79 + 3)
 	mov	a,#__str_13
 	push	acc
 	mov	a,#(__str_13 >> 8)
@@ -2433,16 +2429,43 @@ L018068?:
 	mov	a,sp
 	add	a,#0xf6
 	mov	sp,a
-;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:510: LCDprint(buffer,2,1);
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:501: LCDprint(buffer,1,1);
+	mov	_LCDprint_PARM_2,#0x01
+	setb	_LCDprint_PARM_3
+	mov	dptr,#_main_buffer_1_79
+	mov	b,#0x40
+	lcall	_LCDprint
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:503: sprintf(buffer,"Vr:%4.4f V",vrms_ref);
+	push	_main_vrms_ref_1_79
+	push	(_main_vrms_ref_1_79 + 1)
+	push	(_main_vrms_ref_1_79 + 2)
+	push	(_main_vrms_ref_1_79 + 3)
+	mov	a,#__str_14
+	push	acc
+	mov	a,#(__str_14 >> 8)
+	push	acc
+	mov	a,#0x80
+	push	acc
+	mov	a,#_main_buffer_1_79
+	push	acc
+	mov	a,#(_main_buffer_1_79 >> 8)
+	push	acc
+	mov	a,#0x40
+	push	acc
+	lcall	_sprintf
+	mov	a,sp
+	add	a,#0xf6
+	mov	sp,a
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:504: LCDprint(buffer,2,1);
 	mov	_LCDprint_PARM_2,#0x02
 	setb	_LCDprint_PARM_3
 	mov	dptr,#_main_buffer_1_79
 	mov	b,#0x40
 	lcall	_LCDprint
-;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:511: waitms(500);
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:505: waitms(500);
 	mov	dptr,#0x01F4
 	lcall	_waitms
-	ljmp	L018072?
+	ljmp	L018074?
 	rseg R_CSEG
 
 	rseg R_XINIT
@@ -2480,50 +2503,54 @@ __str_3:
 	db 'Mar  4 2024'
 	db 0x00
 __str_4:
-	db '21:35:38'
+	db '22:34:14'
 	db 0x00
 __str_5:
-	db 'Reference Signal Data        |Sample Signal Data            '
+	db 'fhbdshjfgdishfh'
 	db 0x0A
 	db 0x00
 __str_6:
-	db '---------------------------------------------------------'
+	db 'Reference Signal Data        |Sample Signal Data            '
 	db 0x0A
 	db 0x00
 __str_7:
-	db 'Ref Period(T):  %7.6f s  | Spl Period(T):  %7.6f s '
+	db '---------------------------------------------------------'
 	db 0x0A
 	db 0x00
 __str_8:
-	db 'Ref Freq(f)  :  %7.6f Hz | Spl Freq(f)  :  %7.6f Hz'
+	db 'Ref Period(T):  %7.6f s  | Spl Period(T):  %7.6f s '
 	db 0x0A
 	db 0x00
 __str_9:
-	db 'Vmax (ref)   :  %4.4f V'
+	db 'Ref Freq(f)  :  %7.6f Hz | Spl Freq(f)  :  %7.6f Hz'
 	db 0x0A
 	db 0x00
 __str_10:
-	db 'Phase Difference: %7.6f degrees'
+	db 'Vmax (ref)   :  %4.4f V'
 	db 0x0A
 	db 0x00
 __str_11:
-	db 0x1B
-	db '[A'
-	db 0x1B
-	db '[A'
-	db 0x1B
-	db '[A'
-	db 0x1B
-	db '[A'
-	db 0x1B
-	db '[A'
-	db 0x1B
-	db '[A'
+	db 'Phase Difference: %7.6f degrees'
+	db 0x0A
 	db 0x00
 __str_12:
-	db 'Rf:%2d Sp:%2d Hz'
+	db 0x1B
+	db '[A'
+	db 0x1B
+	db '[A'
+	db 0x1B
+	db '[A'
+	db 0x1B
+	db '[A'
+	db 0x1B
+	db '[A'
+	db 0x1B
+	db '[A'
 	db 0x00
 __str_13:
+	db 'Rf:%2d Sp:%2d Hz'
+	db 0x00
+__str_14:
 	db 'Vr:%4.4f V'
 	db 0x00
 

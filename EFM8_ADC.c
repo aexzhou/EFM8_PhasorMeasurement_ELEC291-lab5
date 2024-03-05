@@ -442,58 +442,52 @@ void main (void)
 		
 		/*** MEASURE PHASE DIFF ***/
 		//(1) FIND 0-CROSS OF REF SIGNAL
-		ADC0MX=REF_SIGNAL;		// start tracking REF signal
+		ADC0MX=SPL_SIGNAL;		// start tracking REF signal
 		ADINT = 0;
 		ADBUSY=1;
 		while (!ADINT);			// wait for adc conversion to complete
 		while (Get_ADC()!=0);	// wait for REF signal to be 0
 		while (Get_ADC()==0);	// wait for REF signal to be pos (0-cross posedge)
 
+		P0_0=1;
 		//(2) START TIMING AS SOON AS REF SIGNAL 0-CROSSES
-		overflow_count = 0;		// clear timer overflow
+		overflow_count = 0;
 		TL0=0;					// clear timer 0
 		TH0=0;
 		TR0=1; 					// start timer 0
 
 		//(3) WAIT TILL 0-CROSS OF SPL SIGNAL
-		ADC0MX=SPL_SIGNAL;		// start tracking SPL signal
+		ADC0MX=REF_SIGNAL;		// start tracking SPL signal
 		ADINT = 0;
 		ADBUSY=1;
 		while (!ADINT);			// wait for adc conversion to complete
-		while (Get_ADC()!=0);	// wait for SPL signal to be 0
+		while (Get_ADC()!=0){	// wait for SPL signal to be 0
+			if (TF0==1){
+				TF0=0;
+				printf("fhbdshjfgdishfh\n");
+				overflow_count++;	// count overflows
+			}
+		}	
 		while (Get_ADC()==0);	// wait for SPL signal to be pos (0-cross posedge)
 		
+		P0_0=0;
 		//(4) STOP TIMER, CALCULATE DIFFERENCE
 		TR0=0; // stop timer 0	
 		phase_diff_time = (overflow_count*65536.0 + TH0*256.0 + TL0)*(12.0/SYSCLK);
-		phase_diff_deg = phase_diff_time * (360/period_spl);
-
+		phase_diff_deg = phase_diff_time * (360/period_ref);
 		// reset timer post count for redundancy
-		overflow_count = 0;		
 		TL0=0;
 		TH0=0;
+		overflow_count = 0;
 
-		// TL0=0;
-		// TH0=0;
-		// while (ADC_at_Pin(REF_SIGNAL)!=0); // Wait for the signal to be zero
-		// while (ADC_at_Pin(REF_SIGNAL)==0); // Wait for the signal to be positive
-		// P0_0=1;
-		// TR0=1; // Start the timer 0
-		// while (ADC_at_Pin(SPL_SIGNAL)!=0);
-		// while (ADC_at_Pin(SPL_SIGNAL)==0); // Wait for the signal to be zero again			
-		// P0_0=0;
-		// TR0=0;
-	    // phase_diff_time = (TH0*256.0+TL0)*(12.0/SYSCLK);
-		// TL0=0;
-		// TH0=0;
-		// phase_diff_deg=(phase_diff_time*1000*(360/16.66667));
-		
-		
+	
 
 
-		// time from beginning of the sinusoid to its peak
-		// overflow_count starts at 17th bit in extension of {TH0,TL0}. 2^16 = 65536
-		// overflow_count=65536-(half_period/2.0); 
+
+
+
+
+
 
 		printf("Reference Signal Data        |Sample Signal Data            \n");
 		printf("---------------------------------------------------------\n");

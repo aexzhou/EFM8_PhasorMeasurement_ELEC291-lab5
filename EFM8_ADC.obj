@@ -15,7 +15,7 @@ R_GSINIT,code,0000,NO
 R_BSEG,bit,0001,NO
 R_XSEG,xdata,0000,NO
 BIT_BANK,data,0000,OV
-R_CONST,code,01CC,NO
+R_CONST,code,01DD,NO
 rbank0,data,0000,OV
 R_PSEG,xdata,0000,NO
 R_DINIT,code,0000,NO
@@ -25,7 +25,7 @@ R_IXSEG,xdata,0000,NO
 R_ISEG,idata,0000,NO
 R_HOME,code,0000,NO
 R_XINIT,code,0000,NO
-R_CSEG,code,0BD0,NO
+R_CSEG,code,0BF2,NO
 </SEGMENTS>
 
 <LOCALS>
@@ -53,10 +53,11 @@ L018044?,R_CSEG,083D,0000
 L018043?,R_CSEG,07E9,0000
 L018042?,R_CSEG,07DD,0000
 L004004?,R_CSEG,0081,0000
-__str_10,R_CONST,017C,0000
-__str_11,R_CONST,019D,0000
-__str_12,R_CONST,01B0,0000
+__str_10,R_CONST,0174,0000
+__str_11,R_CONST,018D,0000
+__str_12,R_CONST,01AE,0000
 __str_13,R_CONST,01C1,0000
+__str_14,R_CONST,01D2,0000
 L018040?,R_CSEG,068D,0000
 L004001?,R_CSEG,0086,0000
 _main_freq_spl_1_79,R_DSEG,002E,0004
@@ -86,10 +87,10 @@ __str_2,R_CONST,0032,0000
 __str_3,R_CONST,006B,0000
 __str_4,R_CONST,0077,0000
 __str_5,R_CONST,0080,0000
-__str_6,R_CONST,00BE,0000
-__str_7,R_CONST,00F9,0000
-__str_8,R_CONST,012E,0000
-__str_9,R_CONST,0163,0000
+__str_6,R_CONST,0091,0000
+__str_7,R_CONST,00CF,0000
+__str_8,R_CONST,010A,0000
+__str_9,R_CONST,013F,0000
 _main_prev_period_spl_1_79,R_DSEG,0036,0004
 L008005?,R_CSEG,01A7,0000
 L018059?,R_CSEG,08A1,0000
@@ -101,18 +102,19 @@ L008001?,R_CSEG,018B,0000
 L018053?,R_CSEG,0892,0000
 L018050?,R_CSEG,084C,0000
 _main_vrms_ref_1_79,R_DSEG,0026,0004
-L018068?,R_CSEG,08CE,0000
-L018065?,R_CSEG,08C2,0000
-L018062?,R_CSEG,08BF,0000
+L018067?,R_CSEG,08C4,0000
+L018062?,R_CSEG,08C1,0000
 _main_buffer_1_79,R_DSEG,0002,0014
+L018074?,R_CSEG,03E0,0000
 L009001?,R_CSEG,01B2,0000
-L018072?,R_CSEG,03E0,0000
+L018070?,R_CSEG,08EE,0000
 L016014?,R_CSEG,02B9,0000
 L016013?,R_CSEG,02B7,0000
 L016011?,R_CSEG,032F,0000
-L018113?,R_CSEG,041E,0000
-L018122?,R_CSEG,0689,0000
+L018117?,R_CSEG,041E,0000
+L018126?,R_CSEG,0689,0000
 L005018?,R_CSEG,00A9,0000
+L018136?,R_CSEG,08D5,0000
 </LOCALS>
 
 <PUBLICS>
@@ -673,7 +675,7 @@ E5 82
 85 83 F0
 45 F0
 60 rel2(L018014?;)
-10 8D rel3(L018113?;)
+10 8D rel3(L018117?;)
 80 rel2(L018012?;)
 05 data8(_overflow_count;)
 80 rel2(L018012?;)
@@ -951,7 +953,7 @@ E5 82
 85 83 F0
 45 F0
 60 rel2(L018040?;)
-10 8D rel3(L018122?;)
+10 8D rel3(L018126?;)
 80 rel2(L018038?;)
 05 data8(_overflow_count;)
 80 rel2(L018038?;)
@@ -1187,7 +1189,7 @@ E9
 12 addr16(_waitms;)  
 75 82 11
 12 addr16(_Volts_at_Pin;)  
-75 BB 12
+75 BB 11
 C2 ED
 D2 EC
 30 ED rel3(L018053?;)
@@ -1201,11 +1203,12 @@ E5 82
 85 83 F0
 45 F0
 60 rel2(L018059?;)
+D2 80
 75 data8(_overflow_count;) 00
 75 8A 00
 75 8C 00
 D2 8C
-75 BB 11
+75 BB 12
 C2 ED
 D2 EC
 30 ED rel3(L018062?;)
@@ -1213,12 +1216,27 @@ D2 EC
 E5 82
 85 83 F0
 45 F0
-70 rel2(L018065?;)
+60 rel2(L018070?;)
+10 8D rel3(L018136?;)
+80 rel2(L018067?;)
+74 data8(__str_5;)
+C0 E0
+74 data8(__str_5;0x0008;>>;)
+C0 E0
+74 80
+C0 E0
+12 addr16(_printf;)  
+15 81
+15 81
+15 81
+05 data8(_overflow_count;)
+80 rel2(L018067?;)
 12 addr16(_Get_ADC;)  
 E5 82
 85 83 F0
 45 F0
-60 rel2(L018068?;)
+60 rel2(L018070?;)
+C2 80
 C2 8C
 85 data8(_overflow_count;) 82
 12 addr16(___uchar2fs;)  
@@ -1338,10 +1356,10 @@ C0 02
 C0 03
 C0 04
 C0 05
-C0 data8(_main_period_spl_1_79;)
-C0 data8(_main_period_spl_1_79;0x0001;+;)
-C0 data8(_main_period_spl_1_79;0x0002;+;)
-C0 data8(_main_period_spl_1_79;0x0003;+;)
+C0 data8(_main_period_ref_1_79;)
+C0 data8(_main_period_ref_1_79;0x0001;+;)
+C0 data8(_main_period_ref_1_79;0x0002;+;)
+C0 data8(_main_period_ref_1_79;0x0003;+;)
 90 00 00
 75 F0 B4
 74 43
@@ -1374,12 +1392,12 @@ E5 81
 24 FC
 F5 81
 E4
-F5 data8(_overflow_count;)
 F5 8A
 F5 8C
-74 data8(__str_5;)
+F5 data8(_overflow_count;)
+74 data8(__str_6;)
 C0 E0
-74 data8(__str_5;0x0008;>>;)
+74 data8(__str_6;0x0008;>>;)
 C0 E0
 74 80
 C0 E0
@@ -1387,9 +1405,9 @@ C0 E0
 15 81
 15 81
 15 81
-74 data8(__str_6;)
+74 data8(__str_7;)
 C0 E0
-74 data8(__str_6;0x0008;>>;)
+74 data8(__str_7;0x0008;>>;)
 C0 E0
 74 80
 C0 E0
@@ -1435,9 +1453,9 @@ C0 02
 C0 03
 C0 04
 C0 05
-74 data8(__str_7;)
+74 data8(__str_8;)
 C0 E0
-74 data8(__str_7;0x0008;>>;)
+74 data8(__str_8;0x0008;>>;)
 C0 E0
 74 80
 C0 E0
@@ -1453,9 +1471,9 @@ C0 data8(_main_freq_ref_1_79;)
 C0 data8(_main_freq_ref_1_79;0x0001;+;)
 C0 data8(_main_freq_ref_1_79;0x0002;+;)
 C0 data8(_main_freq_ref_1_79;0x0003;+;)
-74 data8(__str_8;)
+74 data8(__str_9;)
 C0 E0
-74 data8(__str_8;0x0008;>>;)
+74 data8(__str_9;0x0008;>>;)
 C0 E0
 74 80
 C0 E0
@@ -1467,9 +1485,9 @@ C0 data8(_main_vrms_ref_1_79;)
 C0 data8(_main_vrms_ref_1_79;0x0001;+;)
 C0 data8(_main_vrms_ref_1_79;0x0002;+;)
 C0 data8(_main_vrms_ref_1_79;0x0003;+;)
-74 data8(__str_9;)
+74 data8(__str_10;)
 C0 E0
-74 data8(__str_9;0x0008;>>;)
+74 data8(__str_10;0x0008;>>;)
 C0 E0
 74 80
 C0 E0
@@ -1481,9 +1499,9 @@ C0 data8(_main_phase_diff_deg_1_79;)
 C0 data8(_main_phase_diff_deg_1_79;0x0001;+;)
 C0 data8(_main_phase_diff_deg_1_79;0x0002;+;)
 C0 data8(_main_phase_diff_deg_1_79;0x0003;+;)
-74 data8(__str_10;)
+74 data8(__str_11;)
 C0 E0
-74 data8(__str_10;0x0008;>>;)
+74 data8(__str_11;0x0008;>>;)
 C0 E0
 74 80
 C0 E0
@@ -1491,9 +1509,9 @@ C0 E0
 E5 81
 24 F9
 F5 81
-74 data8(__str_11;)
+74 data8(__str_12;)
 C0 E0
-74 data8(__str_11;0x0008;>>;)
+74 data8(__str_12;0x0008;>>;)
 C0 E0
 74 80
 C0 E0
@@ -1525,9 +1543,9 @@ AC 82
 AD 83
 C0 04
 C0 05
-74 data8(__str_12;)
+74 data8(__str_13;)
 C0 E0
-74 data8(__str_12;0x0008;>>;)
+74 data8(__str_13;0x0008;>>;)
 C0 E0
 74 80
 C0 E0
@@ -1550,9 +1568,9 @@ C0 data8(_main_vrms_ref_1_79;)
 C0 data8(_main_vrms_ref_1_79;0x0001;+;)
 C0 data8(_main_vrms_ref_1_79;0x0002;+;)
 C0 data8(_main_vrms_ref_1_79;0x0003;+;)
-74 data8(__str_13;)
+74 data8(__str_14;)
 C0 E0
-74 data8(__str_13;0x0008;>>;)
+74 data8(__str_14;0x0008;>>;)
 C0 E0
 74 80
 C0 E0
@@ -1573,7 +1591,7 @@ D2 bit(_LCDprint_PARM_3;)
 12 addr16(_LCDprint;)  
 90 01 F4
 12 addr16(_waitms;)  
-02 addr16(L018072?;)  
+02 addr16(L018074?;)  
 </CODE>
 
 <CODE R_CSEG>
@@ -1610,7 +1628,10 @@ D2 bit(_LCDprint_PARM_3;)
 00
 4D 61 72 20 20 34 20 32 30 32 34 
 00
-32 31 3A 33 35 3A 33 38 
+32 32 3A 33 34 3A 31 34 
+00
+66 68 62 64 73 68 6A 66 67 64 69 73 68 66 68 
+0A
 00
 52 65 66 65 72 65 6E 63 65 20 53 69 67 6E 61 6C 20
 44 61 74 61 20 20 20 20 20 20 20 20 7C 53 61 6D

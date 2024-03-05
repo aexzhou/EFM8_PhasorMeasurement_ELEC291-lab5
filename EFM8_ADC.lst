@@ -1,7 +1,7 @@
 0000              1   ;--------------------------------------------------------
 0000              2   ; File Created by C51
 0000              3   ; Version 1.0.0 #1170 (Feb 16 2022) (MSVC)
-0000              4   ; This file was generated Mon Mar 04 21:35:38 2024
+0000              4   ; This file was generated Mon Mar 04 22:34:14 2024
 0000              5   ;--------------------------------------------------------
                   5   $name EFM8_ADC
                   6   $optc51 --model-small
@@ -1392,7 +1392,7 @@
 03DA 75EA1C    1392            mov     (_main_prev_period_spl_1_79 + 2),#0x1C
 03DD 75EB46    1393            mov     (_main_prev_period_spl_1_79 + 3),#0x46
 03E0           1394   ;        C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:354: while(1)
-03E0           1395   L018072?:
+03E0           1395   L018074?:
 03E0           1396   ;        C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:358: ADC0MX=REF_SIGNAL;        // <---- PORT FOR REFERENCE SIGNAL
 03E0 75BB12    1397            mov     _ADC0MX,#0x12
 03E3           1398   ;        C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:359: ADINT = 0;
@@ -1433,9 +1433,9 @@
 0417 6000      1433            jz      L018014?
 0419           1434   ;        C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:369: if (TF0==1){
 0419           1435   ;        C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:370: TF0=0;
-0419 108D98    1436            jbc     _TF0,L018113?
+0419 108D98    1436            jbc     _TF0,L018117?
 041C 8000      1437            sjmp    L018012?
-041E           1438   L018113?:
+041E           1438   L018117?:
 041E           1439   ;        C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:371: overflow_count++;         // count overflows
 041E 0508      1440            inc     _overflow_count
 0420 8000      1441            sjmp    L018012?
@@ -1754,9 +1754,9 @@
 0682 6000      1754            jz      L018040?
 0684           1755   ;        C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:411: if (TF0==1){
 0684           1756   ;        C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:412: TF0=0;
-0684 108D98    1757            jbc     _TF0,L018122?
+0684 108D98    1757            jbc     _TF0,L018126?
 0687 8000      1758            sjmp    L018038?
-0689           1759   L018122?:
+0689           1759   L018126?:
 0689           1760   ;        C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:413: overflow_count++;         // count overflows
 0689 0508      1761            inc     _overflow_count
 068B 8000      1762            sjmp    L018038?
@@ -2016,8 +2016,8 @@
 0885           2016   ;        C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:440: vrms_spl = Volts_at_Pin(SPL_SIGNAL)*0.707106781187; // grabs vmax 1/4 T later from 0-cross
 0885 758211    2017            mov     dpl,#0x11
 0888 120000    2018            lcall   _Volts_at_Pin
-088B           2019   ;        C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:445: ADC0MX=REF_SIGNAL;                // start tracking REF signal
-088B 75BB12    2020            mov     _ADC0MX,#0x12
+088B           2019   ;        C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:445: ADC0MX=SPL_SIGNAL;                // start tracking REF signal
+088B 75BB11    2020            mov     _ADC0MX,#0x11
 088E           2021   ;        C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:446: ADINT = 0;
 088E C2ED      2022            clr     _ADINT
 0890           2023   ;        C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:447: ADBUSY=1;
@@ -2039,471 +2039,501 @@
 08A6 8583F0    2039            mov     b,dph
 08A9 45F0      2040            orl     a,b
 08AB 6000      2041            jz      L018059?
-08AD           2042   ;        C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:453: overflow_count = 0;               // clear timer overflow
-08AD 750800    2043            mov     _overflow_count,#0x00
-08B0           2044   ;        C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:454: TL0=0;                                    // clear timer 0
-08B0 758A00    2045            mov     _TL0,#0x00
-08B3           2046   ;        C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:455: TH0=0;
-08B3 758C00    2047            mov     _TH0,#0x00
-08B6           2048   ;        C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:456: TR0=1;                                    // start timer 0
-08B6 D28C      2049            setb    _TR0
-08B8           2050   ;        C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:459: ADC0MX=SPL_SIGNAL;                // start tracking SPL signal
-08B8 75BB11    2051            mov     _ADC0MX,#0x11
-08BB           2052   ;        C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:460: ADINT = 0;
-08BB C2ED      2053            clr     _ADINT
-08BD           2054   ;        C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:461: ADBUSY=1;
-08BD D2EC      2055            setb    _ADBUSY
-08BF           2056   ;        C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:462: while (!ADINT);                   // wait for adc conversion to complete
-08BF           2057   L018062?:
-08BF 30EDD8    2058            jnb     _ADINT,L018062?
-08C2           2059   ;        C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:463: while (Get_ADC()!=0);     // wait for SPL signal to be 0
-08C2           2060   L018065?:
-08C2 120000    2061            lcall   _Get_ADC
-08C5 E582      2062            mov     a,dpl
-08C7 8583F0    2063            mov     b,dph
-08CA 45F0      2064            orl     a,b
-08CC 7000      2065            jnz     L018065?
-08CE           2066   ;        C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:464: while (Get_ADC()==0);     // wait for SPL signal to be pos (0-cross posedge)
-08CE           2067   L018068?:
-08CE 120000    2068            lcall   _Get_ADC
-08D1 E582      2069            mov     a,dpl
-08D3 8583F0    2070            mov     b,dph
-08D6 45F0      2071            orl     a,b
-08D8 6000      2072            jz      L018068?
-08DA           2073   ;        C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:467: TR0=0; // stop timer 0    
-08DA C28C      2074            clr     _TR0
-08DC           2075   ;        C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:468: phase_diff_time = (overflow_count*65536.0 + TH0*256.0 + TL0)*(12.0/SYSCLK);
-08DC 850882    2076            mov     dpl,_overflow_count
-08DF 120000    2077            lcall   ___uchar2fs
-08E2 AE82      2078            mov     r6,dpl
-08E4 AF83      2079            mov     r7,dph
-08E6 A8F0      2080            mov     r0,b
-08E8 F9        2081            mov     r1,a
-08E9 C006      2082            push    ar6
-08EB C007      2083            push    ar7
-08ED C000      2084            push    ar0
-08EF C001      2085            push    ar1
-08F1 900000    2086            mov     dptr,#0x0000
-08F4 75F080    2087            mov     b,#0x80
-08F7 7447      2088            mov     a,#0x47
-08F9 120000    2089            lcall   ___fsmul
-08FC AE82      2090            mov     r6,dpl
-08FE AF83      2091            mov     r7,dph
-0900 A8F0      2092            mov     r0,b
-0902 F9        2093            mov     r1,a
-0903 E581      2094            mov     a,sp
-0905 24FC      2095            add     a,#0xfc
-0907 F581      2096            mov     sp,a
-0909 858C82    2097            mov     dpl,_TH0
-090C C006      2098            push    ar6
-090E C007      2099            push    ar7
-0910 C000      2100            push    ar0
-0912 C001      2101            push    ar1
-0914 120000    2102            lcall   ___uchar2fs
-0917 AA82      2103            mov     r2,dpl
-0919 AB83      2104            mov     r3,dph
-091B ACF0      2105            mov     r4,b
-091D FD        2106            mov     r5,a
-091E C002      2107            push    ar2
-0920 C003      2108            push    ar3
-0922 C004      2109            push    ar4
-0924 C005      2110            push    ar5
-0926 900000    2111            mov     dptr,#0x0000
-0929 75F080    2112            mov     b,#0x80
-092C 7443      2113            mov     a,#0x43
-092E 120000    2114            lcall   ___fsmul
-0931 AA82      2115            mov     r2,dpl
-0933 AB83      2116            mov     r3,dph
-0935 ACF0      2117            mov     r4,b
-0937 FD        2118            mov     r5,a
-0938 E581      2119            mov     a,sp
-093A 24FC      2120            add     a,#0xfc
-093C F581      2121            mov     sp,a
-093E D001      2122            pop     ar1
-0940 D000      2123            pop     ar0
-0942 D007      2124            pop     ar7
-0944 D006      2125            pop     ar6
-0946 C002      2126            push    ar2
-0948 C003      2127            push    ar3
-094A C004      2128            push    ar4
-094C C005      2129            push    ar5
-094E 8E82      2130            mov     dpl,r6
-0950 8F83      2131            mov     dph,r7
-0952 88F0      2132            mov     b,r0
-0954 E9        2133            mov     a,r1
-0955 120000    2134            lcall   ___fsadd
-0958 AA82      2135            mov     r2,dpl
-095A AB83      2136            mov     r3,dph
-095C ACF0      2137            mov     r4,b
-095E FD        2138            mov     r5,a
-095F E581      2139            mov     a,sp
-0961 24FC      2140            add     a,#0xfc
-0963 F581      2141            mov     sp,a
-0965 AE8A      2142            mov     r6,_TL0
-0967 7F00      2143            mov     r7,#0x00
-0969 8E82      2144            mov     dpl,r6
-096B 8F83      2145            mov     dph,r7
-096D C002      2146            push    ar2
-096F C003      2147            push    ar3
-0971 C004      2148            push    ar4
-0973 C005      2149            push    ar5
-0975 120000    2150            lcall   ___sint2fs
-0978 AE82      2151            mov     r6,dpl
-097A AF83      2152            mov     r7,dph
-097C A8F0      2153            mov     r0,b
-097E F9        2154            mov     r1,a
-097F D005      2155            pop     ar5
-0981 D004      2156            pop     ar4
-0983 D003      2157            pop     ar3
-0985 D002      2158            pop     ar2
-0987 C006      2159            push    ar6
-0989 C007      2160            push    ar7
-098B C000      2161            push    ar0
-098D C001      2162            push    ar1
-098F 8A82      2163            mov     dpl,r2
-0991 8B83      2164            mov     dph,r3
-0993 8CF0      2165            mov     b,r4
-0995 ED        2166            mov     a,r5
-0996 120000    2167            lcall   ___fsadd
-0999 AA82      2168            mov     r2,dpl
-099B AB83      2169            mov     r3,dph
-099D ACF0      2170            mov     r4,b
-099F FD        2171            mov     r5,a
-09A0 E581      2172            mov     a,sp
-09A2 24FC      2173            add     a,#0xfc
-09A4 F581      2174            mov     sp,a
-09A6 C002      2175            push    ar2
-09A8 C003      2176            push    ar3
-09AA C004      2177            push    ar4
-09AC C005      2178            push    ar5
-09AE 90F4FC    2179            mov     dptr,#0xF4FC
-09B1 75F032    2180            mov     b,#0x32
-09B4 7434      2181            mov     a,#0x34
-09B6 120000    2182            lcall   ___fsmul
-09B9 AA82      2183            mov     r2,dpl
-09BB AB83      2184            mov     r3,dph
-09BD ACF0      2185            mov     r4,b
-09BF FD        2186            mov     r5,a
-09C0 E581      2187            mov     a,sp
-09C2 24FC      2188            add     a,#0xfc
-09C4 F581      2189            mov     sp,a
-09C6           2190   ;        C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:469: phase_diff_deg = phase_diff_time * (360/period_spl);
-09C6 C002      2191            push    ar2
-09C8 C003      2192            push    ar3
-09CA C004      2193            push    ar4
-09CC C005      2194            push    ar5
-09CE C0F8      2195            push    _main_period_spl_1_79
-09D0 C0F9      2196            push    (_main_period_spl_1_79 + 1)
-09D2 C0FA      2197            push    (_main_period_spl_1_79 + 2)
-09D4 C0FB      2198            push    (_main_period_spl_1_79 + 3)
-09D6 900000    2199            mov     dptr,#0x0000
-09D9 75F0B4    2200            mov     b,#0xB4
-09DC 7443      2201            mov     a,#0x43
-09DE 120000    2202            lcall   ___fsdiv
-09E1 AE82      2203            mov     r6,dpl
-09E3 AF83      2204            mov     r7,dph
-09E5 A8F0      2205            mov     r0,b
-09E7 F9        2206            mov     r1,a
-09E8 E581      2207            mov     a,sp
-09EA 24FC      2208            add     a,#0xfc
-09EC F581      2209            mov     sp,a
-09EE D005      2210            pop     ar5
-09F0 D004      2211            pop     ar4
-09F2 D003      2212            pop     ar3
-09F4 D002      2213            pop     ar2
-09F6 C006      2214            push    ar6
-09F8 C007      2215            push    ar7
-09FA C000      2216            push    ar0
-09FC C001      2217            push    ar1
-09FE 8A82      2218            mov     dpl,r2
-0A00 8B83      2219            mov     dph,r3
-0A02 8CF0      2220            mov     b,r4
-0A04 ED        2221            mov     a,r5
-0A05 120000    2222            lcall   ___fsmul
-0A08 858238    2223            mov     _main_phase_diff_deg_1_79,dpl
-0A0B 858339    2224            mov     (_main_phase_diff_deg_1_79 + 1),dph
-0A0E 85F03A    2225            mov     (_main_phase_diff_deg_1_79 + 2),b
-0A11 F53B      2226            mov     (_main_phase_diff_deg_1_79 + 3),a
-0A13 E581      2227            mov     a,sp
-0A15 24FC      2228            add     a,#0xfc
-0A17 F581      2229            mov     sp,a
-0A19           2230   ;        C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:472: overflow_count = 0;               
-0A19           2231   ;        C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:473: TL0=0;
-0A19           2232   ;        C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:474: TH0=0;
-0A19           2233   ;        C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:498: printf("Reference Signal Data        |Sample Signal Data            \n");
-0A19 E4        2234            clr     a
-0A1A F508      2235            mov     _overflow_count,a
-0A1C F58A      2236            mov     _TL0,a
-0A1E F58C      2237            mov     _TH0,a
-0A20 7498      2238            mov     a,#__str_5
-0A22 C0E0      2239            push    acc
-0A24 74CC      2240            mov     a,#(__str_5 >> 8)
-0A26 C0E0      2241            push    acc
-0A28 7480      2242            mov     a,#0x80
-0A2A C0E0      2243            push    acc
-0A2C 120000    2244            lcall   _printf
-0A2F 1581      2245            dec     sp
-0A31 1581      2246            dec     sp
-0A33 1581      2247            dec     sp
-0A35           2248   ;        C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:499: printf("---------------------------------------------------------\n");
-0A35 74D8      2249            mov     a,#__str_6
-0A37 C0E0      2250            push    acc
-0A39 74CC      2251            mov     a,#(__str_6 >> 8)
-0A3B C0E0      2252            push    acc
-0A3D 7480      2253            mov     a,#0x80
-0A3F C0E0      2254            push    acc
-0A41 120000    2255            lcall   _printf
-0A44 1581      2256            dec     sp
-0A46 1581      2257            dec     sp
-0A48 1581      2258            dec     sp
-0A4A           2259   ;        C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:500: printf("Ref Period(T):  %7.6f s  | Spl Period(T):  %7.6f s \n",period_ref*1000, period_spl*1000);
-0A4A C0F8      2260            push    _main_period_spl_1_79
-0A4C C0F9      2261            push    (_main_period_spl_1_79 + 1)
-0A4E C0FA      2262            push    (_main_period_spl_1_79 + 2)
-0A50 C0FB      2263            push    (_main_period_spl_1_79 + 3)
-0A52 900000    2264            mov     dptr,#0x0000
-0A55 75F07A    2265            mov     b,#0x7A
-0A58 7444      2266            mov     a,#0x44
-0A5A 120000    2267            lcall   ___fsmul
-0A5D AE82      2268            mov     r6,dpl
-0A5F AF83      2269            mov     r7,dph
-0A61 A8F0      2270            mov     r0,b
-0A63 F9        2271            mov     r1,a
-0A64 E581      2272            mov     a,sp
-0A66 24FC      2273            add     a,#0xfc
-0A68 F581      2274            mov     sp,a
-0A6A C006      2275            push    ar6
-0A6C C007      2276            push    ar7
-0A6E C000      2277            push    ar0
-0A70 C001      2278            push    ar1
-0A72 C068      2279            push    _main_period_ref_1_79
-0A74 C069      2280            push    (_main_period_ref_1_79 + 1)
-0A76 C06A      2281            push    (_main_period_ref_1_79 + 2)
-0A78 C06B      2282            push    (_main_period_ref_1_79 + 3)
-0A7A 900000    2283            mov     dptr,#0x0000
-0A7D 75F07A    2284            mov     b,#0x7A
-0A80 7444      2285            mov     a,#0x44
-0A82 120000    2286            lcall   ___fsmul
-0A85 AA82      2287            mov     r2,dpl
-0A87 AB83      2288            mov     r3,dph
-0A89 ACF0      2289            mov     r4,b
-0A8B FD        2290            mov     r5,a
-0A8C E581      2291            mov     a,sp
-0A8E 24FC      2292            add     a,#0xfc
-0A90 F581      2293            mov     sp,a
-0A92 C002      2294            push    ar2
-0A94 C003      2295            push    ar3
-0A96 C004      2296            push    ar4
-0A98 C005      2297            push    ar5
-0A9A 7418      2298            mov     a,#__str_7
-0A9C C0E0      2299            push    acc
-0A9E 74CD      2300            mov     a,#(__str_7 >> 8)
-0AA0 C0E0      2301            push    acc
-0AA2 7480      2302            mov     a,#0x80
-0AA4 C0E0      2303            push    acc
-0AA6 120000    2304            lcall   _printf
-0AA9 E581      2305            mov     a,sp
-0AAB 24F5      2306            add     a,#0xf5
-0AAD F581      2307            mov     sp,a
-0AAF           2308   ;        C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:501: printf("Ref Freq(f)  :  %7.6f Hz | Spl Freq(f)  :  %7.6f Hz\n",freq_ref, freq_spl);
-0AAF C048      2309            push    _main_freq_spl_1_79
-0AB1 C049      2310            push    (_main_freq_spl_1_79 + 1)
-0AB3 C04A      2311            push    (_main_freq_spl_1_79 + 2)
-0AB5 C04B      2312            push    (_main_freq_spl_1_79 + 3)
-0AB7 C0B8      2313            push    _main_freq_ref_1_79
-0AB9 C0B9      2314            push    (_main_freq_ref_1_79 + 1)
-0ABB C0BA      2315            push    (_main_freq_ref_1_79 + 2)
-0ABD C0BB      2316            push    (_main_freq_ref_1_79 + 3)
-0ABF 7458      2317            mov     a,#__str_8
-0AC1 C0E0      2318            push    acc
-0AC3 74CD      2319            mov     a,#(__str_8 >> 8)
-0AC5 C0E0      2320            push    acc
-0AC7 7480      2321            mov     a,#0x80
-0AC9 C0E0      2322            push    acc
-0ACB 120000    2323            lcall   _printf
-0ACE E581      2324            mov     a,sp
-0AD0 24F5      2325            add     a,#0xf5
-0AD2 F581      2326            mov     sp,a
-0AD4           2327   ;        C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:502: printf("Vmax (ref)   :  %4.4f V\n",vrms_ref);
-0AD4 C0A8      2328            push    _main_vrms_ref_1_79
-0AD6 C0A9      2329            push    (_main_vrms_ref_1_79 + 1)
-0AD8 C0AA      2330            push    (_main_vrms_ref_1_79 + 2)
-0ADA C0AB      2331            push    (_main_vrms_ref_1_79 + 3)
-0ADC 7498      2332            mov     a,#__str_9
-0ADE C0E0      2333            push    acc
-0AE0 74CD      2334            mov     a,#(__str_9 >> 8)
-0AE2 C0E0      2335            push    acc
-0AE4 7480      2336            mov     a,#0x80
-0AE6 C0E0      2337            push    acc
-0AE8 120000    2338            lcall   _printf
-0AEB E581      2339            mov     a,sp
-0AED 24F9      2340            add     a,#0xf9
-0AEF F581      2341            mov     sp,a
-0AF1           2342   ;        C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:503: printf("Phase Difference: %7.6f degrees\n", phase_diff_deg);
-0AF1 C038      2343            push    _main_phase_diff_deg_1_79
-0AF3 C039      2344            push    (_main_phase_diff_deg_1_79 + 1)
-0AF5 C03A      2345            push    (_main_phase_diff_deg_1_79 + 2)
-0AF7 C03B      2346            push    (_main_phase_diff_deg_1_79 + 3)
-0AF9 74D8      2347            mov     a,#__str_10
-0AFB C0E0      2348            push    acc
-0AFD 74CD      2349            mov     a,#(__str_10 >> 8)
-0AFF C0E0      2350            push    acc
-0B01 7480      2351            mov     a,#0x80
-0B03 C0E0      2352            push    acc
-0B05 120000    2353            lcall   _printf
-0B08 E581      2354            mov     a,sp
-0B0A 24F9      2355            add     a,#0xf9
-0B0C F581      2356            mov     sp,a
-0B0E           2357   ;        C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:504: printf("\033[A\033[A\033[A\033[A\033[A\033[A");
-0B0E 7418      2358            mov     a,#__str_11
-0B10 C0E0      2359            push    acc
-0B12 74CE      2360            mov     a,#(__str_11 >> 8)
-0B14 C0E0      2361            push    acc
-0B16 7480      2362            mov     a,#0x80
-0B18 C0E0      2363            push    acc
-0B1A 120000    2364            lcall   _printf
-0B1D 1581      2365            dec     sp
-0B1F 1581      2366            dec     sp
-0B21 1581      2367            dec     sp
-0B23           2368   ;        C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:506: sprintf(buffer,"Rf:%2d Sp:%2d Hz",(int)freq_ref%1000, (int)freq_spl%1000);
-0B23 854882    2369            mov     dpl,_main_freq_spl_1_79
-0B26 854983    2370            mov     dph,(_main_freq_spl_1_79 + 1)
-0B29 854AF0    2371            mov     b,(_main_freq_spl_1_79 + 2)
-0B2C E54B      2372            mov     a,(_main_freq_spl_1_79 + 3)
-0B2E 120000    2373            lcall   ___fs2sint
-0B31 7500E8    2374            mov     __modsint_PARM_2,#0xE8
-0B34 750103    2375            mov     (__modsint_PARM_2 + 1),#0x03
-0B37 120000    2376            lcall   __modsint
-0B3A AA82      2377            mov     r2,dpl
-0B3C AB83      2378            mov     r3,dph
-0B3E 85B882    2379            mov     dpl,_main_freq_ref_1_79
-0B41 85B983    2380            mov     dph,(_main_freq_ref_1_79 + 1)
-0B44 85BAF0    2381            mov     b,(_main_freq_ref_1_79 + 2)
-0B47 E5BB      2382            mov     a,(_main_freq_ref_1_79 + 3)
-0B49 C002      2383            push    ar2
-0B4B C003      2384            push    ar3
-0B4D 120000    2385            lcall   ___fs2sint
-0B50 7500E8    2386            mov     __modsint_PARM_2,#0xE8
-0B53 750103    2387            mov     (__modsint_PARM_2 + 1),#0x03
-0B56 120000    2388            lcall   __modsint
-0B59 AC82      2389            mov     r4,dpl
-0B5B AD83      2390            mov     r5,dph
-0B5D C004      2391            push    ar4
-0B5F C005      2392            push    ar5
-0B61 7428      2393            mov     a,#__str_12
-0B63 C0E0      2394            push    acc
-0B65 74CF      2395            mov     a,#(__str_12 >> 8)
-0B67 C0E0      2396            push    acc
-0B69 7480      2397            mov     a,#0x80
-0B6B C0E0      2398            push    acc
-0B6D 7418      2399            mov     a,#_main_buffer_1_79
-0B6F C0E0      2400            push    acc
-0B71 74B4      2401            mov     a,#(_main_buffer_1_79 >> 8)
-0B73 C0E0      2402            push    acc
-0B75 7440      2403            mov     a,#0x40
-0B77 C0E0      2404            push    acc
-0B79 120000    2405            lcall   _sprintf
-0B7C E581      2406            mov     a,sp
-0B7E 24F6      2407            add     a,#0xf6
-0B80 F581      2408            mov     sp,a
-0B82           2409   ;        C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:507: LCDprint(buffer,1,1);
-0B82 75C801    2410            mov     _LCDprint_PARM_2,#0x01
-0B85 D278      2411            setb    _LCDprint_PARM_3
-0B87 90B418    2412            mov     dptr,#_main_buffer_1_79
-0B8A 75F040    2413            mov     b,#0x40
-0B8D 120000    2414            lcall   _LCDprint
-0B90           2415   ;        C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:509: sprintf(buffer,"Vr:%4.4f V",vrms_ref);
-0B90 C0A8      2416            push    _main_vrms_ref_1_79
-0B92 C0A9      2417            push    (_main_vrms_ref_1_79 + 1)
-0B94 C0AA      2418            push    (_main_vrms_ref_1_79 + 2)
-0B96 C0AB      2419            push    (_main_vrms_ref_1_79 + 3)
-0B98 74A8      2420            mov     a,#__str_13
-0B9A C0E0      2421            push    acc
-0B9C 74CF      2422            mov     a,#(__str_13 >> 8)
-0B9E C0E0      2423            push    acc
-0BA0 7480      2424            mov     a,#0x80
-0BA2 C0E0      2425            push    acc
-0BA4 7418      2426            mov     a,#_main_buffer_1_79
-0BA6 C0E0      2427            push    acc
-0BA8 74B4      2428            mov     a,#(_main_buffer_1_79 >> 8)
-0BAA C0E0      2429            push    acc
-0BAC 7440      2430            mov     a,#0x40
-0BAE C0E0      2431            push    acc
-0BB0 120000    2432            lcall   _sprintf
-0BB3 E581      2433            mov     a,sp
-0BB5 24F6      2434            add     a,#0xf6
-0BB7 F581      2435            mov     sp,a
-0BB9           2436   ;        C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:510: LCDprint(buffer,2,1);
-0BB9 75C802    2437            mov     _LCDprint_PARM_2,#0x02
-0BBC D278      2438            setb    _LCDprint_PARM_3
-0BBE 90B418    2439            mov     dptr,#_main_buffer_1_79
-0BC1 75F040    2440            mov     b,#0x40
-0BC4 120000    2441            lcall   _LCDprint
-0BC7           2442   ;        C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:511: waitms(500);
-0BC7 9001F4    2443            mov     dptr,#0x01F4
-0BCA 120000    2444            lcall   _waitms
-0BCD 020000    2445            ljmp    L018072?
-0BD0           2446            rseg R_CSEG
-0BD0           2447   
-0000           2448            rseg R_XINIT
-0000           2449   
-0000           2450            rseg R_CONST
-0000           2451   __str_0:
-0000 1B        2452            db 0x1B
-0001 5B324A    2453            db '[2J'
-0004 00        2454            db 0x00
-0005           2455   __str_1:
-0005 41444320  2456            db 'ADC test program'
+08AD           2042   ;        C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:452: P0_0=1;
+08AD D280      2043            setb    _P0_0
+08AF           2044   ;        C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:454: overflow_count = 0;
+08AF 750800    2045            mov     _overflow_count,#0x00
+08B2           2046   ;        C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:455: TL0=0;                                    // clear timer 0
+08B2 758A00    2047            mov     _TL0,#0x00
+08B5           2048   ;        C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:456: TH0=0;
+08B5 758C00    2049            mov     _TH0,#0x00
+08B8           2050   ;        C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:457: TR0=1;                                    // start timer 0
+08B8 D28C      2051            setb    _TR0
+08BA           2052   ;        C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:460: ADC0MX=REF_SIGNAL;                // start tracking SPL signal
+08BA 75BB12    2053            mov     _ADC0MX,#0x12
+08BD           2054   ;        C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:461: ADINT = 0;
+08BD C2ED      2055            clr     _ADINT
+08BF           2056   ;        C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:462: ADBUSY=1;
+08BF D2EC      2057            setb    _ADBUSY
+08C1           2058   ;        C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:463: while (!ADINT);                   // wait for adc conversion to complete
+08C1           2059   L018062?:
+08C1 30EDD8    2060            jnb     _ADINT,L018062?
+08C4           2061   ;        C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:464: while (Get_ADC()!=0){     // wait for SPL signal to be 0
+08C4           2062   L018067?:
+08C4 120000    2063            lcall   _Get_ADC
+08C7 E582      2064            mov     a,dpl
+08C9 8583F0    2065            mov     b,dph
+08CC 45F0      2066            orl     a,b
+08CE 6000      2067            jz      L018070?
+08D0           2068   ;        C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:465: if (TF0==1){
+08D0           2069   ;        C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:466: TF0=0;
+08D0 108D98    2070            jbc     _TF0,L018136?
+08D3 8000      2071            sjmp    L018067?
+08D5           2072   L018136?:
+08D5           2073   ;        C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:467: printf("fhbdshjfgdishfh\n");
+08D5 74D8      2074            mov     a,#__str_5
+08D7 C0E0      2075            push    acc
+08D9 74CC      2076            mov     a,#(__str_5 >> 8)
+08DB C0E0      2077            push    acc
+08DD 7480      2078            mov     a,#0x80
+08DF C0E0      2079            push    acc
+08E1 120000    2080            lcall   _printf
+08E4 1581      2081            dec     sp
+08E6 1581      2082            dec     sp
+08E8 1581      2083            dec     sp
+08EA           2084   ;        C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:468: overflow_count++;         // count overflows
+08EA 0508      2085            inc     _overflow_count
+08EC           2086   ;        C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:471: while (Get_ADC()==0);     // wait for SPL signal to be pos (0-cross posedge)
+08EC 8000      2087            sjmp    L018067?
+08EE           2088   L018070?:
+08EE 120000    2089            lcall   _Get_ADC
+08F1 E582      2090            mov     a,dpl
+08F3 8583F0    2091            mov     b,dph
+08F6 45F0      2092            orl     a,b
+08F8 6000      2093            jz      L018070?
+08FA           2094   ;        C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:473: P0_0=0;
+08FA C280      2095            clr     _P0_0
+08FC           2096   ;        C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:475: TR0=0; // stop timer 0    
+08FC C28C      2097            clr     _TR0
+08FE           2098   ;        C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:476: phase_diff_time = (overflow_count*65536.0 + TH0*256.0 + TL0)*(12.0/SYSCLK);
+08FE 850882    2099            mov     dpl,_overflow_count
+0901 120000    2100            lcall   ___uchar2fs
+0904 AE82      2101            mov     r6,dpl
+0906 AF83      2102            mov     r7,dph
+0908 A8F0      2103            mov     r0,b
+090A F9        2104            mov     r1,a
+090B C006      2105            push    ar6
+090D C007      2106            push    ar7
+090F C000      2107            push    ar0
+0911 C001      2108            push    ar1
+0913 900000    2109            mov     dptr,#0x0000
+0916 75F080    2110            mov     b,#0x80
+0919 7447      2111            mov     a,#0x47
+091B 120000    2112            lcall   ___fsmul
+091E AE82      2113            mov     r6,dpl
+0920 AF83      2114            mov     r7,dph
+0922 A8F0      2115            mov     r0,b
+0924 F9        2116            mov     r1,a
+0925 E581      2117            mov     a,sp
+0927 24FC      2118            add     a,#0xfc
+0929 F581      2119            mov     sp,a
+092B 858C82    2120            mov     dpl,_TH0
+092E C006      2121            push    ar6
+0930 C007      2122            push    ar7
+0932 C000      2123            push    ar0
+0934 C001      2124            push    ar1
+0936 120000    2125            lcall   ___uchar2fs
+0939 AA82      2126            mov     r2,dpl
+093B AB83      2127            mov     r3,dph
+093D ACF0      2128            mov     r4,b
+093F FD        2129            mov     r5,a
+0940 C002      2130            push    ar2
+0942 C003      2131            push    ar3
+0944 C004      2132            push    ar4
+0946 C005      2133            push    ar5
+0948 900000    2134            mov     dptr,#0x0000
+094B 75F080    2135            mov     b,#0x80
+094E 7443      2136            mov     a,#0x43
+0950 120000    2137            lcall   ___fsmul
+0953 AA82      2138            mov     r2,dpl
+0955 AB83      2139            mov     r3,dph
+0957 ACF0      2140            mov     r4,b
+0959 FD        2141            mov     r5,a
+095A E581      2142            mov     a,sp
+095C 24FC      2143            add     a,#0xfc
+095E F581      2144            mov     sp,a
+0960 D001      2145            pop     ar1
+0962 D000      2146            pop     ar0
+0964 D007      2147            pop     ar7
+0966 D006      2148            pop     ar6
+0968 C002      2149            push    ar2
+096A C003      2150            push    ar3
+096C C004      2151            push    ar4
+096E C005      2152            push    ar5
+0970 8E82      2153            mov     dpl,r6
+0972 8F83      2154            mov     dph,r7
+0974 88F0      2155            mov     b,r0
+0976 E9        2156            mov     a,r1
+0977 120000    2157            lcall   ___fsadd
+097A AA82      2158            mov     r2,dpl
+097C AB83      2159            mov     r3,dph
+097E ACF0      2160            mov     r4,b
+0980 FD        2161            mov     r5,a
+0981 E581      2162            mov     a,sp
+0983 24FC      2163            add     a,#0xfc
+0985 F581      2164            mov     sp,a
+0987 AE8A      2165            mov     r6,_TL0
+0989 7F00      2166            mov     r7,#0x00
+098B 8E82      2167            mov     dpl,r6
+098D 8F83      2168            mov     dph,r7
+098F C002      2169            push    ar2
+0991 C003      2170            push    ar3
+0993 C004      2171            push    ar4
+0995 C005      2172            push    ar5
+0997 120000    2173            lcall   ___sint2fs
+099A AE82      2174            mov     r6,dpl
+099C AF83      2175            mov     r7,dph
+099E A8F0      2176            mov     r0,b
+09A0 F9        2177            mov     r1,a
+09A1 D005      2178            pop     ar5
+09A3 D004      2179            pop     ar4
+09A5 D003      2180            pop     ar3
+09A7 D002      2181            pop     ar2
+09A9 C006      2182            push    ar6
+09AB C007      2183            push    ar7
+09AD C000      2184            push    ar0
+09AF C001      2185            push    ar1
+09B1 8A82      2186            mov     dpl,r2
+09B3 8B83      2187            mov     dph,r3
+09B5 8CF0      2188            mov     b,r4
+09B7 ED        2189            mov     a,r5
+09B8 120000    2190            lcall   ___fsadd
+09BB AA82      2191            mov     r2,dpl
+09BD AB83      2192            mov     r3,dph
+09BF ACF0      2193            mov     r4,b
+09C1 FD        2194            mov     r5,a
+09C2 E581      2195            mov     a,sp
+09C4 24FC      2196            add     a,#0xfc
+09C6 F581      2197            mov     sp,a
+09C8 C002      2198            push    ar2
+09CA C003      2199            push    ar3
+09CC C004      2200            push    ar4
+09CE C005      2201            push    ar5
+09D0 90F4FC    2202            mov     dptr,#0xF4FC
+09D3 75F032    2203            mov     b,#0x32
+09D6 7434      2204            mov     a,#0x34
+09D8 120000    2205            lcall   ___fsmul
+09DB AA82      2206            mov     r2,dpl
+09DD AB83      2207            mov     r3,dph
+09DF ACF0      2208            mov     r4,b
+09E1 FD        2209            mov     r5,a
+09E2 E581      2210            mov     a,sp
+09E4 24FC      2211            add     a,#0xfc
+09E6 F581      2212            mov     sp,a
+09E8           2213   ;        C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:477: phase_diff_deg = phase_diff_time * (360/period_ref);
+09E8 C002      2214            push    ar2
+09EA C003      2215            push    ar3
+09EC C004      2216            push    ar4
+09EE C005      2217            push    ar5
+09F0 C068      2218            push    _main_period_ref_1_79
+09F2 C069      2219            push    (_main_period_ref_1_79 + 1)
+09F4 C06A      2220            push    (_main_period_ref_1_79 + 2)
+09F6 C06B      2221            push    (_main_period_ref_1_79 + 3)
+09F8 900000    2222            mov     dptr,#0x0000
+09FB 75F0B4    2223            mov     b,#0xB4
+09FE 7443      2224            mov     a,#0x43
+0A00 120000    2225            lcall   ___fsdiv
+0A03 AE82      2226            mov     r6,dpl
+0A05 AF83      2227            mov     r7,dph
+0A07 A8F0      2228            mov     r0,b
+0A09 F9        2229            mov     r1,a
+0A0A E581      2230            mov     a,sp
+0A0C 24FC      2231            add     a,#0xfc
+0A0E F581      2232            mov     sp,a
+0A10 D005      2233            pop     ar5
+0A12 D004      2234            pop     ar4
+0A14 D003      2235            pop     ar3
+0A16 D002      2236            pop     ar2
+0A18 C006      2237            push    ar6
+0A1A C007      2238            push    ar7
+0A1C C000      2239            push    ar0
+0A1E C001      2240            push    ar1
+0A20 8A82      2241            mov     dpl,r2
+0A22 8B83      2242            mov     dph,r3
+0A24 8CF0      2243            mov     b,r4
+0A26 ED        2244            mov     a,r5
+0A27 120000    2245            lcall   ___fsmul
+0A2A 858238    2246            mov     _main_phase_diff_deg_1_79,dpl
+0A2D 858339    2247            mov     (_main_phase_diff_deg_1_79 + 1),dph
+0A30 85F03A    2248            mov     (_main_phase_diff_deg_1_79 + 2),b
+0A33 F53B      2249            mov     (_main_phase_diff_deg_1_79 + 3),a
+0A35 E581      2250            mov     a,sp
+0A37 24FC      2251            add     a,#0xfc
+0A39 F581      2252            mov     sp,a
+0A3B           2253   ;        C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:479: TL0=0;
+0A3B           2254   ;        C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:480: TH0=0;
+0A3B           2255   ;        C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:481: overflow_count = 0;
+0A3B           2256   ;        C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:492: printf("Reference Signal Data        |Sample Signal Data            \n");
+0A3B E4        2257            clr     a
+0A3C F58A      2258            mov     _TL0,a
+0A3E F58C      2259            mov     _TH0,a
+0A40 F508      2260            mov     _overflow_count,a
+0A42 7418      2261            mov     a,#__str_6
+0A44 C0E0      2262            push    acc
+0A46 74CD      2263            mov     a,#(__str_6 >> 8)
+0A48 C0E0      2264            push    acc
+0A4A 7480      2265            mov     a,#0x80
+0A4C C0E0      2266            push    acc
+0A4E 120000    2267            lcall   _printf
+0A51 1581      2268            dec     sp
+0A53 1581      2269            dec     sp
+0A55 1581      2270            dec     sp
+0A57           2271   ;        C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:493: printf("---------------------------------------------------------\n");
+0A57 7458      2272            mov     a,#__str_7
+0A59 C0E0      2273            push    acc
+0A5B 74CD      2274            mov     a,#(__str_7 >> 8)
+0A5D C0E0      2275            push    acc
+0A5F 7480      2276            mov     a,#0x80
+0A61 C0E0      2277            push    acc
+0A63 120000    2278            lcall   _printf
+0A66 1581      2279            dec     sp
+0A68 1581      2280            dec     sp
+0A6A 1581      2281            dec     sp
+0A6C           2282   ;        C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:494: printf("Ref Period(T):  %7.6f s  | Spl Period(T):  %7.6f s \n",period_ref*1000, period_spl*1000);
+0A6C C0F8      2283            push    _main_period_spl_1_79
+0A6E C0F9      2284            push    (_main_period_spl_1_79 + 1)
+0A70 C0FA      2285            push    (_main_period_spl_1_79 + 2)
+0A72 C0FB      2286            push    (_main_period_spl_1_79 + 3)
+0A74 900000    2287            mov     dptr,#0x0000
+0A77 75F07A    2288            mov     b,#0x7A
+0A7A 7444      2289            mov     a,#0x44
+0A7C 120000    2290            lcall   ___fsmul
+0A7F AE82      2291            mov     r6,dpl
+0A81 AF83      2292            mov     r7,dph
+0A83 A8F0      2293            mov     r0,b
+0A85 F9        2294            mov     r1,a
+0A86 E581      2295            mov     a,sp
+0A88 24FC      2296            add     a,#0xfc
+0A8A F581      2297            mov     sp,a
+0A8C C006      2298            push    ar6
+0A8E C007      2299            push    ar7
+0A90 C000      2300            push    ar0
+0A92 C001      2301            push    ar1
+0A94 C068      2302            push    _main_period_ref_1_79
+0A96 C069      2303            push    (_main_period_ref_1_79 + 1)
+0A98 C06A      2304            push    (_main_period_ref_1_79 + 2)
+0A9A C06B      2305            push    (_main_period_ref_1_79 + 3)
+0A9C 900000    2306            mov     dptr,#0x0000
+0A9F 75F07A    2307            mov     b,#0x7A
+0AA2 7444      2308            mov     a,#0x44
+0AA4 120000    2309            lcall   ___fsmul
+0AA7 AA82      2310            mov     r2,dpl
+0AA9 AB83      2311            mov     r3,dph
+0AAB ACF0      2312            mov     r4,b
+0AAD FD        2313            mov     r5,a
+0AAE E581      2314            mov     a,sp
+0AB0 24FC      2315            add     a,#0xfc
+0AB2 F581      2316            mov     sp,a
+0AB4 C002      2317            push    ar2
+0AB6 C003      2318            push    ar3
+0AB8 C004      2319            push    ar4
+0ABA C005      2320            push    ar5
+0ABC 7498      2321            mov     a,#__str_8
+0ABE C0E0      2322            push    acc
+0AC0 74CD      2323            mov     a,#(__str_8 >> 8)
+0AC2 C0E0      2324            push    acc
+0AC4 7480      2325            mov     a,#0x80
+0AC6 C0E0      2326            push    acc
+0AC8 120000    2327            lcall   _printf
+0ACB E581      2328            mov     a,sp
+0ACD 24F5      2329            add     a,#0xf5
+0ACF F581      2330            mov     sp,a
+0AD1           2331   ;        C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:495: printf("Ref Freq(f)  :  %7.6f Hz | Spl Freq(f)  :  %7.6f Hz\n",freq_ref, freq_spl);
+0AD1 C048      2332            push    _main_freq_spl_1_79
+0AD3 C049      2333            push    (_main_freq_spl_1_79 + 1)
+0AD5 C04A      2334            push    (_main_freq_spl_1_79 + 2)
+0AD7 C04B      2335            push    (_main_freq_spl_1_79 + 3)
+0AD9 C0B8      2336            push    _main_freq_ref_1_79
+0ADB C0B9      2337            push    (_main_freq_ref_1_79 + 1)
+0ADD C0BA      2338            push    (_main_freq_ref_1_79 + 2)
+0ADF C0BB      2339            push    (_main_freq_ref_1_79 + 3)
+0AE1 74D8      2340            mov     a,#__str_9
+0AE3 C0E0      2341            push    acc
+0AE5 74CD      2342            mov     a,#(__str_9 >> 8)
+0AE7 C0E0      2343            push    acc
+0AE9 7480      2344            mov     a,#0x80
+0AEB C0E0      2345            push    acc
+0AED 120000    2346            lcall   _printf
+0AF0 E581      2347            mov     a,sp
+0AF2 24F5      2348            add     a,#0xf5
+0AF4 F581      2349            mov     sp,a
+0AF6           2350   ;        C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:496: printf("Vmax (ref)   :  %4.4f V\n",vrms_ref);
+0AF6 C0A8      2351            push    _main_vrms_ref_1_79
+0AF8 C0A9      2352            push    (_main_vrms_ref_1_79 + 1)
+0AFA C0AA      2353            push    (_main_vrms_ref_1_79 + 2)
+0AFC C0AB      2354            push    (_main_vrms_ref_1_79 + 3)
+0AFE 7418      2355            mov     a,#__str_10
+0B00 C0E0      2356            push    acc
+0B02 74CE      2357            mov     a,#(__str_10 >> 8)
+0B04 C0E0      2358            push    acc
+0B06 7480      2359            mov     a,#0x80
+0B08 C0E0      2360            push    acc
+0B0A 120000    2361            lcall   _printf
+0B0D E581      2362            mov     a,sp
+0B0F 24F9      2363            add     a,#0xf9
+0B11 F581      2364            mov     sp,a
+0B13           2365   ;        C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:497: printf("Phase Difference: %7.6f degrees\n", phase_diff_deg);
+0B13 C038      2366            push    _main_phase_diff_deg_1_79
+0B15 C039      2367            push    (_main_phase_diff_deg_1_79 + 1)
+0B17 C03A      2368            push    (_main_phase_diff_deg_1_79 + 2)
+0B19 C03B      2369            push    (_main_phase_diff_deg_1_79 + 3)
+0B1B 7458      2370            mov     a,#__str_11
+0B1D C0E0      2371            push    acc
+0B1F 74CE      2372            mov     a,#(__str_11 >> 8)
+0B21 C0E0      2373            push    acc
+0B23 7480      2374            mov     a,#0x80
+0B25 C0E0      2375            push    acc
+0B27 120000    2376            lcall   _printf
+0B2A E581      2377            mov     a,sp
+0B2C 24F9      2378            add     a,#0xf9
+0B2E F581      2379            mov     sp,a
+0B30           2380   ;        C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:498: printf("\033[A\033[A\033[A\033[A\033[A\033[A");
+0B30 7498      2381            mov     a,#__str_12
+0B32 C0E0      2382            push    acc
+0B34 74CE      2383            mov     a,#(__str_12 >> 8)
+0B36 C0E0      2384            push    acc
+0B38 7480      2385            mov     a,#0x80
+0B3A C0E0      2386            push    acc
+0B3C 120000    2387            lcall   _printf
+0B3F 1581      2388            dec     sp
+0B41 1581      2389            dec     sp
+0B43 1581      2390            dec     sp
+0B45           2391   ;        C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:500: sprintf(buffer,"Rf:%2d Sp:%2d Hz",(int)freq_ref%1000, (int)freq_spl%1000);
+0B45 854882    2392            mov     dpl,_main_freq_spl_1_79
+0B48 854983    2393            mov     dph,(_main_freq_spl_1_79 + 1)
+0B4B 854AF0    2394            mov     b,(_main_freq_spl_1_79 + 2)
+0B4E E54B      2395            mov     a,(_main_freq_spl_1_79 + 3)
+0B50 120000    2396            lcall   ___fs2sint
+0B53 7500E8    2397            mov     __modsint_PARM_2,#0xE8
+0B56 750103    2398            mov     (__modsint_PARM_2 + 1),#0x03
+0B59 120000    2399            lcall   __modsint
+0B5C AA82      2400            mov     r2,dpl
+0B5E AB83      2401            mov     r3,dph
+0B60 85B882    2402            mov     dpl,_main_freq_ref_1_79
+0B63 85B983    2403            mov     dph,(_main_freq_ref_1_79 + 1)
+0B66 85BAF0    2404            mov     b,(_main_freq_ref_1_79 + 2)
+0B69 E5BB      2405            mov     a,(_main_freq_ref_1_79 + 3)
+0B6B C002      2406            push    ar2
+0B6D C003      2407            push    ar3
+0B6F 120000    2408            lcall   ___fs2sint
+0B72 7500E8    2409            mov     __modsint_PARM_2,#0xE8
+0B75 750103    2410            mov     (__modsint_PARM_2 + 1),#0x03
+0B78 120000    2411            lcall   __modsint
+0B7B AC82      2412            mov     r4,dpl
+0B7D AD83      2413            mov     r5,dph
+0B7F C004      2414            push    ar4
+0B81 C005      2415            push    ar5
+0B83 74A8      2416            mov     a,#__str_13
+0B85 C0E0      2417            push    acc
+0B87 74CF      2418            mov     a,#(__str_13 >> 8)
+0B89 C0E0      2419            push    acc
+0B8B 7480      2420            mov     a,#0x80
+0B8D C0E0      2421            push    acc
+0B8F 7418      2422            mov     a,#_main_buffer_1_79
+0B91 C0E0      2423            push    acc
+0B93 74B4      2424            mov     a,#(_main_buffer_1_79 >> 8)
+0B95 C0E0      2425            push    acc
+0B97 7440      2426            mov     a,#0x40
+0B99 C0E0      2427            push    acc
+0B9B 120000    2428            lcall   _sprintf
+0B9E E581      2429            mov     a,sp
+0BA0 24F6      2430            add     a,#0xf6
+0BA2 F581      2431            mov     sp,a
+0BA4           2432   ;        C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:501: LCDprint(buffer,1,1);
+0BA4 75C801    2433            mov     _LCDprint_PARM_2,#0x01
+0BA7 D278      2434            setb    _LCDprint_PARM_3
+0BA9 90B418    2435            mov     dptr,#_main_buffer_1_79
+0BAC 75F040    2436            mov     b,#0x40
+0BAF 120000    2437            lcall   _LCDprint
+0BB2           2438   ;        C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:503: sprintf(buffer,"Vr:%4.4f V",vrms_ref);
+0BB2 C0A8      2439            push    _main_vrms_ref_1_79
+0BB4 C0A9      2440            push    (_main_vrms_ref_1_79 + 1)
+0BB6 C0AA      2441            push    (_main_vrms_ref_1_79 + 2)
+0BB8 C0AB      2442            push    (_main_vrms_ref_1_79 + 3)
+0BBA 7428      2443            mov     a,#__str_14
+0BBC C0E0      2444            push    acc
+0BBE 74D0      2445            mov     a,#(__str_14 >> 8)
+0BC0 C0E0      2446            push    acc
+0BC2 7480      2447            mov     a,#0x80
+0BC4 C0E0      2448            push    acc
+0BC6 7418      2449            mov     a,#_main_buffer_1_79
+0BC8 C0E0      2450            push    acc
+0BCA 74B4      2451            mov     a,#(_main_buffer_1_79 >> 8)
+0BCC C0E0      2452            push    acc
+0BCE 7440      2453            mov     a,#0x40
+0BD0 C0E0      2454            push    acc
+0BD2 120000    2455            lcall   _sprintf
+0BD5 E581      2456            mov     a,sp
+0BD7 24F6      2457            add     a,#0xf6
+0BD9 F581      2458            mov     sp,a
+0BDB           2459   ;        C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:504: LCDprint(buffer,2,1);
+0BDB 75C802    2460            mov     _LCDprint_PARM_2,#0x02
+0BDE D278      2461            setb    _LCDprint_PARM_3
+0BE0 90B418    2462            mov     dptr,#_main_buffer_1_79
+0BE3 75F040    2463            mov     b,#0x40
+0BE6 120000    2464            lcall   _LCDprint
+0BE9           2465   ;        C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:505: waitms(500);
+0BE9 9001F4    2466            mov     dptr,#0x01F4
+0BEC 120000    2467            lcall   _waitms
+0BEF 020000    2468            ljmp    L018074?
+0BF2           2469            rseg R_CSEG
+0BF2           2470   
+0000           2471            rseg R_XINIT
+0000           2472   
+0000           2473            rseg R_CONST
+0000           2474   __str_0:
+0000 1B        2475            db 0x1B
+0001 5B324A    2476            db '[2J'
+0004 00        2477            db 0x00
+0005           2478   __str_1:
+0005 41444320  2479            db 'ADC test program'
      74657374
      2070726F
      6772616D
-0015 0A        2457            db 0x0A
-0016 46696C65  2458            db 'File: %s'
+0015 0A        2480            db 0x0A
+0016 46696C65  2481            db 'File: %s'
      3A202573
-001E 0A        2459            db 0x0A
-001F 436F6D70  2460            db 'Compiled: %s, %s'
+001E 0A        2482            db 0x0A
+001F 436F6D70  2483            db 'Compiled: %s, %s'
      696C6564
      3A202573
      2C202573
-002F 0A        2461            db 0x0A
-0030 0A        2462            db 0x0A
-0031 00        2463            db 0x00
-0032           2464   __str_2:
-0032 433A      2465            db 'C:'
-0034 5C        2466            db 0x5C
-0035 55736572  2467            db 'Users'
+002F 0A        2484            db 0x0A
+0030 0A        2485            db 0x0A
+0031 00        2486            db 0x00
+0032           2487   __str_2:
+0032 433A      2488            db 'C:'
+0034 5C        2489            db 0x5C
+0035 55736572  2490            db 'Users'
      73
-003A 5C        2468            db 0x5C
-003B 636F7372  2469            db 'cosr3'
+003A 5C        2491            db 0x5C
+003B 636F7372  2492            db 'cosr3'
      33
-0040 5C        2470            db 0x5C
-0041 446F6375  2471            db 'Documents'
+0040 5C        2493            db 0x5C
+0041 446F6375  2494            db 'Documents'
      6D656E74
      73
-004A 5C        2472            db 0x5C
-004B 47697448  2473            db 'GitHub'
+004A 5C        2495            db 0x5C
+004B 47697448  2496            db 'GitHub'
      7562
-0051 5C        2474            db 0x5C
-0052 454C4543  2475            db 'ELEC-291-Lab5'
+0051 5C        2497            db 0x5C
+0052 454C4543  2498            db 'ELEC-291-Lab5'
      2D323931
      2D4C6162
      35
-005F 5C        2476            db 0x5C
-0060 45464D38  2477            db 'EFM8_ADC.c'
+005F 5C        2499            db 0x5C
+0060 45464D38  2500            db 'EFM8_ADC.c'
      5F414443
      2E63
-006A 00        2478            db 0x00
-006B           2479   __str_3:
-006B 4D617220  2480            db 'Mar  4 2024'
+006A 00        2501            db 0x00
+006B           2502   __str_3:
+006B 4D617220  2503            db 'Mar  4 2024'
      20342032
      303234
-0076 00        2481            db 0x00
-0077           2482   __str_4:
-0077 32313A33  2483            db '21:35:38'
-     353A3338
-007F 00        2484            db 0x00
-0080           2485   __str_5:
-0080 52656665  2486            db 'Reference Signal Data        |Sample Signal Data            '
+0076 00        2504            db 0x00
+0077           2505   __str_4:
+0077 32323A33  2506            db '22:34:14'
+     343A3134
+007F 00        2507            db 0x00
+0080           2508   __str_5:
+0080 66686264  2509            db 'fhbdshjfgdishfh'
+     73686A66
+     67646973
+     686668
+008F 0A        2510            db 0x0A
+0090 00        2511            db 0x00
+0091           2512   __str_6:
+0091 52656665  2513            db 'Reference Signal Data        |Sample Signal Data            '
      72656E63
      65205369
      676E616C
@@ -2518,10 +2548,10 @@
      20202020
      20202020
      20202020
-00BC 0A        2487            db 0x0A
-00BD 00        2488            db 0x00
-00BE           2489   __str_6:
-00BE 2D2D2D2D  2490            db '---------------------------------------------------------'
+00CD 0A        2514            db 0x0A
+00CE 00        2515            db 0x00
+00CF           2516   __str_7:
+00CF 2D2D2D2D  2517            db '---------------------------------------------------------'
      2D2D2D2D
      2D2D2D2D
      2D2D2D2D
@@ -2536,10 +2566,10 @@
      2D2D2D2D
      2D2D2D2D
      2D
-00F7 0A        2491            db 0x0A
-00F8 00        2492            db 0x00
-00F9           2493   __str_7:
-00F9 52656620  2494            db 'Ref Period(T):  %7.6f s  | Spl Period(T):  %7.6f s '
+0108 0A        2518            db 0x0A
+0109 00        2519            db 0x00
+010A           2520   __str_8:
+010A 52656620  2521            db 'Ref Period(T):  %7.6f s  | Spl Period(T):  %7.6f s '
      50657269
      6F642854
      293A2020
@@ -2552,10 +2582,10 @@
      3A202025
      372E3666
      207320
-012C 0A        2495            db 0x0A
-012D 00        2496            db 0x00
-012E           2497   __str_8:
-012E 52656620  2498            db 'Ref Freq(f)  :  %7.6f Hz | Spl Freq(f)  :  %7.6f Hz'
+013D 0A        2522            db 0x0A
+013E 00        2523            db 0x00
+013F           2524   __str_9:
+013F 52656620  2525            db 'Ref Freq(f)  :  %7.6f Hz | Spl Freq(f)  :  %7.6f Hz'
      46726571
      28662920
      203A2020
@@ -2568,19 +2598,19 @@
      3A202025
      372E3666
      20487A
-0161 0A        2499            db 0x0A
-0162 00        2500            db 0x00
-0163           2501   __str_9:
-0163 566D6178  2502            db 'Vmax (ref)   :  %4.4f V'
+0172 0A        2526            db 0x0A
+0173 00        2527            db 0x00
+0174           2528   __str_10:
+0174 566D6178  2529            db 'Vmax (ref)   :  %4.4f V'
      20287265
      66292020
      203A2020
      25342E34
      662056
-017A 0A        2503            db 0x0A
-017B 00        2504            db 0x00
-017C           2505   __str_10:
-017C 50686173  2506            db 'Phase Difference: %7.6f degrees'
+018B 0A        2530            db 0x0A
+018C 00        2531            db 0x00
+018D           2532   __str_11:
+018D 50686173  2533            db 'Phase Difference: %7.6f degrees'
      65204469
      66666572
      656E6365
@@ -2588,34 +2618,34 @@
      2E366620
      64656772
      656573
-019B 0A        2507            db 0x0A
-019C 00        2508            db 0x00
-019D           2509   __str_11:
-019D 1B        2510            db 0x1B
-019E 5B41      2511            db '[A'
-01A0 1B        2512            db 0x1B
-01A1 5B41      2513            db '[A'
-01A3 1B        2514            db 0x1B
-01A4 5B41      2515            db '[A'
-01A6 1B        2516            db 0x1B
-01A7 5B41      2517            db '[A'
-01A9 1B        2518            db 0x1B
-01AA 5B41      2519            db '[A'
-01AC 1B        2520            db 0x1B
-01AD 5B41      2521            db '[A'
-01AF 00        2522            db 0x00
-01B0           2523   __str_12:
-01B0 52663A25  2524            db 'Rf:%2d Sp:%2d Hz'
+01AC 0A        2534            db 0x0A
+01AD 00        2535            db 0x00
+01AE           2536   __str_12:
+01AE 1B        2537            db 0x1B
+01AF 5B41      2538            db '[A'
+01B1 1B        2539            db 0x1B
+01B2 5B41      2540            db '[A'
+01B4 1B        2541            db 0x1B
+01B5 5B41      2542            db '[A'
+01B7 1B        2543            db 0x1B
+01B8 5B41      2544            db '[A'
+01BA 1B        2545            db 0x1B
+01BB 5B41      2546            db '[A'
+01BD 1B        2547            db 0x1B
+01BE 5B41      2548            db '[A'
+01C0 00        2549            db 0x00
+01C1           2550   __str_13:
+01C1 52663A25  2551            db 'Rf:%2d Sp:%2d Hz'
      32642053
      703A2532
      6420487A
-01C0 00        2525            db 0x00
-01C1           2526   __str_13:
-01C1 56723A25  2527            db 'Vr:%4.4f V'
+01D1 00        2552            db 0x00
+01D2           2553   __str_14:
+01D2 56723A25  2554            db 'Vr:%4.4f V'
      342E3466
      2056
-01CB 00        2528            db 0x00
-01CC           2529   
-0003           2530            CSEG
-0003           2531   
-0003           2532   end
+01DC 00        2555            db 0x00
+01DD           2556   
+0003           2557            CSEG
+0003           2558   
+0003           2559   end
