@@ -15,51 +15,52 @@ R_GSINIT,code,0000,NO
 R_BSEG,bit,0001,NO
 R_XSEG,xdata,0000,NO
 BIT_BANK,data,0000,OV
-R_CONST,code,0194,NO
+R_CONST,code,01CC,NO
 rbank0,data,0000,OV
 R_PSEG,xdata,0000,NO
 R_DINIT,code,0000,NO
-R_DSEG,data,0042,NO
+R_DSEG,data,003E,NO
 R_OSEG,data,0001,OV
 R_IXSEG,xdata,0000,NO
 R_ISEG,idata,0000,NO
 R_HOME,code,0000,NO
 R_XINIT,code,0000,NO
-R_CSEG,code,099D,NO
+R_CSEG,code,0BD0,NO
 </SEGMENTS>
 
 <LOCALS>
 L002004?,R_CSEG,0029,0000
 L002001?,R_CSEG,001E,0000
-_main_quarterPeriod_ref_1_79,R_DSEG,002E,0004
+_main_quarterPeriod_ref_1_79,R_DSEG,001E,0004
 L018018?,R_CSEG,05D2,0000
 L018017?,R_CSEG,057E,0000
-_main_freq_ref_1_79,R_DSEG,002A,0004
+_main_freq_ref_1_79,R_DSEG,001A,0004
 L018016?,R_CSEG,0572,0000
 L018014?,R_CSEG,0422,0000
 L018012?,R_CSEG,040D,0000
-L018027?,R_CSEG,0632,0000
+L018027?,R_CSEG,0652,0000
 L018024?,R_CSEG,05E1,0000
 L018021?,R_CSEG,05D5,0000
-_main_v_1_79,R_DSEG,0002,0010
-L018038?,R_CSEG,0658,0000
-L018033?,R_CSEG,0641,0000
-L018030?,R_CSEG,0635,0000
+L018038?,R_CSEG,0678,0000
+L018033?,R_CSEG,0661,0000
+L018030?,R_CSEG,0655,0000
 L016007?,R_CSEG,030F,0000
 L016006?,R_CSEG,0308,0000
 L016003?,R_CSEG,02D4,0000
-L018045?,R_CSEG,03E0,0000
+L018047?,R_CSEG,0840,0000
 L004007?,R_CSEG,0091,0000
-L018043?,R_CSEG,07C9,0000
-L018042?,R_CSEG,07C1,0000
+L018044?,R_CSEG,083D,0000
+L018043?,R_CSEG,07E9,0000
+L018042?,R_CSEG,07DD,0000
 L004004?,R_CSEG,0081,0000
-__str_10,R_CONST,015E,0000
-__str_11,R_CONST,0165,0000
-__str_12,R_CONST,0178,0000
-__str_13,R_CONST,0189,0000
-L018040?,R_CSEG,066D,0000
+__str_10,R_CONST,017C,0000
+__str_11,R_CONST,019D,0000
+__str_12,R_CONST,01B0,0000
+__str_13,R_CONST,01C1,0000
+L018040?,R_CSEG,068D,0000
 L004001?,R_CSEG,0086,0000
-_main_freq_spl_1_79,R_DSEG,003A,0004
+_main_freq_spl_1_79,R_DSEG,002E,0004
+_main_quarterPeriod_spl_1_79,R_DSEG,0032,0004
 L008015?,R_CSEG,0186,0000
 L008014?,R_CSEG,0181,0000
 L008013?,R_CSEG,0175,0000
@@ -68,8 +69,9 @@ L005009?,R_CSEG,00CF,0000
 L017001?,R_CSEG,0334,0000
 L005007?,R_CSEG,00C8,0000
 L005005?,R_CSEG,009D,0000
-_main_prev_period_ref_1_79,R_DSEG,0032,0004
+_main_prev_period_ref_1_79,R_DSEG,0022,0004
 L005001?,R_CSEG,00A6,0000
+_main_phase_diff_deg_1_79,R_DSEG,003A,0004
 L018007?,R_CSEG,03F6,0000
 L018004?,R_CSEG,03EA,0000
 L006009?,R_CSEG,015E,0000
@@ -77,30 +79,39 @@ L018001?,R_CSEG,03E7,0000
 L006007?,R_CSEG,015B,0000
 L006005?,R_CSEG,0126,0000
 L006001?,R_CSEG,012F,0000
-_main_period_ref_1_79,R_DSEG,0026,0004
+_main_period_ref_1_79,R_DSEG,0016,0004
 __str_0,R_CONST,0000,0000
 __str_1,R_CONST,0005,0000
 __str_2,R_CONST,0032,0000
-__str_3,R_CONST,004D,0000
-__str_4,R_CONST,0059,0000
-__str_5,R_CONST,0062,0000
-__str_6,R_CONST,00A0,0000
-__str_7,R_CONST,00DB,0000
-__str_8,R_CONST,0110,0000
-__str_9,R_CONST,0145,0000
-_main_prev_period_spl_1_79,R_DSEG,003E,0004
+__str_3,R_CONST,006B,0000
+__str_4,R_CONST,0077,0000
+__str_5,R_CONST,0080,0000
+__str_6,R_CONST,00BE,0000
+__str_7,R_CONST,00F9,0000
+__str_8,R_CONST,012E,0000
+__str_9,R_CONST,0163,0000
+_main_prev_period_spl_1_79,R_DSEG,0036,0004
 L008005?,R_CSEG,01A7,0000
+L018059?,R_CSEG,08A1,0000
+_main_period_spl_1_79,R_DSEG,002A,0004
 L008003?,R_CSEG,019F,0000
 L008002?,R_CSEG,0195,0000
+L018056?,R_CSEG,0895,0000
 L008001?,R_CSEG,018B,0000
-_main_vrms_ref_1_79,R_DSEG,0036,0004
-_main_buffer_1_79,R_DSEG,0012,0014
-L018074?,R_CSEG,041E,0000
+L018053?,R_CSEG,0892,0000
+L018050?,R_CSEG,084C,0000
+_main_vrms_ref_1_79,R_DSEG,0026,0004
+L018068?,R_CSEG,08CE,0000
+L018065?,R_CSEG,08C2,0000
+L018062?,R_CSEG,08BF,0000
+_main_buffer_1_79,R_DSEG,0002,0014
 L009001?,R_CSEG,01B2,0000
-L018083?,R_CSEG,0669,0000
+L018072?,R_CSEG,03E0,0000
 L016014?,R_CSEG,02B9,0000
 L016013?,R_CSEG,02B7,0000
 L016011?,R_CSEG,032F,0000
+L018113?,R_CSEG,041E,0000
+L018122?,R_CSEG,0689,0000
 L005018?,R_CSEG,00A9,0000
 </LOCALS>
 
@@ -662,7 +673,7 @@ E5 82
 85 83 F0
 45 F0
 60 rel2(L018014?;)
-10 8D rel3(L018074?;)
+10 8D rel3(L018113?;)
 80 rel2(L018012?;)
 05 data8(_overflow_count;)
 80 rel2(L018012?;)
@@ -898,10 +909,25 @@ E9
 12 addr16(_waitms;)  
 75 82 12
 12 addr16(_Volts_at_Pin;)  
+AE 82
+AF 83
+A8 F0
+F9
+C0 06
+C0 07
+C0 00
+C0 01
+90 04 F3
+75 F0 35
+74 3F
+12 addr16(___fsmul;)  
 85 82 data8(_main_vrms_ref_1_79;)
 85 83 data8(_main_vrms_ref_1_79;0x0001;+;)
 85 F0 data8(_main_vrms_ref_1_79;0x0002;+;)
 F5 data8(_main_vrms_ref_1_79;0x0003;+;)
+E5 81
+24 FC
+F5 81
 75 BB 11
 C2 ED
 D2 EC
@@ -925,7 +951,7 @@ E5 82
 85 83 F0
 45 F0
 60 rel2(L018040?;)
-10 8D rel3(L018083?;)
+10 8D rel3(L018122?;)
 80 rel2(L018038?;)
 05 data8(_overflow_count;)
 80 rel2(L018038?;)
@@ -1056,17 +1082,13 @@ E4
 F5 F0
 74 40
 12 addr16(___fsmul;)  
-AA 82
-AB 83
-AC F0
-FD
+85 82 data8(_main_period_spl_1_79;)
+85 83 data8(_main_period_spl_1_79;0x0001;+;)
+85 F0 data8(_main_period_spl_1_79;0x0002;+;)
+F5 data8(_main_period_spl_1_79;0x0003;+;)
 E5 81
 24 FC
 F5 81
-C0 02
-C0 03
-C0 04
-C0 05
 74 17
 C0 E0
 74 B7
@@ -1075,38 +1097,30 @@ C0 E0
 C0 E0
 74 39
 C0 E0
-8A 82
-8B 83
-8C F0
-ED
+85 data8(_main_period_spl_1_79;) 82
+85 data8(_main_period_spl_1_79;0x0001;+;) 83
+85 data8(_main_period_spl_1_79;0x0002;+;) F0
+E5 data8(_main_period_spl_1_79;0x0003;+;)
 12 addr16(___fsgt;)  
 AE 82
 E5 81
 24 FC
 F5 81
-D0 05
-D0 04
-D0 03
-D0 02
 EE
 70 rel2(L018042?;)
-AA data8(_main_prev_period_spl_1_79;)
-AB data8(_main_prev_period_spl_1_79;0x0001;+;)
-AC data8(_main_prev_period_spl_1_79;0x0002;+;)
-AD data8(_main_prev_period_spl_1_79;0x0003;+;)
+85 data8(_main_prev_period_spl_1_79;) data8(_main_period_spl_1_79;)
+85 data8(_main_prev_period_spl_1_79;0x0001;+;) data8(_main_period_spl_1_79;0x0001;+;)
+85 data8(_main_prev_period_spl_1_79;0x0002;+;) data8(_main_period_spl_1_79;0x0002;+;)
+85 data8(_main_prev_period_spl_1_79;0x0003;+;) data8(_main_period_spl_1_79;0x0003;+;)
 80 rel2(L018043?;)
-8A data8(_main_prev_period_spl_1_79;)
-8B data8(_main_prev_period_spl_1_79;0x0001;+;)
-8C data8(_main_prev_period_spl_1_79;0x0002;+;)
-8D data8(_main_prev_period_spl_1_79;0x0003;+;)
-C0 02
-C0 03
-C0 04
-C0 05
-C0 02
-C0 03
-C0 04
-C0 05
+85 data8(_main_period_spl_1_79;) data8(_main_prev_period_spl_1_79;)
+85 data8(_main_period_spl_1_79;0x0001;+;) data8(_main_prev_period_spl_1_79;0x0001;+;)
+85 data8(_main_period_spl_1_79;0x0002;+;) data8(_main_prev_period_spl_1_79;0x0002;+;)
+85 data8(_main_period_spl_1_79;0x0003;+;) data8(_main_prev_period_spl_1_79;0x0003;+;)
+C0 data8(_main_period_spl_1_79;)
+C0 data8(_main_period_spl_1_79;0x0001;+;)
+C0 data8(_main_period_spl_1_79;0x0002;+;)
+C0 data8(_main_period_spl_1_79;0x0003;+;)
 90 00 00
 75 F0 80
 74 3F
@@ -1118,6 +1132,251 @@ F5 data8(_main_freq_spl_1_79;0x0003;+;)
 E5 81
 24 FC
 F5 81
+E4
+C0 E0
+C0 E0
+74 80
+C0 E0
+74 40
+C0 E0
+85 data8(_main_period_spl_1_79;) 82
+85 data8(_main_period_spl_1_79;0x0001;+;) 83
+85 data8(_main_period_spl_1_79;0x0002;+;) F0
+E5 data8(_main_period_spl_1_79;0x0003;+;)
+12 addr16(___fsdiv;)  
+85 82 data8(_main_quarterPeriod_spl_1_79;)
+85 83 data8(_main_quarterPeriod_spl_1_79;0x0001;+;)
+85 F0 data8(_main_quarterPeriod_spl_1_79;0x0002;+;)
+F5 data8(_main_quarterPeriod_spl_1_79;0x0003;+;)
+E5 81
+24 FC
+F5 81
+C2 ED
+D2 EC
+30 ED rel3(L018044?;)
+12 addr16(_Get_ADC;)  
+E5 82
+85 83 F0
+45 F0
+70 rel2(L018047?;)
+12 addr16(_Get_ADC;)  
+E5 82
+85 83 F0
+45 F0
+60 rel2(L018050?;)
+C0 data8(_main_quarterPeriod_spl_1_79;)
+C0 data8(_main_quarterPeriod_spl_1_79;0x0001;+;)
+C0 data8(_main_quarterPeriod_spl_1_79;0x0002;+;)
+C0 data8(_main_quarterPeriod_spl_1_79;0x0003;+;)
+90 00 00
+75 F0 7A
+74 44
+12 addr16(___fsmul;)  
+AE 82
+AF 83
+A8 F0
+F9
+E5 81
+24 FC
+F5 81
+8E 82
+8F 83
+88 F0
+E9
+12 addr16(___fs2uint;)  
+12 addr16(_waitms;)  
+75 82 11
+12 addr16(_Volts_at_Pin;)  
+75 BB 12
+C2 ED
+D2 EC
+30 ED rel3(L018053?;)
+12 addr16(_Get_ADC;)  
+E5 82
+85 83 F0
+45 F0
+70 rel2(L018056?;)
+12 addr16(_Get_ADC;)  
+E5 82
+85 83 F0
+45 F0
+60 rel2(L018059?;)
+75 data8(_overflow_count;) 00
+75 8A 00
+75 8C 00
+D2 8C
+75 BB 11
+C2 ED
+D2 EC
+30 ED rel3(L018062?;)
+12 addr16(_Get_ADC;)  
+E5 82
+85 83 F0
+45 F0
+70 rel2(L018065?;)
+12 addr16(_Get_ADC;)  
+E5 82
+85 83 F0
+45 F0
+60 rel2(L018068?;)
+C2 8C
+85 data8(_overflow_count;) 82
+12 addr16(___uchar2fs;)  
+AE 82
+AF 83
+A8 F0
+F9
+C0 06
+C0 07
+C0 00
+C0 01
+90 00 00
+75 F0 80
+74 47
+12 addr16(___fsmul;)  
+AE 82
+AF 83
+A8 F0
+F9
+E5 81
+24 FC
+F5 81
+85 8C 82
+C0 06
+C0 07
+C0 00
+C0 01
+12 addr16(___uchar2fs;)  
+AA 82
+AB 83
+AC F0
+FD
+C0 02
+C0 03
+C0 04
+C0 05
+90 00 00
+75 F0 80
+74 43
+12 addr16(___fsmul;)  
+AA 82
+AB 83
+AC F0
+FD
+E5 81
+24 FC
+F5 81
+D0 01
+D0 00
+D0 07
+D0 06
+C0 02
+C0 03
+C0 04
+C0 05
+8E 82
+8F 83
+88 F0
+E9
+12 addr16(___fsadd;)  
+AA 82
+AB 83
+AC F0
+FD
+E5 81
+24 FC
+F5 81
+AE 8A
+7F 00
+8E 82
+8F 83
+C0 02
+C0 03
+C0 04
+C0 05
+12 addr16(___sint2fs;)  
+AE 82
+AF 83
+A8 F0
+F9
+D0 05
+D0 04
+D0 03
+D0 02
+C0 06
+C0 07
+C0 00
+C0 01
+8A 82
+8B 83
+8C F0
+ED
+12 addr16(___fsadd;)  
+AA 82
+AB 83
+AC F0
+FD
+E5 81
+24 FC
+F5 81
+C0 02
+C0 03
+C0 04
+C0 05
+90 F4 FC
+75 F0 32
+74 34
+12 addr16(___fsmul;)  
+AA 82
+AB 83
+AC F0
+FD
+E5 81
+24 FC
+F5 81
+C0 02
+C0 03
+C0 04
+C0 05
+C0 data8(_main_period_spl_1_79;)
+C0 data8(_main_period_spl_1_79;0x0001;+;)
+C0 data8(_main_period_spl_1_79;0x0002;+;)
+C0 data8(_main_period_spl_1_79;0x0003;+;)
+90 00 00
+75 F0 B4
+74 43
+12 addr16(___fsdiv;)  
+AE 82
+AF 83
+A8 F0
+F9
+E5 81
+24 FC
+F5 81
+D0 05
+D0 04
+D0 03
+D0 02
+C0 06
+C0 07
+C0 00
+C0 01
+8A 82
+8B 83
+8C F0
+ED
+12 addr16(___fsmul;)  
+85 82 data8(_main_phase_diff_deg_1_79;)
+85 83 data8(_main_phase_diff_deg_1_79;0x0001;+;)
+85 F0 data8(_main_phase_diff_deg_1_79;0x0002;+;)
+F5 data8(_main_phase_diff_deg_1_79;0x0003;+;)
+E5 81
+24 FC
+F5 81
+E4
+F5 data8(_overflow_count;)
+F5 8A
+F5 8C
 74 data8(__str_5;)
 C0 E0
 74 data8(__str_5;0x0008;>>;)
@@ -1138,25 +1397,10 @@ C0 E0
 15 81
 15 81
 15 81
-90 00 00
-75 F0 7A
-74 44
-12 addr16(___fsmul;)  
-AA 82
-AB 83
-AC F0
-FD
-E5 81
-24 FC
-F5 81
-C0 02
-C0 03
-C0 04
-C0 05
-C0 data8(_main_period_ref_1_79;)
-C0 data8(_main_period_ref_1_79;0x0001;+;)
-C0 data8(_main_period_ref_1_79;0x0002;+;)
-C0 data8(_main_period_ref_1_79;0x0003;+;)
+C0 data8(_main_period_spl_1_79;)
+C0 data8(_main_period_spl_1_79;0x0001;+;)
+C0 data8(_main_period_spl_1_79;0x0002;+;)
+C0 data8(_main_period_spl_1_79;0x0003;+;)
 90 00 00
 75 F0 7A
 74 44
@@ -1172,6 +1416,25 @@ C0 06
 C0 07
 C0 00
 C0 01
+C0 data8(_main_period_ref_1_79;)
+C0 data8(_main_period_ref_1_79;0x0001;+;)
+C0 data8(_main_period_ref_1_79;0x0002;+;)
+C0 data8(_main_period_ref_1_79;0x0003;+;)
+90 00 00
+75 F0 7A
+74 44
+12 addr16(___fsmul;)  
+AA 82
+AB 83
+AC F0
+FD
+E5 81
+24 FC
+F5 81
+C0 02
+C0 03
+C0 04
+C0 05
 74 data8(__str_7;)
 C0 E0
 74 data8(__str_7;0x0008;>>;)
@@ -1214,10 +1477,10 @@ C0 E0
 E5 81
 24 F9
 F5 81
-C0 data8(_main_quarterPeriod_ref_1_79;)
-C0 data8(_main_quarterPeriod_ref_1_79;0x0001;+;)
-C0 data8(_main_quarterPeriod_ref_1_79;0x0002;+;)
-C0 data8(_main_quarterPeriod_ref_1_79;0x0003;+;)
+C0 data8(_main_phase_diff_deg_1_79;)
+C0 data8(_main_phase_diff_deg_1_79;0x0001;+;)
+C0 data8(_main_phase_diff_deg_1_79;0x0002;+;)
+C0 data8(_main_phase_diff_deg_1_79;0x0003;+;)
 74 data8(__str_10;)
 C0 E0
 74 data8(__str_10;0x0008;>>;)
@@ -1310,7 +1573,7 @@ D2 bit(_LCDprint_PARM_3;)
 12 addr16(_LCDprint;)  
 90 01 F4
 12 addr16(_waitms;)  
-02 addr16(L018045?;)  
+02 addr16(L018072?;)  
 </CODE>
 
 <CODE R_CSEG>
@@ -1333,15 +1596,21 @@ D2 bit(_LCDprint_PARM_3;)
 00
 43 3A 
 5C
-45 4C 45 43 32 39 31 
+55 73 65 72 73 
 5C
-4C 61 62 35 
+63 6F 73 72 33 
+5C
+44 6F 63 75 6D 65 6E 74 73 
+5C
+47 69 74 48 75 62 
+5C
+45 4C 45 43 2D 32 39 31 2D 4C 61 62 35 
 5C
 45 46 4D 38 5F 41 44 43 2E 63 
 00
 4D 61 72 20 20 34 20 32 30 32 34 
 00
-30 30 3A 32 39 3A 34 35 
+32 31 3A 33 35 3A 33 38 
 00
 52 65 66 65 72 65 6E 63 65 20 53 69 67 6E 61 6C 20
 44 61 74 61 20 20 20 20 20 20 20 20 7C 53 61 6D
@@ -1371,7 +1640,8 @@ D2 bit(_LCDprint_PARM_3;)
 34 2E 34 66 20 56 
 0A
 00
-25 37 2E 36 66 
+50 68 61 73 65 20 44 69 66 66 65 72 65 6E 63 65 3A
+20 25 37 2E 36 66 20 64 65 67 72 65 65 73 
 0A
 00
 1B

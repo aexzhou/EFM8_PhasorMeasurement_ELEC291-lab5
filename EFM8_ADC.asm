@@ -1,7 +1,7 @@
 ;--------------------------------------------------------
 ; File Created by C51
 ; Version 1.0.0 #1170 (Feb 16 2022) (MSVC)
-; This file was generated Mon Mar 04 00:29:45 2024
+; This file was generated Mon Mar 04 21:35:38 2024
 ;--------------------------------------------------------
 $name EFM8_ADC
 $optc51 --model-small
@@ -497,8 +497,6 @@ _overflow_count:
 	ds 1
 _LCDprint_PARM_2:
 	ds 1
-_main_v_1_79:
-	ds 16
 _main_buffer_1_79:
 	ds 20
 _main_period_ref_1_79:
@@ -511,9 +509,15 @@ _main_prev_period_ref_1_79:
 	ds 4
 _main_vrms_ref_1_79:
 	ds 4
+_main_period_spl_1_79:
+	ds 4
 _main_freq_spl_1_79:
 	ds 4
+_main_quarterPeriod_spl_1_79:
+	ds 4
 _main_prev_period_spl_1_79:
+	ds 4
+_main_phase_diff_deg_1_79:
 	ds 4
 ;--------------------------------------------------------
 ; overlayable items in internal ram 
@@ -580,95 +584,95 @@ _LCDprint_PARM_3:
 ;Allocation info for local variables in function '_c51_external_startup'
 ;------------------------------------------------------------
 ;------------------------------------------------------------
-;	C:\ELEC291\Lab5\EFM8_ADC.c:29: char _c51_external_startup (void)
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:32: char _c51_external_startup (void)
 ;	-----------------------------------------
 ;	 function _c51_external_startup
 ;	-----------------------------------------
 __c51_external_startup:
 	using	0
-;	C:\ELEC291\Lab5\EFM8_ADC.c:32: SFRPAGE = 0x00;
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:35: SFRPAGE = 0x00;
 	mov	_SFRPAGE,#0x00
-;	C:\ELEC291\Lab5\EFM8_ADC.c:33: WDTCN = 0xDE; //First key
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:36: WDTCN = 0xDE; //First key
 	mov	_WDTCN,#0xDE
-;	C:\ELEC291\Lab5\EFM8_ADC.c:34: WDTCN = 0xAD; //Second key
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:37: WDTCN = 0xAD; //Second key
 	mov	_WDTCN,#0xAD
-;	C:\ELEC291\Lab5\EFM8_ADC.c:36: VDM0CN=0x80;       // enable VDD monitor
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:39: VDM0CN=0x80;       // enable VDD monitor
 	mov	_VDM0CN,#0x80
-;	C:\ELEC291\Lab5\EFM8_ADC.c:37: RSTSRC=0x02|0x04;  // Enable reset on missing clock detector and VDD
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:40: RSTSRC=0x02|0x04;  // Enable reset on missing clock detector and VDD
 	mov	_RSTSRC,#0x06
-;	C:\ELEC291\Lab5\EFM8_ADC.c:44: SFRPAGE = 0x10;
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:47: SFRPAGE = 0x10;
 	mov	_SFRPAGE,#0x10
-;	C:\ELEC291\Lab5\EFM8_ADC.c:45: PFE0CN  = 0x20; // SYSCLK < 75 MHz.
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:48: PFE0CN  = 0x20; // SYSCLK < 75 MHz.
 	mov	_PFE0CN,#0x20
-;	C:\ELEC291\Lab5\EFM8_ADC.c:46: SFRPAGE = 0x00;
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:49: SFRPAGE = 0x00;
 	mov	_SFRPAGE,#0x00
-;	C:\ELEC291\Lab5\EFM8_ADC.c:67: CLKSEL = 0x00;
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:70: CLKSEL = 0x00;
 	mov	_CLKSEL,#0x00
-;	C:\ELEC291\Lab5\EFM8_ADC.c:68: CLKSEL = 0x00;
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:71: CLKSEL = 0x00;
 	mov	_CLKSEL,#0x00
-;	C:\ELEC291\Lab5\EFM8_ADC.c:69: while ((CLKSEL & 0x80) == 0);
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:72: while ((CLKSEL & 0x80) == 0);
 L002001?:
 	mov	a,_CLKSEL
 	jnb	acc.7,L002001?
-;	C:\ELEC291\Lab5\EFM8_ADC.c:70: CLKSEL = 0x03;
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:73: CLKSEL = 0x03;
 	mov	_CLKSEL,#0x03
-;	C:\ELEC291\Lab5\EFM8_ADC.c:71: CLKSEL = 0x03;
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:74: CLKSEL = 0x03;
 	mov	_CLKSEL,#0x03
-;	C:\ELEC291\Lab5\EFM8_ADC.c:72: while ((CLKSEL & 0x80) == 0);
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:75: while ((CLKSEL & 0x80) == 0);
 L002004?:
 	mov	a,_CLKSEL
 	jnb	acc.7,L002004?
-;	C:\ELEC291\Lab5\EFM8_ADC.c:77: P0MDOUT |= 0x10; // Enable UART0 TX as push-pull output
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:80: P0MDOUT |= 0x10; // Enable UART0 TX as push-pull output
 	orl	_P0MDOUT,#0x10
-;	C:\ELEC291\Lab5\EFM8_ADC.c:78: XBR0     = 0x01; // Enable UART0 on P0.4(TX) and P0.5(RX)                     
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:81: XBR0     = 0x01; // Enable UART0 on P0.4(TX) and P0.5(RX)                     
 	mov	_XBR0,#0x01
-;	C:\ELEC291\Lab5\EFM8_ADC.c:79: XBR1     = 0X00;
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:82: XBR1     = 0X00;
 	mov	_XBR1,#0x00
-;	C:\ELEC291\Lab5\EFM8_ADC.c:80: XBR2     = 0x40; // Enable crossbar and weak pull-ups
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:83: XBR2     = 0x40; // Enable crossbar and weak pull-ups
 	mov	_XBR2,#0x40
-;	C:\ELEC291\Lab5\EFM8_ADC.c:86: SCON0 = 0x10;
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:89: SCON0 = 0x10;
 	mov	_SCON0,#0x10
-;	C:\ELEC291\Lab5\EFM8_ADC.c:87: TH1 = 0x100-((SYSCLK/BAUDRATE)/(2L*PRESCALAR));
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:90: TH1 = 0x100-((SYSCLK/BAUDRATE)/(2L*PRESCALAR));
 	mov	_TH1,#0xE6
-;	C:\ELEC291\Lab5\EFM8_ADC.c:88: TL1 = TH1;      // Init Timer1
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:91: TL1 = TH1;      // Init Timer1
 	mov	_TL1,_TH1
-;	C:\ELEC291\Lab5\EFM8_ADC.c:89: TMOD &= ~0xf0;  // TMOD: timer 1 in 8-bit auto-reload
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:92: TMOD &= ~0xf0;  // TMOD: timer 1 in 8-bit auto-reload
 	anl	_TMOD,#0x0F
-;	C:\ELEC291\Lab5\EFM8_ADC.c:90: TMOD |=  0x20;                       
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:93: TMOD |=  0x20;                       
 	orl	_TMOD,#0x20
-;	C:\ELEC291\Lab5\EFM8_ADC.c:91: TR1 = 1; // START Timer1
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:94: TR1 = 1; // START Timer1
 	setb	_TR1
-;	C:\ELEC291\Lab5\EFM8_ADC.c:92: TI = 1;  // Indicate TX0 ready
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:95: TI = 1;  // Indicate TX0 ready
 	setb	_TI
-;	C:\ELEC291\Lab5\EFM8_ADC.c:94: return 0;
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:97: return 0;
 	mov	dpl,#0x00
 	ret
 ;------------------------------------------------------------
 ;Allocation info for local variables in function 'InitADC'
 ;------------------------------------------------------------
 ;------------------------------------------------------------
-;	C:\ELEC291\Lab5\EFM8_ADC.c:98: void InitADC (void)
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:101: void InitADC (void)
 ;	-----------------------------------------
 ;	 function InitADC
 ;	-----------------------------------------
 _InitADC:
-;	C:\ELEC291\Lab5\EFM8_ADC.c:100: SFRPAGE = 0x00;
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:103: SFRPAGE = 0x00;
 	mov	_SFRPAGE,#0x00
-;	C:\ELEC291\Lab5\EFM8_ADC.c:101: ADEN=0; // Disable ADC
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:104: ADEN=0; // Disable ADC
 	clr	_ADEN
-;	C:\ELEC291\Lab5\EFM8_ADC.c:106: (0x0 << 0) ; // Accumulate n conversions: 0x0: 1, 0x1:4, 0x2:8, 0x3:16, 0x4:32
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:109: (0x0 << 0) ; // Accumulate n conversions: 0x0: 1, 0x1:4, 0x2:8, 0x3:16, 0x4:32
 	mov	_ADC0CN1,#0x80
-;	C:\ELEC291\Lab5\EFM8_ADC.c:110: (0x0 << 2); // 0:SYSCLK ADCCLK = SYSCLK. 1:HFOSC0 ADCCLK = HFOSC0.
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:113: (0x0 << 2); // 0:SYSCLK ADCCLK = SYSCLK. 1:HFOSC0 ADCCLK = HFOSC0.
 	mov	_ADC0CF0,#0x20
-;	C:\ELEC291\Lab5\EFM8_ADC.c:114: (0x1E << 0); // Conversion Tracking Time. Tadtk = ADTK / (Fsarclk)
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:117: (0x1E << 0); // Conversion Tracking Time. Tadtk = ADTK / (Fsarclk)
 	mov	_ADC0CF1,#0x1E
-;	C:\ELEC291\Lab5\EFM8_ADC.c:123: (0x0 << 0) ; // TEMPE. 0: Disable the Temperature Sensor. 1: Enable the Temperature Sensor.
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:126: (0x0 << 0) ; // TEMPE. 0: Disable the Temperature Sensor. 1: Enable the Temperature Sensor.
 	mov	_ADC0CN0,#0x00
-;	C:\ELEC291\Lab5\EFM8_ADC.c:128: (0x1F << 0); // ADPWR. Power Up Delay Time. Tpwrtime = ((4 * (ADPWR + 1)) + 2) / (Fadcclk)
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:131: (0x1F << 0); // ADPWR. Power Up Delay Time. Tpwrtime = ((4 * (ADPWR + 1)) + 2) / (Fadcclk)
 	mov	_ADC0CF2,#0x3F
-;	C:\ELEC291\Lab5\EFM8_ADC.c:132: (0x0 << 0) ; // ADCM. 0x0: ADBUSY, 0x1: TIMER0, 0x2: TIMER2, 0x3: TIMER3, 0x4: CNVSTR, 0x5: CEX5, 0x6: TIMER4, 0x7: TIMER5, 0x8: CLU0, 0x9: CLU1, 0xA: CLU2, 0xB: CLU3
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:135: (0x0 << 0) ; // ADCM. 0x0: ADBUSY, 0x1: TIMER0, 0x2: TIMER2, 0x3: TIMER3, 0x4: CNVSTR, 0x5: CEX5, 0x6: TIMER4, 0x7: TIMER5, 0x8: CLU0, 0x9: CLU1, 0xA: CLU2, 0xB: CLU3
 	mov	_ADC0CN2,#0x00
-;	C:\ELEC291\Lab5\EFM8_ADC.c:134: ADEN=1; // Enable ADC
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:137: ADEN=1; // Enable ADC
 	setb	_ADEN
 	ret
 ;------------------------------------------------------------
@@ -677,40 +681,40 @@ _InitADC:
 ;us                        Allocated to registers r2 
 ;i                         Allocated to registers r3 
 ;------------------------------------------------------------
-;	C:\ELEC291\Lab5\EFM8_ADC.c:141: void Timer3us(unsigned char us)
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:144: void Timer3us(unsigned char us)
 ;	-----------------------------------------
 ;	 function Timer3us
 ;	-----------------------------------------
 _Timer3us:
 	mov	r2,dpl
-;	C:\ELEC291\Lab5\EFM8_ADC.c:146: CKCON0|=0b_0100_0000;
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:149: CKCON0|=0b_0100_0000;
 	orl	_CKCON0,#0x40
-;	C:\ELEC291\Lab5\EFM8_ADC.c:149: TMR3RL = (-(SYSCLK)/1000000L); // Set Timer3 to overflow in 1us.
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:152: TMR3RL = (-(SYSCLK)/1000000L); // Set Timer3 to overflow in 1us.
 	mov	_TMR3RL,#0xB8
 	mov	(_TMR3RL >> 8),#0xFF
-;	C:\ELEC291\Lab5\EFM8_ADC.c:150: TMR3 = TMR3RL;                 // Initialize Timer3 for first overflow
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:153: TMR3 = TMR3RL;                 // Initialize Timer3 for first overflow
 	mov	_TMR3,_TMR3RL
 	mov	(_TMR3 >> 8),(_TMR3RL >> 8)
-;	C:\ELEC291\Lab5\EFM8_ADC.c:152: TMR3CN0 = 0x04;                 // Sart Timer3 and clear overflow flag
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:155: TMR3CN0 = 0x04;                 // Sart Timer3 and clear overflow flag
 	mov	_TMR3CN0,#0x04
-;	C:\ELEC291\Lab5\EFM8_ADC.c:153: for (i = 0; i < us; i++)       // Count <us> overflows
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:156: for (i = 0; i < us; i++)       // Count <us> overflows
 	mov	r3,#0x00
 L004004?:
 	clr	c
 	mov	a,r3
 	subb	a,r2
 	jnc	L004007?
-;	C:\ELEC291\Lab5\EFM8_ADC.c:155: while (!(TMR3CN0 & 0x80));  // Wait for overflow
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:158: while (!(TMR3CN0 & 0x80));  // Wait for overflow
 L004001?:
 	mov	a,_TMR3CN0
 	jnb	acc.7,L004001?
-;	C:\ELEC291\Lab5\EFM8_ADC.c:156: TMR3CN0 &= ~(0x80);         // Clear overflow indicator
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:159: TMR3CN0 &= ~(0x80);         // Clear overflow indicator
 	anl	_TMR3CN0,#0x7F
-;	C:\ELEC291\Lab5\EFM8_ADC.c:153: for (i = 0; i < us; i++)       // Count <us> overflows
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:156: for (i = 0; i < us; i++)       // Count <us> overflows
 	inc	r3
 	sjmp	L004004?
 L004007?:
-;	C:\ELEC291\Lab5\EFM8_ADC.c:158: TMR3CN0 = 0 ;                   // Stop Timer3 and clear overflow flag
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:161: TMR3CN0 = 0 ;                   // Stop Timer3 and clear overflow flag
 	mov	_TMR3CN0,#0x00
 	ret
 ;------------------------------------------------------------
@@ -720,14 +724,14 @@ L004007?:
 ;j                         Allocated to registers r4 r5 
 ;k                         Allocated to registers r6 
 ;------------------------------------------------------------
-;	C:\ELEC291\Lab5\EFM8_ADC.c:161: void waitms (unsigned int ms)
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:164: void waitms (unsigned int ms)
 ;	-----------------------------------------
 ;	 function waitms
 ;	-----------------------------------------
 _waitms:
 	mov	r2,dpl
 	mov	r3,dph
-;	C:\ELEC291\Lab5\EFM8_ADC.c:165: for(j=0; j<ms; j++)
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:168: for(j=0; j<ms; j++)
 	mov	r4,#0x00
 	mov	r5,#0x00
 L005005?:
@@ -737,7 +741,7 @@ L005005?:
 	mov	a,r5
 	subb	a,r3
 	jnc	L005009?
-;	C:\ELEC291\Lab5\EFM8_ADC.c:166: for (k=0; k<4; k++) Timer3us(250);
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:169: for (k=0; k<4; k++) Timer3us(250);
 	mov	r6,#0x00
 L005001?:
 	cjne	r6,#0x04,L005018?
@@ -758,7 +762,7 @@ L005018?:
 	inc	r6
 	sjmp	L005001?
 L005007?:
-;	C:\ELEC291\Lab5\EFM8_ADC.c:165: for(j=0; j<ms; j++)
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:168: for(j=0; j<ms; j++)
 	inc	r4
 	cjne	r4,#0x00,L005005?
 	inc	r5
@@ -774,12 +778,12 @@ L005009?:
 ;k                         Allocated to registers r3 
 ;k_max                     Allocated to registers r2 
 ;------------------------------------------------------------
-;	C:\ELEC291\Lab5\EFM8_ADC.c:170: void waitus (unsigned long us){		
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:173: void waitus (unsigned long us){		
 ;	-----------------------------------------
 ;	 function waitus
 ;	-----------------------------------------
 _waitus:
-;	C:\ELEC291\Lab5\EFM8_ADC.c:172: unsigned int j_max = us % 50000; // pre-calc this to save cpu resources
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:175: unsigned int j_max = us % 50000; // pre-calc this to save cpu resources
 	mov	r2,dpl
 	mov	r3,dph
 	mov	r4,b
@@ -799,7 +803,7 @@ _waitus:
 	pop	ar4
 	pop	ar3
 	pop	ar2
-;	C:\ELEC291\Lab5\EFM8_ADC.c:174: unsigned char k_max = (char)us/50000;
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:177: unsigned char k_max = (char)us/50000;
 	mov	a,r2
 	rlc	a
 	subb	a,acc
@@ -822,14 +826,14 @@ _waitus:
 	mov	r5,a
 	pop	ar7
 	pop	ar6
-;	C:\ELEC291\Lab5\EFM8_ADC.c:176: for(k = 0; k<k_max; k++){
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:179: for(k = 0; k<k_max; k++){
 	mov	r3,#0x00
 L006005?:
 	clr	c
 	mov	a,r3
 	subb	a,r2
 	jnc	L006009?
-;	C:\ELEC291\Lab5\EFM8_ADC.c:177: for(j = 0; j<j_max; j++){
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:180: for(j = 0; j<j_max; j++){
 	mov	r4,#0x00
 	mov	r5,#0x00
 L006001?:
@@ -839,7 +843,7 @@ L006001?:
 	mov	a,r5
 	subb	a,r7
 	jnc	L006007?
-;	C:\ELEC291\Lab5\EFM8_ADC.c:178: Timer3us(1);
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:181: Timer3us(1);
 	mov	dpl,#0x01
 	push	ar2
 	push	ar3
@@ -854,13 +858,13 @@ L006001?:
 	pop	ar4
 	pop	ar3
 	pop	ar2
-;	C:\ELEC291\Lab5\EFM8_ADC.c:177: for(j = 0; j<j_max; j++){
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:180: for(j = 0; j<j_max; j++){
 	inc	r4
 	cjne	r4,#0x00,L006001?
 	inc	r5
 	sjmp	L006001?
 L006007?:
-;	C:\ELEC291\Lab5\EFM8_ADC.c:176: for(k = 0; k<k_max; k++){
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:179: for(k = 0; k<k_max; k++){
 	inc	r3
 	sjmp	L006005?
 L006009?:
@@ -869,16 +873,16 @@ L006009?:
 ;Allocation info for local variables in function 'TIMER0_Init'
 ;------------------------------------------------------------
 ;------------------------------------------------------------
-;	C:\ELEC291\Lab5\EFM8_ADC.c:183: void TIMER0_Init(void)
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:186: void TIMER0_Init(void)
 ;	-----------------------------------------
 ;	 function TIMER0_Init
 ;	-----------------------------------------
 _TIMER0_Init:
-;	C:\ELEC291\Lab5\EFM8_ADC.c:185: TMOD&=0b_1111_0000; // Set the bits of Timer/Counter 0 to zero
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:188: TMOD&=0b_1111_0000; // Set the bits of Timer/Counter 0 to zero
 	anl	_TMOD,#0xF0
-;	C:\ELEC291\Lab5\EFM8_ADC.c:186: TMOD|=0b_0000_0001; // Timer/Counter 0 used as a 16-bit counter
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:189: TMOD|=0b_0000_0001; // Timer/Counter 0 used as a 16-bit counter
 	orl	_TMOD,#0x01
-;	C:\ELEC291\Lab5\EFM8_ADC.c:187: TR0=0; // Stop Timer/Counter 0
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:190: TR0=0; // Stop Timer/Counter 0
 	clr	_TR0
 	ret
 ;------------------------------------------------------------
@@ -888,13 +892,13 @@ _TIMER0_Init:
 ;portno                    Allocated to registers r2 
 ;mask                      Allocated to registers r3 
 ;------------------------------------------------------------
-;	C:\ELEC291\Lab5\EFM8_ADC.c:192: void InitPinADC (unsigned char portno, unsigned char pinno)
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:195: void InitPinADC (unsigned char portno, unsigned char pinno)
 ;	-----------------------------------------
 ;	 function InitPinADC
 ;	-----------------------------------------
 _InitPinADC:
 	mov	r2,dpl
-;	C:\ELEC291\Lab5\EFM8_ADC.c:196: mask=1<<pinno;
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:199: mask=1<<pinno;
 	mov	b,_InitPinADC_PARM_2
 	inc	b
 	mov	a,#0x01
@@ -904,54 +908,54 @@ L008011?:
 L008013?:
 	djnz	b,L008011?
 	mov	r3,a
-;	C:\ELEC291\Lab5\EFM8_ADC.c:198: SFRPAGE = 0x20;
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:201: SFRPAGE = 0x20;
 	mov	_SFRPAGE,#0x20
-;	C:\ELEC291\Lab5\EFM8_ADC.c:199: switch (portno)
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:202: switch (portno)
 	cjne	r2,#0x00,L008014?
 	sjmp	L008001?
 L008014?:
 	cjne	r2,#0x01,L008015?
 	sjmp	L008002?
 L008015?:
-;	C:\ELEC291\Lab5\EFM8_ADC.c:201: case 0:
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:204: case 0:
 	cjne	r2,#0x02,L008005?
 	sjmp	L008003?
 L008001?:
-;	C:\ELEC291\Lab5\EFM8_ADC.c:202: P0MDIN &= (~mask); // Set pin as analog input
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:205: P0MDIN &= (~mask); // Set pin as analog input
 	mov	a,r3
 	cpl	a
 	mov	r2,a
 	anl	_P0MDIN,a
-;	C:\ELEC291\Lab5\EFM8_ADC.c:203: P0SKIP |= mask; // Skip Crossbar decoding for this pin
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:206: P0SKIP |= mask; // Skip Crossbar decoding for this pin
 	mov	a,r3
 	orl	_P0SKIP,a
-;	C:\ELEC291\Lab5\EFM8_ADC.c:204: break;
-;	C:\ELEC291\Lab5\EFM8_ADC.c:205: case 1:
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:207: break;
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:208: case 1:
 	sjmp	L008005?
 L008002?:
-;	C:\ELEC291\Lab5\EFM8_ADC.c:206: P1MDIN &= (~mask); // Set pin as analog input
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:209: P1MDIN &= (~mask); // Set pin as analog input
 	mov	a,r3
 	cpl	a
 	mov	r2,a
 	anl	_P1MDIN,a
-;	C:\ELEC291\Lab5\EFM8_ADC.c:207: P1SKIP |= mask; // Skip Crossbar decoding for this pin
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:210: P1SKIP |= mask; // Skip Crossbar decoding for this pin
 	mov	a,r3
 	orl	_P1SKIP,a
-;	C:\ELEC291\Lab5\EFM8_ADC.c:208: break;
-;	C:\ELEC291\Lab5\EFM8_ADC.c:209: case 2:
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:211: break;
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:212: case 2:
 	sjmp	L008005?
 L008003?:
-;	C:\ELEC291\Lab5\EFM8_ADC.c:210: P2MDIN &= (~mask); // Set pin as analog input
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:213: P2MDIN &= (~mask); // Set pin as analog input
 	mov	a,r3
 	cpl	a
 	mov	r2,a
 	anl	_P2MDIN,a
-;	C:\ELEC291\Lab5\EFM8_ADC.c:211: P2SKIP |= mask; // Skip Crossbar decoding for this pin
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:214: P2SKIP |= mask; // Skip Crossbar decoding for this pin
 	mov	a,r3
 	orl	_P2SKIP,a
-;	C:\ELEC291\Lab5\EFM8_ADC.c:215: }
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:218: }
 L008005?:
-;	C:\ELEC291\Lab5\EFM8_ADC.c:216: SFRPAGE = 0x00;
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:219: SFRPAGE = 0x00;
 	mov	_SFRPAGE,#0x00
 	ret
 ;------------------------------------------------------------
@@ -959,20 +963,20 @@ L008005?:
 ;------------------------------------------------------------
 ;pin                       Allocated to registers 
 ;------------------------------------------------------------
-;	C:\ELEC291\Lab5\EFM8_ADC.c:220: unsigned int ADC_at_Pin(unsigned char pin)
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:223: unsigned int ADC_at_Pin(unsigned char pin)
 ;	-----------------------------------------
 ;	 function ADC_at_Pin
 ;	-----------------------------------------
 _ADC_at_Pin:
 	mov	_ADC0MX,dpl
-;	C:\ELEC291\Lab5\EFM8_ADC.c:223: ADINT = 0;
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:226: ADINT = 0;
 	clr	_ADINT
-;	C:\ELEC291\Lab5\EFM8_ADC.c:224: ADBUSY = 1;     // Convert voltage at the pin
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:227: ADBUSY = 1;     // Convert voltage at the pin
 	setb	_ADBUSY
-;	C:\ELEC291\Lab5\EFM8_ADC.c:225: while (!ADINT); // Wait for conversion to complete
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:228: while (!ADINT); // Wait for conversion to complete
 L009001?:
 	jnb	_ADINT,L009001?
-;	C:\ELEC291\Lab5\EFM8_ADC.c:226: return (ADC0);
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:229: return (ADC0);
 	mov	dpl,_ADC0
 	mov	dph,(_ADC0 >> 8)
 	ret
@@ -981,12 +985,12 @@ L009001?:
 ;------------------------------------------------------------
 ;pin                       Allocated to registers r2 
 ;------------------------------------------------------------
-;	C:\ELEC291\Lab5\EFM8_ADC.c:229: float Volts_at_Pin(unsigned char pin)
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:232: float Volts_at_Pin(unsigned char pin)
 ;	-----------------------------------------
 ;	 function Volts_at_Pin
 ;	-----------------------------------------
 _Volts_at_Pin:
-;	C:\ELEC291\Lab5\EFM8_ADC.c:231: return ((ADC_at_Pin(pin)*VDD)/0b_0011_1111_1111_1111); //b/c 14 bit adc
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:234: return ((ADC_at_Pin(pin)*VDD)/0b_0011_1111_1111_1111); //b/c 14 bit adc
 	lcall	_ADC_at_Pin
 	lcall	___uint2fs
 	mov	r2,dpl
@@ -1037,17 +1041,17 @@ _Volts_at_Pin:
 ;Allocation info for local variables in function 'LCD_pulse'
 ;------------------------------------------------------------
 ;------------------------------------------------------------
-;	C:\ELEC291\Lab5\EFM8_ADC.c:235: void LCD_pulse (void)
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:238: void LCD_pulse (void)
 ;	-----------------------------------------
 ;	 function LCD_pulse
 ;	-----------------------------------------
 _LCD_pulse:
-;	C:\ELEC291\Lab5\EFM8_ADC.c:237: LCD_E=1;
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:240: LCD_E=1;
 	setb	_P2_0
-;	C:\ELEC291\Lab5\EFM8_ADC.c:238: Timer3us(40);
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:241: Timer3us(40);
 	mov	dpl,#0x28
 	lcall	_Timer3us
-;	C:\ELEC291\Lab5\EFM8_ADC.c:239: LCD_E=0;
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:242: LCD_E=0;
 	clr	_P2_0
 	ret
 ;------------------------------------------------------------
@@ -1055,66 +1059,66 @@ _LCD_pulse:
 ;------------------------------------------------------------
 ;x                         Allocated to registers r2 
 ;------------------------------------------------------------
-;	C:\ELEC291\Lab5\EFM8_ADC.c:241: void LCD_byte (unsigned char x)
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:244: void LCD_byte (unsigned char x)
 ;	-----------------------------------------
 ;	 function LCD_byte
 ;	-----------------------------------------
 _LCD_byte:
 	mov	r2,dpl
-;	C:\ELEC291\Lab5\EFM8_ADC.c:244: ACC=x; //Send high nible
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:247: ACC=x; //Send high nible
 	mov	_ACC,r2
-;	C:\ELEC291\Lab5\EFM8_ADC.c:245: LCD_D7=ACC_7;
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:248: LCD_D7=ACC_7;
 	mov	c,_ACC_7
 	mov	_P1_0,c
-;	C:\ELEC291\Lab5\EFM8_ADC.c:246: LCD_D6=ACC_6;
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:249: LCD_D6=ACC_6;
 	mov	c,_ACC_6
 	mov	_P1_1,c
-;	C:\ELEC291\Lab5\EFM8_ADC.c:247: LCD_D5=ACC_5;
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:250: LCD_D5=ACC_5;
 	mov	c,_ACC_5
 	mov	_P1_2,c
-;	C:\ELEC291\Lab5\EFM8_ADC.c:248: LCD_D4=ACC_4;
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:251: LCD_D4=ACC_4;
 	mov	c,_ACC_4
 	mov	_P1_3,c
-;	C:\ELEC291\Lab5\EFM8_ADC.c:249: LCD_pulse();
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:252: LCD_pulse();
 	push	ar2
 	lcall	_LCD_pulse
-;	C:\ELEC291\Lab5\EFM8_ADC.c:250: Timer3us(40);
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:253: Timer3us(40);
 	mov	dpl,#0x28
 	lcall	_Timer3us
 	pop	ar2
-;	C:\ELEC291\Lab5\EFM8_ADC.c:251: ACC=x; //Send low nible
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:254: ACC=x; //Send low nible
 	mov	_ACC,r2
-;	C:\ELEC291\Lab5\EFM8_ADC.c:252: LCD_D7=ACC_3;
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:255: LCD_D7=ACC_3;
 	mov	c,_ACC_3
 	mov	_P1_0,c
-;	C:\ELEC291\Lab5\EFM8_ADC.c:253: LCD_D6=ACC_2;
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:256: LCD_D6=ACC_2;
 	mov	c,_ACC_2
 	mov	_P1_1,c
-;	C:\ELEC291\Lab5\EFM8_ADC.c:254: LCD_D5=ACC_1;
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:257: LCD_D5=ACC_1;
 	mov	c,_ACC_1
 	mov	_P1_2,c
-;	C:\ELEC291\Lab5\EFM8_ADC.c:255: LCD_D4=ACC_0;
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:258: LCD_D4=ACC_0;
 	mov	c,_ACC_0
 	mov	_P1_3,c
-;	C:\ELEC291\Lab5\EFM8_ADC.c:256: LCD_pulse();
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:259: LCD_pulse();
 	ljmp	_LCD_pulse
 ;------------------------------------------------------------
 ;Allocation info for local variables in function 'WriteData'
 ;------------------------------------------------------------
 ;x                         Allocated to registers r2 
 ;------------------------------------------------------------
-;	C:\ELEC291\Lab5\EFM8_ADC.c:259: void WriteData (unsigned char x)
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:262: void WriteData (unsigned char x)
 ;	-----------------------------------------
 ;	 function WriteData
 ;	-----------------------------------------
 _WriteData:
 	mov	r2,dpl
-;	C:\ELEC291\Lab5\EFM8_ADC.c:261: LCD_RS=1;
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:264: LCD_RS=1;
 	setb	_P1_7
-;	C:\ELEC291\Lab5\EFM8_ADC.c:262: LCD_byte(x);
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:265: LCD_byte(x);
 	mov	dpl,r2
 	lcall	_LCD_byte
-;	C:\ELEC291\Lab5\EFM8_ADC.c:263: waitms(2);
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:266: waitms(2);
 	mov	dptr,#0x0002
 	ljmp	_waitms
 ;------------------------------------------------------------
@@ -1122,53 +1126,53 @@ _WriteData:
 ;------------------------------------------------------------
 ;x                         Allocated to registers r2 
 ;------------------------------------------------------------
-;	C:\ELEC291\Lab5\EFM8_ADC.c:266: void WriteCommand (unsigned char x)
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:269: void WriteCommand (unsigned char x)
 ;	-----------------------------------------
 ;	 function WriteCommand
 ;	-----------------------------------------
 _WriteCommand:
 	mov	r2,dpl
-;	C:\ELEC291\Lab5\EFM8_ADC.c:268: LCD_RS=0;
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:271: LCD_RS=0;
 	clr	_P1_7
-;	C:\ELEC291\Lab5\EFM8_ADC.c:269: LCD_byte(x);
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:272: LCD_byte(x);
 	mov	dpl,r2
 	lcall	_LCD_byte
-;	C:\ELEC291\Lab5\EFM8_ADC.c:270: waitms(5);
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:273: waitms(5);
 	mov	dptr,#0x0005
 	ljmp	_waitms
 ;------------------------------------------------------------
 ;Allocation info for local variables in function 'LCD_4BIT'
 ;------------------------------------------------------------
 ;------------------------------------------------------------
-;	C:\ELEC291\Lab5\EFM8_ADC.c:273: void LCD_4BIT (void)
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:276: void LCD_4BIT (void)
 ;	-----------------------------------------
 ;	 function LCD_4BIT
 ;	-----------------------------------------
 _LCD_4BIT:
-;	C:\ELEC291\Lab5\EFM8_ADC.c:275: LCD_E=0; // Resting state of LCD's enable is zero
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:278: LCD_E=0; // Resting state of LCD's enable is zero
 	clr	_P2_0
-;	C:\ELEC291\Lab5\EFM8_ADC.c:277: waitms(20);
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:280: waitms(20);
 	mov	dptr,#0x0014
 	lcall	_waitms
-;	C:\ELEC291\Lab5\EFM8_ADC.c:279: WriteCommand(0x33);
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:282: WriteCommand(0x33);
 	mov	dpl,#0x33
 	lcall	_WriteCommand
-;	C:\ELEC291\Lab5\EFM8_ADC.c:280: WriteCommand(0x33);
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:283: WriteCommand(0x33);
 	mov	dpl,#0x33
 	lcall	_WriteCommand
-;	C:\ELEC291\Lab5\EFM8_ADC.c:281: WriteCommand(0x32); // Change to 4-bit mode
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:284: WriteCommand(0x32); // Change to 4-bit mode
 	mov	dpl,#0x32
 	lcall	_WriteCommand
-;	C:\ELEC291\Lab5\EFM8_ADC.c:284: WriteCommand(0x28);
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:287: WriteCommand(0x28);
 	mov	dpl,#0x28
 	lcall	_WriteCommand
-;	C:\ELEC291\Lab5\EFM8_ADC.c:285: WriteCommand(0x0c);
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:288: WriteCommand(0x0c);
 	mov	dpl,#0x0C
 	lcall	_WriteCommand
-;	C:\ELEC291\Lab5\EFM8_ADC.c:286: WriteCommand(0x01); // Clear screen command (takes some time)
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:289: WriteCommand(0x01); // Clear screen command (takes some time)
 	mov	dpl,#0x01
 	lcall	_WriteCommand
-;	C:\ELEC291\Lab5\EFM8_ADC.c:287: waitms(20); // Wait for clear screen command to finsih.
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:290: waitms(20); // Wait for clear screen command to finsih.
 	mov	dptr,#0x0014
 	ljmp	_waitms
 ;------------------------------------------------------------
@@ -1178,7 +1182,7 @@ _LCD_4BIT:
 ;string                    Allocated to registers r2 r3 r4 
 ;j                         Allocated to registers r5 r6 
 ;------------------------------------------------------------
-;	C:\ELEC291\Lab5\EFM8_ADC.c:290: void LCDprint(char * string, unsigned char line, bit clear)
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:293: void LCDprint(char * string, unsigned char line, bit clear)
 ;	-----------------------------------------
 ;	 function LCDprint
 ;	-----------------------------------------
@@ -1186,7 +1190,7 @@ _LCDprint:
 	mov	r2,dpl
 	mov	r3,dph
 	mov	r4,b
-;	C:\ELEC291\Lab5\EFM8_ADC.c:294: WriteCommand(line==2?0xc0:0x80);
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:297: WriteCommand(line==2?0xc0:0x80);
 	mov	a,#0x02
 	cjne	a,_LCDprint_PARM_2,L016013?
 	mov	r5,#0xC0
@@ -1199,13 +1203,13 @@ L016014?:
 	push	ar3
 	push	ar4
 	lcall	_WriteCommand
-;	C:\ELEC291\Lab5\EFM8_ADC.c:295: waitms(5);
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:298: waitms(5);
 	mov	dptr,#0x0005
 	lcall	_waitms
 	pop	ar4
 	pop	ar3
 	pop	ar2
-;	C:\ELEC291\Lab5\EFM8_ADC.c:296: for(j=0; string[j]!=0; j++)	WriteData(string[j]);// Write the message
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:299: for(j=0; string[j]!=0; j++)	WriteData(string[j]);// Write the message
 	mov	r5,#0x00
 	mov	r6,#0x00
 L016003?:
@@ -1239,7 +1243,7 @@ L016003?:
 	inc	r6
 	sjmp	L016003?
 L016006?:
-;	C:\ELEC291\Lab5\EFM8_ADC.c:297: if(clear) for(; j<CHARS_PER_LINE; j++) WriteData(' '); // Clear the rest of the line
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:300: if(clear) for(; j<CHARS_PER_LINE; j++) WriteData(' '); // Clear the rest of the line
 	jnb	_LCDprint_PARM_3,L016011?
 	mov	ar2,r5
 	mov	ar3,r6
@@ -1267,28 +1271,26 @@ L016011?:
 ;Allocation info for local variables in function 'Get_ADC'
 ;------------------------------------------------------------
 ;------------------------------------------------------------
-;	C:\ELEC291\Lab5\EFM8_ADC.c:300: unsigned int Get_ADC(void)
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:303: unsigned int Get_ADC(void)
 ;	-----------------------------------------
 ;	 function Get_ADC
 ;	-----------------------------------------
 _Get_ADC:
-;	C:\ELEC291\Lab5\EFM8_ADC.c:302: ADINT = 0;
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:305: ADINT = 0;
 	clr	_ADINT
-;	C:\ELEC291\Lab5\EFM8_ADC.c:303: ADBUSY = 1;
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:306: ADBUSY = 1;
 	setb	_ADBUSY
-;	C:\ELEC291\Lab5\EFM8_ADC.c:304: while (!ADINT);
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:307: while (!ADINT);
 L017001?:
 	jnb	_ADINT,L017001?
-;	C:\ELEC291\Lab5\EFM8_ADC.c:305: return (ADC0);
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:308: return (ADC0);
 	mov	dpl,_ADC0
 	mov	dph,(_ADC0 >> 8)
 	ret
 ;------------------------------------------------------------
 ;Allocation info for local variables in function 'main'
 ;------------------------------------------------------------
-;v                         Allocated with name '_main_v_1_79'
 ;buffer                    Allocated with name '_main_buffer_1_79'
-;overflow                  Allocated with name '_main_overflow_1_79'
 ;halfPeriod_ref            Allocated to registers r2 r3 r4 r5 
 ;period_ref                Allocated with name '_main_period_ref_1_79'
 ;freq_ref                  Allocated with name '_main_freq_ref_1_79'
@@ -1296,24 +1298,27 @@ L017001?:
 ;prev_period_ref           Allocated with name '_main_prev_period_ref_1_79'
 ;vrms_ref                  Allocated with name '_main_vrms_ref_1_79'
 ;halfPeriod_spl            Allocated to registers r2 r3 r4 r5 
-;period_spl                Allocated to registers r2 r3 r4 r5 
+;period_spl                Allocated with name '_main_period_spl_1_79'
 ;freq_spl                  Allocated with name '_main_freq_spl_1_79'
-;quarterperiod_spl         Allocated with name '_main_quarterperiod_spl_1_79'
+;quarterPeriod_spl         Allocated with name '_main_quarterPeriod_spl_1_79'
 ;prev_period_spl           Allocated with name '_main_prev_period_spl_1_79'
+;vrms_spl                  Allocated to registers 
+;phase_diff_deg            Allocated with name '_main_phase_diff_deg_1_79'
+;phase_diff_time           Allocated to registers r2 r3 r4 r5 
 ;------------------------------------------------------------
-;	C:\ELEC291\Lab5\EFM8_ADC.c:309: void main (void)
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:312: void main (void)
 ;	-----------------------------------------
 ;	 function main
 ;	-----------------------------------------
 _main:
-;	C:\ELEC291\Lab5\EFM8_ADC.c:328: LCD_4BIT();
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:333: LCD_4BIT();
 	lcall	_LCD_4BIT
-;	C:\ELEC291\Lab5\EFM8_ADC.c:329: TIMER0_Init();
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:334: TIMER0_Init();
 	lcall	_TIMER0_Init
-;	C:\ELEC291\Lab5\EFM8_ADC.c:331: waitms(500); // Give PuTTy a chance to start before sending
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:336: waitms(500); // Give PuTTy a chance to start before sending
 	mov	dptr,#0x01F4
 	lcall	_waitms
-;	C:\ELEC291\Lab5\EFM8_ADC.c:332: printf("\x1b[2J"); // Clear screen using ANSI escape sequence.
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:337: printf("\x1b[2J"); // Clear screen using ANSI escape sequence.
 	mov	a,#__str_0
 	push	acc
 	mov	a,#(__str_0 >> 8)
@@ -1324,8 +1329,8 @@ _main:
 	dec	sp
 	dec	sp
 	dec	sp
-;	C:\ELEC291\Lab5\EFM8_ADC.c:337: __FILE__, __DATE__, __TIME__);
-;	C:\ELEC291\Lab5\EFM8_ADC.c:336: "Compiled: %s, %s\n\n",
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:342: __FILE__, __DATE__, __TIME__);
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:341: "Compiled: %s, %s\n\n",
 	mov	a,#__str_4
 	push	acc
 	mov	a,#(__str_4 >> 8)
@@ -1354,90 +1359,90 @@ _main:
 	mov	a,sp
 	add	a,#0xf4
 	mov	sp,a
-;	C:\ELEC291\Lab5\EFM8_ADC.c:339: InitPinADC(2, 2); // Configure P2.2 as analog input
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:344: InitPinADC(2, 2); // Configure P2.2 as analog input
 	mov	_InitPinADC_PARM_2,#0x02
 	mov	dpl,#0x02
 	lcall	_InitPinADC
-;	C:\ELEC291\Lab5\EFM8_ADC.c:340: InitPinADC(2, 3); // Configure P2.3 as analog input
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:345: InitPinADC(2, 3); // Configure P2.3 as analog input
 	mov	_InitPinADC_PARM_2,#0x03
 	mov	dpl,#0x02
 	lcall	_InitPinADC
-;	C:\ELEC291\Lab5\EFM8_ADC.c:341: InitPinADC(2, 4); // Configure P2.4 as analog input
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:346: InitPinADC(2, 4); // Configure P2.4 as analog input
 	mov	_InitPinADC_PARM_2,#0x04
 	mov	dpl,#0x02
 	lcall	_InitPinADC
-;	C:\ELEC291\Lab5\EFM8_ADC.c:342: InitPinADC(2, 5); // Configure P2.5 as analog input
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:347: InitPinADC(2, 5); // Configure P2.5 as analog input
 	mov	_InitPinADC_PARM_2,#0x05
 	mov	dpl,#0x02
 	lcall	_InitPinADC
-;	C:\ELEC291\Lab5\EFM8_ADC.c:343: InitPinADC(0, 1);
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:348: InitPinADC(0, 1);
 	mov	_InitPinADC_PARM_2,#0x01
 	mov	dpl,#0x00
 	lcall	_InitPinADC
-;	C:\ELEC291\Lab5\EFM8_ADC.c:344: InitADC();
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:349: InitADC();
 	lcall	_InitADC
-;	C:\ELEC291\Lab5\EFM8_ADC.c:346: prev_period_ref = 10000;	// initilize these to a period value thats impossible to get
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:351: prev_period_ref = 10000;	// initilize these to a period value thats impossible to get
 	mov	_main_prev_period_ref_1_79,#0x00
 	mov	(_main_prev_period_ref_1_79 + 1),#0x40
 	mov	(_main_prev_period_ref_1_79 + 2),#0x1C
 	mov	(_main_prev_period_ref_1_79 + 3),#0x46
-;	C:\ELEC291\Lab5\EFM8_ADC.c:347: prev_period_spl = 10000;
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:352: prev_period_spl = 10000;
 	mov	_main_prev_period_spl_1_79,#0x00
 	mov	(_main_prev_period_spl_1_79 + 1),#0x40
 	mov	(_main_prev_period_spl_1_79 + 2),#0x1C
 	mov	(_main_prev_period_spl_1_79 + 3),#0x46
-;	C:\ELEC291\Lab5\EFM8_ADC.c:349: while(1)
-L018045?:
-;	C:\ELEC291\Lab5\EFM8_ADC.c:353: ADC0MX=QFP32_MUX_P2_5; 	// <---- PORT FOR REFERENCE SIGNAL
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:354: while(1)
+L018072?:
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:358: ADC0MX=REF_SIGNAL; 	// <---- PORT FOR REFERENCE SIGNAL
 	mov	_ADC0MX,#0x12
-;	C:\ELEC291\Lab5\EFM8_ADC.c:355: ADINT = 0;
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:359: ADINT = 0;
 	clr	_ADINT
-;	C:\ELEC291\Lab5\EFM8_ADC.c:356: ADBUSY=1;
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:360: ADBUSY=1;
 	setb	_ADBUSY
-;	C:\ELEC291\Lab5\EFM8_ADC.c:357: while (!ADINT);			// wait for conversion to complete
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:361: while (!ADINT);			// wait for conversion to complete
 L018001?:
 	jnb	_ADINT,L018001?
-;	C:\ELEC291\Lab5\EFM8_ADC.c:358: while (Get_ADC()!=0);	// wait for signal to be 0
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:362: while (Get_ADC()!=0);	// wait for signal to be 0
 L018004?:
 	lcall	_Get_ADC
 	mov	a,dpl
 	mov	b,dph
 	orl	a,b
 	jnz	L018004?
-;	C:\ELEC291\Lab5\EFM8_ADC.c:359: while (Get_ADC()==0);	// wait for signal to be pos
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:363: while (Get_ADC()==0);	// wait for signal to be pos
 L018007?:
 	lcall	_Get_ADC
 	mov	a,dpl
 	mov	b,dph
 	orl	a,b
 	jz	L018007?
-;	C:\ELEC291\Lab5\EFM8_ADC.c:360: overflow_count = 0;		// reset timer 
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:364: overflow_count = 0;		// reset timer 
 	mov	_overflow_count,#0x00
-;	C:\ELEC291\Lab5\EFM8_ADC.c:361: TL0=0;
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:365: TL0=0;
 	mov	_TL0,#0x00
-;	C:\ELEC291\Lab5\EFM8_ADC.c:362: TH0=0;
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:366: TH0=0;
 	mov	_TH0,#0x00
-;	C:\ELEC291\Lab5\EFM8_ADC.c:363: TR0=1; // start timer 0		
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:367: TR0=1; // start timer 0		
 	setb	_TR0
-;	C:\ELEC291\Lab5\EFM8_ADC.c:364: while (Get_ADC()!=0){
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:368: while (Get_ADC()!=0){
 L018012?:
 	lcall	_Get_ADC
 	mov	a,dpl
 	mov	b,dph
 	orl	a,b
 	jz	L018014?
-;	C:\ELEC291\Lab5\EFM8_ADC.c:365: if (TF0==1){
-;	C:\ELEC291\Lab5\EFM8_ADC.c:366: TF0=0;
-	jbc	_TF0,L018074?
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:369: if (TF0==1){
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:370: TF0=0;
+	jbc	_TF0,L018113?
 	sjmp	L018012?
-L018074?:
-;	C:\ELEC291\Lab5\EFM8_ADC.c:367: overflow_count++;	// count overflows
+L018113?:
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:371: overflow_count++;	// count overflows
 	inc	_overflow_count
 	sjmp	L018012?
 L018014?:
-;	C:\ELEC291\Lab5\EFM8_ADC.c:370: TR0=0; // stop timer 0
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:374: TR0=0; // stop timer 0
 	clr	_TR0
-;	C:\ELEC291\Lab5\EFM8_ADC.c:371: halfPeriod_ref=(overflow_count*65536.0 + TH0*256.0 + TL0)*(12.0/SYSCLK);	// {TH0,TL0} -> [15:0]
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:375: halfPeriod_ref=(overflow_count*65536.0 + TH0*256.0 + TL0)*(12.0/SYSCLK);	
 	mov	dpl,_overflow_count
 	lcall	___uchar2fs
 	mov	r6,dpl
@@ -1552,13 +1557,13 @@ L018014?:
 	mov	a,sp
 	add	a,#0xfc
 	mov	sp,a
-;	C:\ELEC291\Lab5\EFM8_ADC.c:373: overflow_count = 0;		
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:376: overflow_count = 0;		 // reset timer post count for redundancy
 	mov	_overflow_count,#0x00
-;	C:\ELEC291\Lab5\EFM8_ADC.c:374: TL0=0;
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:377: TL0=0;
 	mov	_TL0,#0x00
-;	C:\ELEC291\Lab5\EFM8_ADC.c:375: TH0=0;
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:378: TH0=0;
 	mov	_TH0,#0x00
-;	C:\ELEC291\Lab5\EFM8_ADC.c:377: period_ref = 2.0*halfPeriod_ref;
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:379: period_ref = 2.0*halfPeriod_ref; // period & freq calcs
 	push	ar2
 	push	ar3
 	push	ar4
@@ -1575,7 +1580,7 @@ L018014?:
 	mov	a,sp
 	add	a,#0xfc
 	mov	sp,a
-;	C:\ELEC291\Lab5\EFM8_ADC.c:379: if(period_ref <= 0.0002){	// freq never exceeds 5000 Hz, ignore all that is above that		
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:380: if(period_ref <= 0.0002){	// freq never exceeds 5000 Hz, ignore bad ones		
 	mov	a,#0x17
 	push	acc
 	mov	a,#0xB7
@@ -1595,20 +1600,20 @@ L018014?:
 	mov	sp,a
 	mov	a,r6
 	jnz	L018016?
-;	C:\ELEC291\Lab5\EFM8_ADC.c:380: period_ref = prev_period_ref;
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:381: period_ref = prev_period_ref; // noise correction
 	mov	_main_period_ref_1_79,_main_prev_period_ref_1_79
 	mov	(_main_period_ref_1_79 + 1),(_main_prev_period_ref_1_79 + 1)
 	mov	(_main_period_ref_1_79 + 2),(_main_prev_period_ref_1_79 + 2)
 	mov	(_main_period_ref_1_79 + 3),(_main_prev_period_ref_1_79 + 3)
 	sjmp	L018017?
 L018016?:
-;	C:\ELEC291\Lab5\EFM8_ADC.c:382: prev_period_ref = period_ref;
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:383: prev_period_ref = period_ref;
 	mov	_main_prev_period_ref_1_79,_main_period_ref_1_79
 	mov	(_main_prev_period_ref_1_79 + 1),(_main_period_ref_1_79 + 1)
 	mov	(_main_prev_period_ref_1_79 + 2),(_main_period_ref_1_79 + 2)
 	mov	(_main_prev_period_ref_1_79 + 3),(_main_period_ref_1_79 + 3)
 L018017?:
-;	C:\ELEC291\Lab5\EFM8_ADC.c:384: freq_ref = 1.0/period_ref;
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:385: freq_ref = 1.0/period_ref;
 	push	_main_period_ref_1_79
 	push	(_main_period_ref_1_79 + 1)
 	push	(_main_period_ref_1_79 + 2)
@@ -1624,7 +1629,7 @@ L018017?:
 	mov	a,sp
 	add	a,#0xfc
 	mov	sp,a
-;	C:\ELEC291\Lab5\EFM8_ADC.c:385: quarterPeriod_ref = period_ref/4.0;
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:386: quarterPeriod_ref = period_ref/4.0;
 	clr	a
 	push	acc
 	push	acc
@@ -1644,28 +1649,28 @@ L018017?:
 	mov	a,sp
 	add	a,#0xfc
 	mov	sp,a
-;	C:\ELEC291\Lab5\EFM8_ADC.c:388: ADINT = 0;
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:389: ADINT = 0;
 	clr	_ADINT
-;	C:\ELEC291\Lab5\EFM8_ADC.c:389: ADBUSY=1;
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:390: ADBUSY=1;
 	setb	_ADBUSY
-;	C:\ELEC291\Lab5\EFM8_ADC.c:390: while (!ADINT);			// wait for conversion to complete
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:391: while (!ADINT);			// wait for conversion to complete
 L018018?:
 	jnb	_ADINT,L018018?
-;	C:\ELEC291\Lab5\EFM8_ADC.c:391: while (Get_ADC()!=0);	// wait for signal to be 0
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:392: while (Get_ADC()!=0);	// wait for signal to be 0
 L018021?:
 	lcall	_Get_ADC
 	mov	a,dpl
 	mov	b,dph
 	orl	a,b
 	jnz	L018021?
-;	C:\ELEC291\Lab5\EFM8_ADC.c:392: while (Get_ADC()==0);	// wait for signal to be pos
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:393: while (Get_ADC()==0);	// wait for signal to be pos
 L018024?:
 	lcall	_Get_ADC
 	mov	a,dpl
 	mov	b,dph
 	orl	a,b
 	jz	L018024?
-;	C:\ELEC291\Lab5\EFM8_ADC.c:393: waitms(quarterPeriod_ref*1000);
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:394: waitms(quarterPeriod_ref*1000);
 	push	_main_quarterPeriod_ref_1_79
 	push	(_main_quarterPeriod_ref_1_79 + 1)
 	push	(_main_quarterPeriod_ref_1_79 + 2)
@@ -1687,63 +1692,78 @@ L018024?:
 	mov	a,r1
 	lcall	___fs2uint
 	lcall	_waitms
-;	C:\ELEC291\Lab5\EFM8_ADC.c:394: vrms_ref = Volts_at_Pin(QFP32_MUX_P2_5); // grabs vmax 1/4 T later from 0-cross
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:395: vrms_ref = Volts_at_Pin(REF_SIGNAL)*0.707106781187; // grabs vmax 1/4 T later from 0-cross
 	mov	dpl,#0x12
 	lcall	_Volts_at_Pin
+	mov	r6,dpl
+	mov	r7,dph
+	mov	r0,b
+	mov	r1,a
+	push	ar6
+	push	ar7
+	push	ar0
+	push	ar1
+	mov	dptr,#0x04F3
+	mov	b,#0x35
+	mov	a,#0x3F
+	lcall	___fsmul
 	mov	_main_vrms_ref_1_79,dpl
 	mov	(_main_vrms_ref_1_79 + 1),dph
 	mov	(_main_vrms_ref_1_79 + 2),b
 	mov	(_main_vrms_ref_1_79 + 3),a
-;	C:\ELEC291\Lab5\EFM8_ADC.c:398: ADC0MX=QFP32_MUX_P2_4;
+	mov	a,sp
+	add	a,#0xfc
+	mov	sp,a
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:400: ADC0MX=SPL_SIGNAL;
 	mov	_ADC0MX,#0x11
-;	C:\ELEC291\Lab5\EFM8_ADC.c:399: ADINT = 0;
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:401: ADINT = 0;
 	clr	_ADINT
-;	C:\ELEC291\Lab5\EFM8_ADC.c:400: ADBUSY=1;
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:402: ADBUSY=1;
 	setb	_ADBUSY
-;	C:\ELEC291\Lab5\EFM8_ADC.c:401: while (!ADINT);			// wait for conversion to complete
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:403: while (!ADINT);			// wait for conversion to complete
 L018027?:
 	jnb	_ADINT,L018027?
-;	C:\ELEC291\Lab5\EFM8_ADC.c:402: while (Get_ADC()!=0);	// wait for signal to be 0
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:404: while (Get_ADC()!=0);	// wait for signal to be 0
 L018030?:
 	lcall	_Get_ADC
 	mov	a,dpl
 	mov	b,dph
 	orl	a,b
 	jnz	L018030?
-;	C:\ELEC291\Lab5\EFM8_ADC.c:403: while (Get_ADC()==0);	// wait for signal to be pos
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:405: while (Get_ADC()==0);	// wait for signal to be pos
 L018033?:
 	lcall	_Get_ADC
 	mov	a,dpl
 	mov	b,dph
 	orl	a,b
 	jz	L018033?
-;	C:\ELEC291\Lab5\EFM8_ADC.c:404: overflow_count = 0;		// reset timer 
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:406: overflow_count = 0;		// reset timer 
 	mov	_overflow_count,#0x00
-;	C:\ELEC291\Lab5\EFM8_ADC.c:405: TL0=0;
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:407: TL0=0;
 	mov	_TL0,#0x00
-;	C:\ELEC291\Lab5\EFM8_ADC.c:406: TH0=0;
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:408: TH0=0;
 	mov	_TH0,#0x00
-;	C:\ELEC291\Lab5\EFM8_ADC.c:407: TR0=1; // start timer 0		
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:409: TR0=1; // start timer 0		
 	setb	_TR0
-;	C:\ELEC291\Lab5\EFM8_ADC.c:408: while (Get_ADC()!=0){
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:410: while (Get_ADC()!=0){
 L018038?:
 	lcall	_Get_ADC
 	mov	a,dpl
 	mov	b,dph
 	orl	a,b
 	jz	L018040?
-;	C:\ELEC291\Lab5\EFM8_ADC.c:409: if (TF0==1){
-;	C:\ELEC291\Lab5\EFM8_ADC.c:410: TF0=0;
-	jbc	_TF0,L018083?
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:411: if (TF0==1){
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:412: TF0=0;
+	jbc	_TF0,L018122?
 	sjmp	L018038?
-L018083?:
-;	C:\ELEC291\Lab5\EFM8_ADC.c:411: overflow_count++;	// count overflows
+L018122?:
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:413: overflow_count++;	// count overflows
 	inc	_overflow_count
 	sjmp	L018038?
 L018040?:
-;	C:\ELEC291\Lab5\EFM8_ADC.c:414: TR0=0; // stop timer 0
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:416: TR0=0; // stop timer 0
 	clr	_TR0
-;	C:\ELEC291\Lab5\EFM8_ADC.c:415: halfPeriod_spl=(overflow_count*65536.0 + TH0*256.0 + TL0)*(12.0/SYSCLK);	// {TH0,TL0} -> [15:0]
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:417: halfPeriod_spl=(overflow_count*65536.0 + TH0*256.0 + TL0)*(12.0/SYSCLK);	// {TH0,TL0} -> [15:0]
 	mov	dpl,_overflow_count
 	lcall	___uchar2fs
 	mov	r6,dpl
@@ -1858,13 +1878,13 @@ L018040?:
 	mov	a,sp
 	add	a,#0xfc
 	mov	sp,a
-;	C:\ELEC291\Lab5\EFM8_ADC.c:417: overflow_count = 0;		
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:419: overflow_count = 0;		// reset timer post count for redundancy
 	mov	_overflow_count,#0x00
-;	C:\ELEC291\Lab5\EFM8_ADC.c:418: TL0=0;
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:420: TL0=0;
 	mov	_TL0,#0x00
-;	C:\ELEC291\Lab5\EFM8_ADC.c:419: TH0=0;
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:421: TH0=0;
 	mov	_TH0,#0x00
-;	C:\ELEC291\Lab5\EFM8_ADC.c:421: period_spl = 2.0*halfPeriod_spl;
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:423: period_spl = 2.0*halfPeriod_spl;
 	push	ar2
 	push	ar3
 	push	ar4
@@ -1874,18 +1894,14 @@ L018040?:
 	mov	b,a
 	mov	a,#0x40
 	lcall	___fsmul
-	mov	r2,dpl
-	mov	r3,dph
-	mov	r4,b
-	mov	r5,a
+	mov	_main_period_spl_1_79,dpl
+	mov	(_main_period_spl_1_79 + 1),dph
+	mov	(_main_period_spl_1_79 + 2),b
+	mov	(_main_period_spl_1_79 + 3),a
 	mov	a,sp
 	add	a,#0xfc
 	mov	sp,a
-;	C:\ELEC291\Lab5\EFM8_ADC.c:423: if(period_spl <= 0.0002){			
-	push	ar2
-	push	ar3
-	push	ar4
-	push	ar5
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:425: if(period_spl <= 0.0002){			
 	mov	a,#0x17
 	push	acc
 	mov	a,#0xB7
@@ -1894,43 +1910,35 @@ L018040?:
 	push	acc
 	mov	a,#0x39
 	push	acc
-	mov	dpl,r2
-	mov	dph,r3
-	mov	b,r4
-	mov	a,r5
+	mov	dpl,_main_period_spl_1_79
+	mov	dph,(_main_period_spl_1_79 + 1)
+	mov	b,(_main_period_spl_1_79 + 2)
+	mov	a,(_main_period_spl_1_79 + 3)
 	lcall	___fsgt
 	mov	r6,dpl
 	mov	a,sp
 	add	a,#0xfc
 	mov	sp,a
-	pop	ar5
-	pop	ar4
-	pop	ar3
-	pop	ar2
 	mov	a,r6
 	jnz	L018042?
-;	C:\ELEC291\Lab5\EFM8_ADC.c:424: period_spl = prev_period_spl;
-	mov	r2,_main_prev_period_spl_1_79
-	mov	r3,(_main_prev_period_spl_1_79 + 1)
-	mov	r4,(_main_prev_period_spl_1_79 + 2)
-	mov	r5,(_main_prev_period_spl_1_79 + 3)
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:426: period_spl = prev_period_spl;
+	mov	_main_period_spl_1_79,_main_prev_period_spl_1_79
+	mov	(_main_period_spl_1_79 + 1),(_main_prev_period_spl_1_79 + 1)
+	mov	(_main_period_spl_1_79 + 2),(_main_prev_period_spl_1_79 + 2)
+	mov	(_main_period_spl_1_79 + 3),(_main_prev_period_spl_1_79 + 3)
 	sjmp	L018043?
 L018042?:
-;	C:\ELEC291\Lab5\EFM8_ADC.c:426: prev_period_spl = period_spl;
-	mov	_main_prev_period_spl_1_79,r2
-	mov	(_main_prev_period_spl_1_79 + 1),r3
-	mov	(_main_prev_period_spl_1_79 + 2),r4
-	mov	(_main_prev_period_spl_1_79 + 3),r5
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:428: prev_period_spl = period_spl;
+	mov	_main_prev_period_spl_1_79,_main_period_spl_1_79
+	mov	(_main_prev_period_spl_1_79 + 1),(_main_period_spl_1_79 + 1)
+	mov	(_main_prev_period_spl_1_79 + 2),(_main_period_spl_1_79 + 2)
+	mov	(_main_prev_period_spl_1_79 + 3),(_main_period_spl_1_79 + 3)
 L018043?:
-;	C:\ELEC291\Lab5\EFM8_ADC.c:428: freq_spl = 1.0/period_spl;
-	push	ar2
-	push	ar3
-	push	ar4
-	push	ar5
-	push	ar2
-	push	ar3
-	push	ar4
-	push	ar5
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:430: freq_spl = 1.0/period_spl;
+	push	_main_period_spl_1_79
+	push	(_main_period_spl_1_79 + 1)
+	push	(_main_period_spl_1_79 + 2)
+	push	(_main_period_spl_1_79 + 3)
 	mov	dptr,#0x0000
 	mov	b,#0x80
 	mov	a,#0x3F
@@ -1942,33 +1950,221 @@ L018043?:
 	mov	a,sp
 	add	a,#0xfc
 	mov	sp,a
-;	C:\ELEC291\Lab5\EFM8_ADC.c:439: printf("Reference Signal Data        |Sample Signal Data            \n");
-	mov	a,#__str_5
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:431: quarterPeriod_spl = period_spl/4.0;
+	clr	a
 	push	acc
-	mov	a,#(__str_5 >> 8)
-	push	acc
-	mov	a,#0x80
-	push	acc
-	lcall	_printf
-	dec	sp
-	dec	sp
-	dec	sp
-;	C:\ELEC291\Lab5\EFM8_ADC.c:440: printf("---------------------------------------------------------\n");
-	mov	a,#__str_6
-	push	acc
-	mov	a,#(__str_6 >> 8)
 	push	acc
 	mov	a,#0x80
 	push	acc
-	lcall	_printf
-	dec	sp
-	dec	sp
-	dec	sp
-;	C:\ELEC291\Lab5\EFM8_ADC.c:441: printf("Ref Period(T):  %7.6f s  | Spl Period(T):  %7.6f s \n",period_ref*1000, period_spl*1000);
+	mov	a,#0x40
+	push	acc
+	mov	dpl,_main_period_spl_1_79
+	mov	dph,(_main_period_spl_1_79 + 1)
+	mov	b,(_main_period_spl_1_79 + 2)
+	mov	a,(_main_period_spl_1_79 + 3)
+	lcall	___fsdiv
+	mov	_main_quarterPeriod_spl_1_79,dpl
+	mov	(_main_quarterPeriod_spl_1_79 + 1),dph
+	mov	(_main_quarterPeriod_spl_1_79 + 2),b
+	mov	(_main_quarterPeriod_spl_1_79 + 3),a
+	mov	a,sp
+	add	a,#0xfc
+	mov	sp,a
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:434: ADINT = 0;
+	clr	_ADINT
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:435: ADBUSY=1;
+	setb	_ADBUSY
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:436: while (!ADINT);			// wait for conversion to complete
+L018044?:
+	jnb	_ADINT,L018044?
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:437: while (Get_ADC()!=0);	// wait for signal to be 0
+L018047?:
+	lcall	_Get_ADC
+	mov	a,dpl
+	mov	b,dph
+	orl	a,b
+	jnz	L018047?
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:438: while (Get_ADC()==0);	// wait for signal to be pos
+L018050?:
+	lcall	_Get_ADC
+	mov	a,dpl
+	mov	b,dph
+	orl	a,b
+	jz	L018050?
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:439: waitms(quarterPeriod_spl*1000);
+	push	_main_quarterPeriod_spl_1_79
+	push	(_main_quarterPeriod_spl_1_79 + 1)
+	push	(_main_quarterPeriod_spl_1_79 + 2)
+	push	(_main_quarterPeriod_spl_1_79 + 3)
 	mov	dptr,#0x0000
 	mov	b,#0x7A
 	mov	a,#0x44
 	lcall	___fsmul
+	mov	r6,dpl
+	mov	r7,dph
+	mov	r0,b
+	mov	r1,a
+	mov	a,sp
+	add	a,#0xfc
+	mov	sp,a
+	mov	dpl,r6
+	mov	dph,r7
+	mov	b,r0
+	mov	a,r1
+	lcall	___fs2uint
+	lcall	_waitms
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:440: vrms_spl = Volts_at_Pin(SPL_SIGNAL)*0.707106781187; // grabs vmax 1/4 T later from 0-cross
+	mov	dpl,#0x11
+	lcall	_Volts_at_Pin
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:445: ADC0MX=REF_SIGNAL;		// start tracking REF signal
+	mov	_ADC0MX,#0x12
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:446: ADINT = 0;
+	clr	_ADINT
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:447: ADBUSY=1;
+	setb	_ADBUSY
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:448: while (!ADINT);			// wait for adc conversion to complete
+L018053?:
+	jnb	_ADINT,L018053?
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:449: while (Get_ADC()!=0);	// wait for REF signal to be 0
+L018056?:
+	lcall	_Get_ADC
+	mov	a,dpl
+	mov	b,dph
+	orl	a,b
+	jnz	L018056?
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:450: while (Get_ADC()==0);	// wait for REF signal to be pos (0-cross posedge)
+L018059?:
+	lcall	_Get_ADC
+	mov	a,dpl
+	mov	b,dph
+	orl	a,b
+	jz	L018059?
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:453: overflow_count = 0;		// clear timer overflow
+	mov	_overflow_count,#0x00
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:454: TL0=0;					// clear timer 0
+	mov	_TL0,#0x00
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:455: TH0=0;
+	mov	_TH0,#0x00
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:456: TR0=1; 					// start timer 0
+	setb	_TR0
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:459: ADC0MX=SPL_SIGNAL;		// start tracking SPL signal
+	mov	_ADC0MX,#0x11
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:460: ADINT = 0;
+	clr	_ADINT
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:461: ADBUSY=1;
+	setb	_ADBUSY
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:462: while (!ADINT);			// wait for adc conversion to complete
+L018062?:
+	jnb	_ADINT,L018062?
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:463: while (Get_ADC()!=0);	// wait for SPL signal to be 0
+L018065?:
+	lcall	_Get_ADC
+	mov	a,dpl
+	mov	b,dph
+	orl	a,b
+	jnz	L018065?
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:464: while (Get_ADC()==0);	// wait for SPL signal to be pos (0-cross posedge)
+L018068?:
+	lcall	_Get_ADC
+	mov	a,dpl
+	mov	b,dph
+	orl	a,b
+	jz	L018068?
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:467: TR0=0; // stop timer 0	
+	clr	_TR0
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:468: phase_diff_time = (overflow_count*65536.0 + TH0*256.0 + TL0)*(12.0/SYSCLK);
+	mov	dpl,_overflow_count
+	lcall	___uchar2fs
+	mov	r6,dpl
+	mov	r7,dph
+	mov	r0,b
+	mov	r1,a
+	push	ar6
+	push	ar7
+	push	ar0
+	push	ar1
+	mov	dptr,#0x0000
+	mov	b,#0x80
+	mov	a,#0x47
+	lcall	___fsmul
+	mov	r6,dpl
+	mov	r7,dph
+	mov	r0,b
+	mov	r1,a
+	mov	a,sp
+	add	a,#0xfc
+	mov	sp,a
+	mov	dpl,_TH0
+	push	ar6
+	push	ar7
+	push	ar0
+	push	ar1
+	lcall	___uchar2fs
+	mov	r2,dpl
+	mov	r3,dph
+	mov	r4,b
+	mov	r5,a
+	push	ar2
+	push	ar3
+	push	ar4
+	push	ar5
+	mov	dptr,#0x0000
+	mov	b,#0x80
+	mov	a,#0x43
+	lcall	___fsmul
+	mov	r2,dpl
+	mov	r3,dph
+	mov	r4,b
+	mov	r5,a
+	mov	a,sp
+	add	a,#0xfc
+	mov	sp,a
+	pop	ar1
+	pop	ar0
+	pop	ar7
+	pop	ar6
+	push	ar2
+	push	ar3
+	push	ar4
+	push	ar5
+	mov	dpl,r6
+	mov	dph,r7
+	mov	b,r0
+	mov	a,r1
+	lcall	___fsadd
+	mov	r2,dpl
+	mov	r3,dph
+	mov	r4,b
+	mov	r5,a
+	mov	a,sp
+	add	a,#0xfc
+	mov	sp,a
+	mov	r6,_TL0
+	mov	r7,#0x00
+	mov	dpl,r6
+	mov	dph,r7
+	push	ar2
+	push	ar3
+	push	ar4
+	push	ar5
+	lcall	___sint2fs
+	mov	r6,dpl
+	mov	r7,dph
+	mov	r0,b
+	mov	r1,a
+	pop	ar5
+	pop	ar4
+	pop	ar3
+	pop	ar2
+	push	ar6
+	push	ar7
+	push	ar0
+	push	ar1
+	mov	dpl,r2
+	mov	dph,r3
+	mov	b,r4
+	mov	a,r5
+	lcall	___fsadd
 	mov	r2,dpl
 	mov	r3,dph
 	mov	r4,b
@@ -1980,10 +2176,91 @@ L018043?:
 	push	ar3
 	push	ar4
 	push	ar5
-	push	_main_period_ref_1_79
-	push	(_main_period_ref_1_79 + 1)
-	push	(_main_period_ref_1_79 + 2)
-	push	(_main_period_ref_1_79 + 3)
+	mov	dptr,#0xF4FC
+	mov	b,#0x32
+	mov	a,#0x34
+	lcall	___fsmul
+	mov	r2,dpl
+	mov	r3,dph
+	mov	r4,b
+	mov	r5,a
+	mov	a,sp
+	add	a,#0xfc
+	mov	sp,a
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:469: phase_diff_deg = phase_diff_time * (360/period_spl);
+	push	ar2
+	push	ar3
+	push	ar4
+	push	ar5
+	push	_main_period_spl_1_79
+	push	(_main_period_spl_1_79 + 1)
+	push	(_main_period_spl_1_79 + 2)
+	push	(_main_period_spl_1_79 + 3)
+	mov	dptr,#0x0000
+	mov	b,#0xB4
+	mov	a,#0x43
+	lcall	___fsdiv
+	mov	r6,dpl
+	mov	r7,dph
+	mov	r0,b
+	mov	r1,a
+	mov	a,sp
+	add	a,#0xfc
+	mov	sp,a
+	pop	ar5
+	pop	ar4
+	pop	ar3
+	pop	ar2
+	push	ar6
+	push	ar7
+	push	ar0
+	push	ar1
+	mov	dpl,r2
+	mov	dph,r3
+	mov	b,r4
+	mov	a,r5
+	lcall	___fsmul
+	mov	_main_phase_diff_deg_1_79,dpl
+	mov	(_main_phase_diff_deg_1_79 + 1),dph
+	mov	(_main_phase_diff_deg_1_79 + 2),b
+	mov	(_main_phase_diff_deg_1_79 + 3),a
+	mov	a,sp
+	add	a,#0xfc
+	mov	sp,a
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:472: overflow_count = 0;		
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:473: TL0=0;
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:474: TH0=0;
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:498: printf("Reference Signal Data        |Sample Signal Data            \n");
+	clr	a
+	mov	_overflow_count,a
+	mov	_TL0,a
+	mov	_TH0,a
+	mov	a,#__str_5
+	push	acc
+	mov	a,#(__str_5 >> 8)
+	push	acc
+	mov	a,#0x80
+	push	acc
+	lcall	_printf
+	dec	sp
+	dec	sp
+	dec	sp
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:499: printf("---------------------------------------------------------\n");
+	mov	a,#__str_6
+	push	acc
+	mov	a,#(__str_6 >> 8)
+	push	acc
+	mov	a,#0x80
+	push	acc
+	lcall	_printf
+	dec	sp
+	dec	sp
+	dec	sp
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:500: printf("Ref Period(T):  %7.6f s  | Spl Period(T):  %7.6f s \n",period_ref*1000, period_spl*1000);
+	push	_main_period_spl_1_79
+	push	(_main_period_spl_1_79 + 1)
+	push	(_main_period_spl_1_79 + 2)
+	push	(_main_period_spl_1_79 + 3)
 	mov	dptr,#0x0000
 	mov	b,#0x7A
 	mov	a,#0x44
@@ -1999,6 +2276,25 @@ L018043?:
 	push	ar7
 	push	ar0
 	push	ar1
+	push	_main_period_ref_1_79
+	push	(_main_period_ref_1_79 + 1)
+	push	(_main_period_ref_1_79 + 2)
+	push	(_main_period_ref_1_79 + 3)
+	mov	dptr,#0x0000
+	mov	b,#0x7A
+	mov	a,#0x44
+	lcall	___fsmul
+	mov	r2,dpl
+	mov	r3,dph
+	mov	r4,b
+	mov	r5,a
+	mov	a,sp
+	add	a,#0xfc
+	mov	sp,a
+	push	ar2
+	push	ar3
+	push	ar4
+	push	ar5
 	mov	a,#__str_7
 	push	acc
 	mov	a,#(__str_7 >> 8)
@@ -2009,7 +2305,7 @@ L018043?:
 	mov	a,sp
 	add	a,#0xf5
 	mov	sp,a
-;	C:\ELEC291\Lab5\EFM8_ADC.c:442: printf("Ref Freq(f)  :  %7.6f Hz | Spl Freq(f)  :  %7.6f Hz\n",freq_ref, freq_spl);
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:501: printf("Ref Freq(f)  :  %7.6f Hz | Spl Freq(f)  :  %7.6f Hz\n",freq_ref, freq_spl);
 	push	_main_freq_spl_1_79
 	push	(_main_freq_spl_1_79 + 1)
 	push	(_main_freq_spl_1_79 + 2)
@@ -2028,7 +2324,7 @@ L018043?:
 	mov	a,sp
 	add	a,#0xf5
 	mov	sp,a
-;	C:\ELEC291\Lab5\EFM8_ADC.c:443: printf("Vmax (ref)   :  %4.4f V\n",vrms_ref);
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:502: printf("Vmax (ref)   :  %4.4f V\n",vrms_ref);
 	push	_main_vrms_ref_1_79
 	push	(_main_vrms_ref_1_79 + 1)
 	push	(_main_vrms_ref_1_79 + 2)
@@ -2043,11 +2339,11 @@ L018043?:
 	mov	a,sp
 	add	a,#0xf9
 	mov	sp,a
-;	C:\ELEC291\Lab5\EFM8_ADC.c:444: printf("%7.6f\n", quarterPeriod_ref);
-	push	_main_quarterPeriod_ref_1_79
-	push	(_main_quarterPeriod_ref_1_79 + 1)
-	push	(_main_quarterPeriod_ref_1_79 + 2)
-	push	(_main_quarterPeriod_ref_1_79 + 3)
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:503: printf("Phase Difference: %7.6f degrees\n", phase_diff_deg);
+	push	_main_phase_diff_deg_1_79
+	push	(_main_phase_diff_deg_1_79 + 1)
+	push	(_main_phase_diff_deg_1_79 + 2)
+	push	(_main_phase_diff_deg_1_79 + 3)
 	mov	a,#__str_10
 	push	acc
 	mov	a,#(__str_10 >> 8)
@@ -2058,7 +2354,7 @@ L018043?:
 	mov	a,sp
 	add	a,#0xf9
 	mov	sp,a
-;	C:\ELEC291\Lab5\EFM8_ADC.c:445: printf("\033[A\033[A\033[A\033[A\033[A\033[A");
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:504: printf("\033[A\033[A\033[A\033[A\033[A\033[A");
 	mov	a,#__str_11
 	push	acc
 	mov	a,#(__str_11 >> 8)
@@ -2069,7 +2365,7 @@ L018043?:
 	dec	sp
 	dec	sp
 	dec	sp
-;	C:\ELEC291\Lab5\EFM8_ADC.c:447: sprintf(buffer,"Rf:%2d Sp:%2d Hz",(int)freq_ref%1000, (int)freq_spl%1000);
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:506: sprintf(buffer,"Rf:%2d Sp:%2d Hz",(int)freq_ref%1000, (int)freq_spl%1000);
 	mov	dpl,_main_freq_spl_1_79
 	mov	dph,(_main_freq_spl_1_79 + 1)
 	mov	b,(_main_freq_spl_1_79 + 2)
@@ -2110,13 +2406,13 @@ L018043?:
 	mov	a,sp
 	add	a,#0xf6
 	mov	sp,a
-;	C:\ELEC291\Lab5\EFM8_ADC.c:448: LCDprint(buffer,1,1);
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:507: LCDprint(buffer,1,1);
 	mov	_LCDprint_PARM_2,#0x01
 	setb	_LCDprint_PARM_3
 	mov	dptr,#_main_buffer_1_79
 	mov	b,#0x40
 	lcall	_LCDprint
-;	C:\ELEC291\Lab5\EFM8_ADC.c:450: sprintf(buffer,"Vr:%4.4f V",vrms_ref);
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:509: sprintf(buffer,"Vr:%4.4f V",vrms_ref);
 	push	_main_vrms_ref_1_79
 	push	(_main_vrms_ref_1_79 + 1)
 	push	(_main_vrms_ref_1_79 + 2)
@@ -2137,16 +2433,16 @@ L018043?:
 	mov	a,sp
 	add	a,#0xf6
 	mov	sp,a
-;	C:\ELEC291\Lab5\EFM8_ADC.c:451: LCDprint(buffer,2,1);
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:510: LCDprint(buffer,2,1);
 	mov	_LCDprint_PARM_2,#0x02
 	setb	_LCDprint_PARM_3
 	mov	dptr,#_main_buffer_1_79
 	mov	b,#0x40
 	lcall	_LCDprint
-;	C:\ELEC291\Lab5\EFM8_ADC.c:453: waitms(500);
+;	C:\Users\cosr3\Documents\GitHub\ELEC-291-Lab5\EFM8_ADC.c:511: waitms(500);
 	mov	dptr,#0x01F4
 	lcall	_waitms
-	ljmp	L018045?
+	ljmp	L018072?
 	rseg R_CSEG
 
 	rseg R_XINIT
@@ -2168,9 +2464,15 @@ __str_1:
 __str_2:
 	db 'C:'
 	db 0x5C
-	db 'ELEC291'
+	db 'Users'
 	db 0x5C
-	db 'Lab5'
+	db 'cosr3'
+	db 0x5C
+	db 'Documents'
+	db 0x5C
+	db 'GitHub'
+	db 0x5C
+	db 'ELEC-291-Lab5'
 	db 0x5C
 	db 'EFM8_ADC.c'
 	db 0x00
@@ -2178,7 +2480,7 @@ __str_3:
 	db 'Mar  4 2024'
 	db 0x00
 __str_4:
-	db '00:29:45'
+	db '21:35:38'
 	db 0x00
 __str_5:
 	db 'Reference Signal Data        |Sample Signal Data            '
@@ -2201,7 +2503,7 @@ __str_9:
 	db 0x0A
 	db 0x00
 __str_10:
-	db '%7.6f'
+	db 'Phase Difference: %7.6f degrees'
 	db 0x0A
 	db 0x00
 __str_11:
