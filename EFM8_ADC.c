@@ -27,6 +27,11 @@
 #define REF_SIGNAL QFP32_MUX_P2_5
 #define SPL_SIGNAL QFP32_MUX_P2_4 
 
+#define BT1 P3_3
+#define BT2 P3_0
+#define RED P0_3
+#define GREEN P0_2
+
 unsigned char overflow_count;
 
 char _c51_external_startup (void)
@@ -304,6 +309,9 @@ unsigned int Get_ADC(void)
 void main (void)
 {	
 	char buffer[20];
+	//char skip_count;
+	int bsel = 0;
+	int led = 1;
 
 	float halfPeriod;
 	float period;
@@ -336,7 +344,6 @@ void main (void)
     InitADC();
 
 	prev_period = 10000;	// initilize these to a period value thats impossible to get
-	prev_period = 10000;
 	
 	while(1)
 	{	
@@ -418,7 +425,6 @@ void main (void)
 		TL0=0;					// clear timer 0
 		TH0=0;
 		TR0=1; 					// start timer 0
-		P0_0 = 1;
 
 		//(3) WAIT TILL POSEDGE 0-CROSS OF REF SIGNAL
 		ADC0MX=REF_SIGNAL;			// start tracking REF signal
@@ -433,14 +439,13 @@ void main (void)
 					overflow_count++;	// count overflows
 				}
 			}
-			Timer3us(20);
 		}while(Get_ADC()==0); // Check if REALLYMREALLYM POSITIVE!!!!!!!! :DDDDDD
 			
 		
 		//(4) STOP TIMER, CALCULATE DIFFERENCE
 		TR0=0; // stop timer 0	
-		P0_0 = 0;
-		phase_diff_time = (overflow_count*65536.0 + TH0*256.0 + TL0)*(12.0/SYSCLK) + 0.00002; 
+		phase_diff_time = (overflow_count*65536.0 + TH0*256.0 + TL0)*(12.0/SYSCLK); 
+
 		// account for when the second rising edge gets missed, 
 		// +/- 360 until within the range of [-180, 180]
 		phase_diff_deg = (phase_diff_time * 360)/period;
@@ -448,24 +453,37 @@ void main (void)
 		TH0=0;
 		overflow_count = 0;	// stop timer
 
-		
+				
 		while(phase_diff_deg < -180){
 			phase_diff_deg += 360;
-			// if(phase_diff_deg > 0){
-			// 	phase_diff_deg -= 180;
-			// }
+			
 		}
 		while(phase_diff_deg > 180){
 			phase_diff_deg -= 360;
-			// if(phase_diff_deg < 0){
-			// 	phase_diff_deg += 180;
-			// }
+			
+		}
+		if(phase_diff_deg > 0){
+			phase_diff_deg += 0.5;
+		}else if(phase_diff_deg < 0){
+			phase_diff_deg -= 1.5;
+		}
+
+		if((BT1 == 0) && (bsel == 0)){
+			bsel = 1;
+		} else if((BT1 == 0) && (bsel == 1)){
+			bsel = 2;
+		} else if((BT1 == 0) && (bsel == 2)){
+			bsel = 0;
+		} 
+
+		if((BT2 == 0) && (led == 0)){
+			led = 1;
+		}else if((BT2 == 0) && (led == 1)){
+			led = 0;
 		}
 		
-		
-		
 
-		printf("Period(T):  %7.6f ms  Freq(f):  %7.6f s \n",period*1000, freq);
+		printf("Period(T):  %7.6f ms  Freq(f):  %7.6f Hz \n",period*1000, freq);
 		printf("1/4 Period: %7.6f ms\n", quarterPeriod*1000);
 		printf("Vrms (ref):  %4.4f V  Vrms (spl): %4.4f V \n",vrms_ref, vrms_spl);
 		printf("Phase Difference: %7.6f degrees  Phase diff time: %7.6f s \n", phase_diff_deg, phase_diff_time);
@@ -475,12 +493,39 @@ void main (void)
 		printf("\033[A");
 		printf("\033[A");
 	
-		
-		sprintf(buffer,"Rf:%2d Sp:%2d Hz",(int)freq%1000, (int)freq%1000);
-		LCDprint(buffer,1,1);
+		if(bsel == 0){
+			sprintf(buffer,"F: %3dHz T: %2dms",(int)freq%1000, (int)(period*1000)%1000);
+			LCDprint(buffer,1,1);
+			sprintf(buffer,"Phase dif: %3.2f deg",phase_diff_deg);
+			LCDprint(buffer,2,1);
+		}else if(bsel == 1){
+			sprintf(buffer,"Vrms(s): %2.2f V",vrms_spl);
+			LCDprint(buffer,1,1);
+			sprintf(buffer,"Vrms(r): %2.2f V",vrms_ref);
+			LCDprint(buffer,2,1);
+		}else if(bsel == 2){
+			sprintf(buffer,"Connect Guide");
+			LCDprint(buffer,1,1);
+			sprintf(buffer,"SAMPLE | REF");
+			LCDprint(buffer,2,1);
+		}
 
-		sprintf(buffer,"Vr:%4.4f V",vrms_ref);
-		LCDprint(buffer,2,1);
+
+		// if(led == 1){
+			if(phase_diff_deg < 0){
+				RED = 0;
+				GREEN = 1;
+			}else{
+				RED = 1;
+				GREEN = 0;
+			}
+		// }else{
+		// 	RED = 0;
+		// 	GREEN = 0;
+		// }
+		
+		
+		
 		waitms(500);
 
 

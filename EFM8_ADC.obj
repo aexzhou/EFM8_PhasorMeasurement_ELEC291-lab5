@@ -15,45 +15,67 @@ R_GSINIT,code,0000,NO
 R_BSEG,bit,0001,NO
 R_XSEG,xdata,0000,NO
 BIT_BANK,data,0000,OV
-R_CONST,code,0148,NO
+R_CONST,code,0191,NO
 rbank0,data,0000,OV
 R_PSEG,xdata,0000,NO
 R_DINIT,code,0000,NO
-R_DSEG,data,0032,NO
+R_DSEG,data,003A,NO
 R_OSEG,data,0001,OV
 R_IXSEG,xdata,0000,NO
 R_ISEG,idata,0000,NO
 R_HOME,code,0000,NO
 R_XINIT,code,0000,NO
-R_CSEG,code,0B1C,NO
+R_CSEG,code,0D29,NO
 </SEGMENTS>
 
 <LOCALS>
 L002004?,R_CSEG,0029,0000
 L002001?,R_CSEG,001E,0000
-L018018?,R_CSEG,0587,0000
-L018017?,R_CSEG,0533,0000
-L018016?,R_CSEG,0527,0000
-L018014?,R_CSEG,03D7,0000
-L018012?,R_CSEG,03C2,0000
-L018024?,R_CSEG,0596,0000
-L018021?,R_CSEG,058A,0000
-L018036?,R_CSEG,0655,0000
-L018033?,R_CSEG,0639,0000
-L018030?,R_CSEG,0636,0000
+L018018?,R_CSEG,0592,0000
+L018207?,R_CSEG,0C96,0000
+L018017?,R_CSEG,053E,0000
+L018206?,R_CSEG,0C94,0000
+L018016?,R_CSEG,0532,0000
+L018205?,R_CSEG,0C19,0000
+L018204?,R_CSEG,0C17,0000
+L018014?,R_CSEG,03E2,0000
+L018203?,R_CSEG,0B69,0000
+L018202?,R_CSEG,0A2B,0000
+L018012?,R_CSEG,03CD,0000
+L018201?,R_CSEG,0A29,0000
+L018024?,R_CSEG,05A1,0000
+L018021?,R_CSEG,0595,0000
+L018036?,R_CSEG,0660,0000
+L018033?,R_CSEG,0644,0000
+L018030?,R_CSEG,0641,0000
 L016007?,R_CSEG,02D0,0000
 L016006?,R_CSEG,02C9,0000
-L018048?,R_CSEG,06E1,0000
+L018048?,R_CSEG,06EC,0000
 L016003?,R_CSEG,0295,0000
-L018045?,R_CSEG,06D5,0000
+_main_bsel_1_77,R_DSEG,0016,0002
+L018045?,R_CSEG,06E0,0000
 L004007?,R_CSEG,0091,0000
-L018042?,R_CSEG,06D2,0000
+L018042?,R_CSEG,06DD,0000
+L018109?,R_CSEG,03A0,0000
 L004004?,R_CSEG,0081,0000
-__str_10,R_CONST,012C,0000
-__str_11,R_CONST,013D,0000
+__str_10,R_CONST,012D,0000
+__str_11,R_CONST,013F,0000
+__str_12,R_CONST,0154,0000
+__str_13,R_CONST,0165,0000
+__str_14,R_CONST,0176,0000
+__str_15,R_CONST,0184,0000
+L018107?,R_CSEG,0D20,0000
+L018106?,R_CSEG,0D1C,0000
 L004001?,R_CSEG,0086,0000
-_main_period_1_77,R_DSEG,0016,0004
-_main_quarterPeriod_1_77,R_DSEG,001E,0004
+L018104?,R_CSEG,0CF4,0000
+L018103?,R_CSEG,0C0C,0000
+L018100?,R_CSEG,0C89,0000
+L018197?,R_CSEG,0A05,0000
+_main_period_1_77,R_DSEG,001A,0004
+L018196?,R_CSEG,0A03,0000
+L018194?,R_CSEG,09ED,0000
+_main_quarterPeriod_1_77,R_DSEG,0022,0004
+L018193?,R_CSEG,09EB,0000
 L008015?,R_CSEG,0147,0000
 L008014?,R_CSEG,0142,0000
 L008013?,R_CSEG,0136,0000
@@ -62,47 +84,55 @@ L005009?,R_CSEG,00CF,0000
 L017001?,R_CSEG,02F5,0000
 L005007?,R_CSEG,00C8,0000
 L005005?,R_CSEG,009D,0000
-_main_phase_diff_time_1_77,R_DSEG,002E,0004
+_main_phase_diff_time_1_77,R_DSEG,0036,0004
 L005001?,R_CSEG,00A6,0000
-L018007?,R_CSEG,03AB,0000
-L018004?,R_CSEG,039F,0000
-L018001?,R_CSEG,039C,0000
+_main_phase_diff_deg_1_77,R_DSEG,0032,0004
+L018007?,R_CSEG,03B6,0000
+L018004?,R_CSEG,03AA,0000
+L018001?,R_CSEG,03A7,0000
 L006005?,R_CSEG,011F,0000
 L006001?,R_CSEG,00DF,0000
-_main_prev_period_1_77,R_DSEG,0022,0004
+_main_prev_period_1_77,R_DSEG,0026,0004
+_main_led_1_77,R_DSEG,0018,0002
+L018095?,R_CSEG,0A30,0000
+L018094?,R_CSEG,0A1B,0000
+L018167?,R_CSEG,03DE,0000
 __str_0,R_CONST,0000,0000
 __str_1,R_CONST,0005,0000
 __str_2,R_CONST,0032,0000
 __str_3,R_CONST,006B,0000
 __str_4,R_CONST,0077,0000
 __str_5,R_CONST,0080,0000
-__str_6,R_CONST,00AA,0000
-__str_7,R_CONST,00C0,0000
-__str_8,R_CONST,00EC,0000
-__str_9,R_CONST,0128,0000
+__str_6,R_CONST,00AB,0000
+__str_7,R_CONST,00C1,0000
+__str_8,R_CONST,00ED,0000
+__str_9,R_CONST,0129,0000
+L018184?,R_CSEG,073C,0000
 L008005?,R_CSEG,0168,0000
 L008003?,R_CSEG,0160,0000
-L018057?,R_CSEG,0716,0000
+L018057?,R_CSEG,071F,0000
 L008002?,R_CSEG,0156,0000
 L008001?,R_CSEG,014C,0000
-L018054?,R_CSEG,0713,0000
-_main_vrms_ref_1_77,R_DSEG,002A,0004
-L018068?,R_CSEG,08AA,0000
-L018064?,R_CSEG,0737,0000
-L018062?,R_CSEG,0722,0000
+L018054?,R_CSEG,071C,0000
+_main_vrms_ref_1_77,R_DSEG,002E,0004
+L018068?,R_CSEG,0888,0000
+L018066?,R_CSEG,0740,0000
+L018062?,R_CSEG,072B,0000
 _main_buffer_1_77,R_DSEG,0002,0014
-L018075?,R_CSEG,0395,0000
-L018073?,R_CSEG,095A,0000
+L018078?,R_CSEG,09CC,0000
+L018077?,R_CSEG,097E,0000
+L018073?,R_CSEG,0930,0000
 L009001?,R_CSEG,0173,0000
-L018071?,R_CSEG,0902,0000
-_main_freq_1_77,R_DSEG,001A,0004
+L018071?,R_CSEG,08DC,0000
+_main_freq_1_77,R_DSEG,001E,0004
+L018088?,R_CSEG,0A0A,0000
+L018087?,R_CSEG,09DD,0000
+L018083?,R_CSEG,09F5,0000
 L016014?,R_CSEG,027A,0000
 L016013?,R_CSEG,0278,0000
-_main_vrms_spl_1_77,R_DSEG,0026,0004
+_main_vrms_spl_1_77,R_DSEG,002A,0004
 L016011?,R_CSEG,02F0,0000
-L018117?,R_CSEG,03D3,0000
 L005018?,R_CSEG,00A9,0000
-L018134?,R_CSEG,0733,0000
 </LOCALS>
 
 <PUBLICS>
@@ -542,6 +572,12 @@ D2 EC
 85 BD 82
 85 BE 83
 22
+E4
+F5 data8(_main_bsel_1_77;)
+F5 data8(_main_bsel_1_77;0x0001;+;)
+75 data8(_main_led_1_77;) 01
+E4
+F5 data8(_main_led_1_77;0x0001;+;)
 12 addr16(_LCD_4BIT;)  
 12 addr16(_TIMER0_Init;)  
 90 01 F4
@@ -627,7 +663,7 @@ E5 82
 85 83 F0
 45 F0
 60 rel2(L018014?;)
-10 8D rel3(L018117?;)
+10 8D rel3(L018167?;)
 80 rel2(L018012?;)
 05 data8(_overflow_count;)
 80 rel2(L018012?;)
@@ -659,14 +695,14 @@ C0 07
 C0 00
 C0 01
 12 addr16(___uchar2fs;)  
-AA 82
-AB 83
-AC F0
-FD
-C0 02
-C0 03
+AC 82
+AD 83
+AA F0
+FB
 C0 04
 C0 05
+C0 02
+C0 03
 90 00 00
 75 F0 80
 74 43
@@ -998,7 +1034,6 @@ E5 82
 75 8A 00
 75 8C 00
 D2 8C
-D2 80
 75 BB 12
 C2 ED
 D2 EC
@@ -1012,20 +1047,17 @@ E5 82
 E5 82
 85 83 F0
 45 F0
-70 rel2(L018064?;)
-10 8D rel3(L018134?;)
+70 rel2(L018066?;)
+10 8D rel3(L018184?;)
 80 rel2(L018062?;)
 05 data8(_overflow_count;)
 80 rel2(L018062?;)
-75 82 14
-12 addr16(_Timer3us;)  
 12 addr16(_Get_ADC;)  
 E5 82
 85 83 F0
 45 F0
 60 rel2(L018057?;)
 C2 8C
-C2 80
 85 data8(_overflow_count;) 82
 12 addr16(___uchar2fs;)  
 AE 82
@@ -1133,26 +1165,6 @@ C0 05
 75 F0 32
 74 34
 12 addr16(___fsmul;)  
-AA 82
-AB 83
-AC F0
-FD
-E5 81
-24 FC
-F5 81
-74 AC
-C0 E0
-74 C5
-C0 E0
-74 A7
-C0 E0
-74 37
-C0 E0
-8A 82
-8B 83
-8C F0
-ED
-12 addr16(___fsadd;)  
 85 82 data8(_main_phase_diff_time_1_77;)
 85 83 data8(_main_phase_diff_time_1_77;0x0001;+;)
 85 F0 data8(_main_phase_diff_time_1_77;0x0002;+;)
@@ -1184,20 +1196,16 @@ C0 data8(_main_period_1_77;0x0003;+;)
 88 F0
 E9
 12 addr16(___fsdiv;)  
-AE 82
-AF 83
-A8 F0
-F9
+85 82 data8(_main_phase_diff_deg_1_77;)
+85 83 data8(_main_phase_diff_deg_1_77;0x0001;+;)
+85 F0 data8(_main_phase_diff_deg_1_77;0x0002;+;)
+F5 data8(_main_phase_diff_deg_1_77;0x0003;+;)
 E5 81
 24 FC
 F5 81
 75 8A 00
 75 8C 00
 75 data8(_overflow_count;) 00
-C0 06
-C0 07
-C0 00
-C0 01
 E4
 C0 E0
 C0 E0
@@ -1205,19 +1213,15 @@ C0 E0
 C0 E0
 74 C3
 C0 E0
-8E 82
-8F 83
-88 F0
-E9
+85 data8(_main_phase_diff_deg_1_77;) 82
+85 data8(_main_phase_diff_deg_1_77;0x0001;+;) 83
+85 data8(_main_phase_diff_deg_1_77;0x0002;+;) F0
+E5 data8(_main_phase_diff_deg_1_77;0x0003;+;)
 12 addr16(___fslt;)  
 AA 82
 E5 81
 24 FC
 F5 81
-D0 01
-D0 00
-D0 07
-D0 06
 EA
 60 rel2(L018071?;)
 E4
@@ -1227,23 +1231,19 @@ C0 E0
 C0 E0
 74 43
 C0 E0
-8E 82
-8F 83
-88 F0
-E9
+85 data8(_main_phase_diff_deg_1_77;) 82
+85 data8(_main_phase_diff_deg_1_77;0x0001;+;) 83
+85 data8(_main_phase_diff_deg_1_77;0x0002;+;) F0
+E5 data8(_main_phase_diff_deg_1_77;0x0003;+;)
 12 addr16(___fsadd;)  
-AE 82
-AF 83
-A8 F0
-F9
+85 82 data8(_main_phase_diff_deg_1_77;)
+85 83 data8(_main_phase_diff_deg_1_77;0x0001;+;)
+85 F0 data8(_main_phase_diff_deg_1_77;0x0002;+;)
+F5 data8(_main_phase_diff_deg_1_77;0x0003;+;)
 E5 81
 24 FC
 F5 81
 80 rel2(L018068?;)
-C0 06
-C0 07
-C0 00
-C0 01
 E4
 C0 E0
 C0 E0
@@ -1251,19 +1251,15 @@ C0 E0
 C0 E0
 74 43
 C0 E0
-8E 82
-8F 83
-88 F0
-E9
+85 data8(_main_phase_diff_deg_1_77;) 82
+85 data8(_main_phase_diff_deg_1_77;0x0001;+;) 83
+85 data8(_main_phase_diff_deg_1_77;0x0002;+;) F0
+E5 data8(_main_phase_diff_deg_1_77;0x0003;+;)
 12 addr16(___fsgt;)  
 AA 82
 E5 81
 24 FC
 F5 81
-D0 01
-D0 00
-D0 07
-D0 06
 EA
 60 rel2(L018073?;)
 E4
@@ -1273,23 +1269,136 @@ C0 E0
 C0 E0
 74 43
 C0 E0
-8E 82
-8F 83
-88 F0
-E9
+85 data8(_main_phase_diff_deg_1_77;) 82
+85 data8(_main_phase_diff_deg_1_77;0x0001;+;) 83
+85 data8(_main_phase_diff_deg_1_77;0x0002;+;) F0
+E5 data8(_main_phase_diff_deg_1_77;0x0003;+;)
 12 addr16(___fssub;)  
-AE 82
-AF 83
-A8 F0
-F9
+85 82 data8(_main_phase_diff_deg_1_77;)
+85 83 data8(_main_phase_diff_deg_1_77;0x0001;+;)
+85 F0 data8(_main_phase_diff_deg_1_77;0x0002;+;)
+F5 data8(_main_phase_diff_deg_1_77;0x0003;+;)
 E5 81
 24 FC
 F5 81
 80 rel2(L018071?;)
-C0 06
-C0 07
-C0 00
-C0 01
+E4
+C0 E0
+C0 E0
+C0 E0
+C0 E0
+85 data8(_main_phase_diff_deg_1_77;) 82
+85 data8(_main_phase_diff_deg_1_77;0x0001;+;) 83
+85 data8(_main_phase_diff_deg_1_77;0x0002;+;) F0
+E5 data8(_main_phase_diff_deg_1_77;0x0003;+;)
+12 addr16(___fsgt;)  
+AA 82
+E5 81
+24 FC
+F5 81
+EA
+60 rel2(L018077?;)
+E4
+C0 E0
+C0 E0
+C0 E0
+74 3F
+C0 E0
+85 data8(_main_phase_diff_deg_1_77;) 82
+85 data8(_main_phase_diff_deg_1_77;0x0001;+;) 83
+85 data8(_main_phase_diff_deg_1_77;0x0002;+;) F0
+E5 data8(_main_phase_diff_deg_1_77;0x0003;+;)
+12 addr16(___fsadd;)  
+85 82 data8(_main_phase_diff_deg_1_77;)
+85 83 data8(_main_phase_diff_deg_1_77;0x0001;+;)
+85 F0 data8(_main_phase_diff_deg_1_77;0x0002;+;)
+F5 data8(_main_phase_diff_deg_1_77;0x0003;+;)
+E5 81
+24 FC
+F5 81
+80 rel2(L018078?;)
+E4
+C0 E0
+C0 E0
+C0 E0
+C0 E0
+85 data8(_main_phase_diff_deg_1_77;) 82
+85 data8(_main_phase_diff_deg_1_77;0x0001;+;) 83
+85 data8(_main_phase_diff_deg_1_77;0x0002;+;) F0
+E5 data8(_main_phase_diff_deg_1_77;0x0003;+;)
+12 addr16(___fslt;)  
+AA 82
+E5 81
+24 FC
+F5 81
+EA
+60 rel2(L018078?;)
+E4
+C0 E0
+C0 E0
+74 C0
+C0 E0
+74 3F
+C0 E0
+85 data8(_main_phase_diff_deg_1_77;) 82
+85 data8(_main_phase_diff_deg_1_77;0x0001;+;) 83
+85 data8(_main_phase_diff_deg_1_77;0x0002;+;) F0
+E5 data8(_main_phase_diff_deg_1_77;0x0003;+;)
+12 addr16(___fssub;)  
+85 82 data8(_main_phase_diff_deg_1_77;)
+85 83 data8(_main_phase_diff_deg_1_77;0x0001;+;)
+85 F0 data8(_main_phase_diff_deg_1_77;0x0002;+;)
+F5 data8(_main_phase_diff_deg_1_77;0x0003;+;)
+E5 81
+24 FC
+F5 81
+20 B3 rel3(L018087?;)
+E5 data8(_main_bsel_1_77;)
+45 data8(_main_bsel_1_77;0x0001;+;)
+70 rel2(L018087?;)
+75 data8(_main_bsel_1_77;) 01
+E4
+F5 data8(_main_bsel_1_77;0x0001;+;)
+80 rel2(L018088?;)
+20 B3 rel3(L018083?;)
+74 01
+B5 data8(_main_bsel_1_77;) rel3(L018193?;)
+E4
+B5 data8(_main_bsel_1_77;0x0001;+;) rel3(L018193?;)
+80 rel2(L018194?;)
+80 rel2(L018083?;)
+75 data8(_main_bsel_1_77;) 02
+E4
+F5 data8(_main_bsel_1_77;0x0001;+;)
+80 rel2(L018088?;)
+20 B3 rel3(L018088?;)
+74 02
+B5 data8(_main_bsel_1_77;) rel3(L018196?;)
+E4
+B5 data8(_main_bsel_1_77;0x0001;+;) rel3(L018196?;)
+80 rel2(L018197?;)
+80 rel2(L018088?;)
+E4
+F5 data8(_main_bsel_1_77;)
+F5 data8(_main_bsel_1_77;0x0001;+;)
+20 B0 rel3(L018094?;)
+E5 data8(_main_led_1_77;)
+45 data8(_main_led_1_77;0x0001;+;)
+70 rel2(L018094?;)
+75 data8(_main_led_1_77;) 01
+E4
+F5 data8(_main_led_1_77;0x0001;+;)
+80 rel2(L018095?;)
+20 B0 rel3(L018095?;)
+74 01
+B5 data8(_main_led_1_77;) rel3(L018201?;)
+E4
+B5 data8(_main_led_1_77;0x0001;+;) rel3(L018201?;)
+80 rel2(L018202?;)
+80 rel2(L018095?;)
+E4
+F5 data8(_main_led_1_77;)
+F5 data8(_main_led_1_77;0x0001;+;)
 C0 data8(_main_period_1_77;)
 C0 data8(_main_period_1_77;0x0001;+;)
 C0 data8(_main_period_1_77;0x0002;+;)
@@ -1305,6 +1414,10 @@ FD
 E5 81
 24 FC
 F5 81
+C0 02
+C0 03
+C0 04
+C0 05
 C0 data8(_main_freq_1_77;)
 C0 data8(_main_freq_1_77;0x0001;+;)
 C0 data8(_main_freq_1_77;0x0002;+;)
@@ -1331,17 +1444,17 @@ C0 data8(_main_quarterPeriod_1_77;0x0003;+;)
 75 F0 7A
 74 44
 12 addr16(___fsmul;)  
-AA 82
-AB 83
-AC F0
-FD
+AE 82
+AF 83
+A8 F0
+F9
 E5 81
 24 FC
 F5 81
-C0 02
-C0 03
-C0 04
-C0 05
+C0 06
+C0 07
+C0 00
+C0 01
 74 data8(__str_6;)
 C0 E0
 74 data8(__str_6;0x0008;>>;)
@@ -1370,18 +1483,14 @@ C0 E0
 E5 81
 24 F5
 F5 81
-D0 01
-D0 00
-D0 07
-D0 06
 C0 data8(_main_phase_diff_time_1_77;)
 C0 data8(_main_phase_diff_time_1_77;0x0001;+;)
 C0 data8(_main_phase_diff_time_1_77;0x0002;+;)
 C0 data8(_main_phase_diff_time_1_77;0x0003;+;)
-C0 06
-C0 07
-C0 00
-C0 01
+C0 data8(_main_phase_diff_deg_1_77;)
+C0 data8(_main_phase_diff_deg_1_77;0x0001;+;)
+C0 data8(_main_phase_diff_deg_1_77;0x0002;+;)
+C0 data8(_main_phase_diff_deg_1_77;0x0003;+;)
 74 data8(__str_8;)
 C0 E0
 74 data8(__str_8;0x0008;>>;)
@@ -1432,23 +1541,98 @@ C0 E0
 15 81
 15 81
 15 81
-85 data8(_main_freq_1_77;) 82
-85 data8(_main_freq_1_77;0x0001;+;) 83
-85 data8(_main_freq_1_77;0x0002;+;) F0
-E5 data8(_main_freq_1_77;0x0003;+;)
+D0 05
+D0 04
+D0 03
+D0 02
+E5 data8(_main_bsel_1_77;)
+45 data8(_main_bsel_1_77;0x0001;+;)
+60 rel2(L018203?;)
+02 addr16(L018103?;)  
+8A 82
+8B 83
+8C F0
+ED
 12 addr16(___fs2sint;)  
 75 data8(__modsint_PARM_2;) E8
 75 data8(__modsint_PARM_2;0x0001;+;) 03
 12 addr16(__modsint;)  
 AA 82
 AB 83
+85 data8(_main_freq_1_77;) 82
+85 data8(_main_freq_1_77;0x0001;+;) 83
+85 data8(_main_freq_1_77;0x0002;+;) F0
+E5 data8(_main_freq_1_77;0x0003;+;)
 C0 02
 C0 03
-C0 02
-C0 03
+12 addr16(___fs2sint;)  
+75 data8(__modsint_PARM_2;) E8
+75 data8(__modsint_PARM_2;0x0001;+;) 03
+12 addr16(__modsint;)  
+AC 82
+AD 83
+C0 04
+C0 05
 74 data8(__str_10;)
 C0 E0
 74 data8(__str_10;0x0008;>>;)
+C0 E0
+74 80
+C0 E0
+74 data8(_main_buffer_1_77;)
+C0 E0
+74 data8(_main_buffer_1_77;0x0008;>>;)
+C0 E0
+74 40
+C0 E0
+12 addr16(_sprintf;)  
+E5 81
+24 F6
+F5 81
+75 data8(_LCDprint_PARM_2;) 01
+D2 bit(_LCDprint_PARM_3;)
+90 data16(_main_buffer_1_77;)  
+75 F0 40
+12 addr16(_LCDprint;)  
+C0 data8(_main_phase_diff_deg_1_77;)
+C0 data8(_main_phase_diff_deg_1_77;0x0001;+;)
+C0 data8(_main_phase_diff_deg_1_77;0x0002;+;)
+C0 data8(_main_phase_diff_deg_1_77;0x0003;+;)
+74 data8(__str_11;)
+C0 E0
+74 data8(__str_11;0x0008;>>;)
+C0 E0
+74 80
+C0 E0
+74 data8(_main_buffer_1_77;)
+C0 E0
+74 data8(_main_buffer_1_77;0x0008;>>;)
+C0 E0
+74 40
+C0 E0
+12 addr16(_sprintf;)  
+E5 81
+24 F6
+F5 81
+75 data8(_LCDprint_PARM_2;) 02
+D2 bit(_LCDprint_PARM_3;)
+90 data16(_main_buffer_1_77;)  
+75 F0 40
+12 addr16(_LCDprint;)  
+02 addr16(L018104?;)  
+74 01
+B5 data8(_main_bsel_1_77;) rel3(L018204?;)
+E4
+B5 data8(_main_bsel_1_77;0x0001;+;) rel3(L018204?;)
+80 rel2(L018205?;)
+80 rel2(L018100?;)
+C0 data8(_main_vrms_spl_1_77;)
+C0 data8(_main_vrms_spl_1_77;0x0001;+;)
+C0 data8(_main_vrms_spl_1_77;0x0002;+;)
+C0 data8(_main_vrms_spl_1_77;0x0003;+;)
+74 data8(__str_12;)
+C0 E0
+74 data8(__str_12;0x0008;>>;)
 C0 E0
 74 80
 C0 E0
@@ -1471,9 +1655,9 @@ C0 data8(_main_vrms_ref_1_77;)
 C0 data8(_main_vrms_ref_1_77;0x0001;+;)
 C0 data8(_main_vrms_ref_1_77;0x0002;+;)
 C0 data8(_main_vrms_ref_1_77;0x0003;+;)
-74 data8(__str_11;)
+74 data8(__str_13;)
 C0 E0
-74 data8(__str_11;0x0008;>>;)
+74 data8(__str_13;0x0008;>>;)
 C0 E0
 74 80
 C0 E0
@@ -1492,9 +1676,79 @@ D2 bit(_LCDprint_PARM_3;)
 90 data16(_main_buffer_1_77;)  
 75 F0 40
 12 addr16(_LCDprint;)  
+80 rel2(L018104?;)
+74 02
+B5 data8(_main_bsel_1_77;) rel3(L018206?;)
+E4
+B5 data8(_main_bsel_1_77;0x0001;+;) rel3(L018206?;)
+80 rel2(L018207?;)
+80 rel2(L018104?;)
+74 data8(__str_14;)
+C0 E0
+74 data8(__str_14;0x0008;>>;)
+C0 E0
+74 80
+C0 E0
+74 data8(_main_buffer_1_77;)
+C0 E0
+74 data8(_main_buffer_1_77;0x0008;>>;)
+C0 E0
+74 40
+C0 E0
+12 addr16(_sprintf;)  
+E5 81
+24 FA
+F5 81
+75 data8(_LCDprint_PARM_2;) 01
+D2 bit(_LCDprint_PARM_3;)
+90 data16(_main_buffer_1_77;)  
+75 F0 40
+12 addr16(_LCDprint;)  
+74 data8(__str_15;)
+C0 E0
+74 data8(__str_15;0x0008;>>;)
+C0 E0
+74 80
+C0 E0
+74 data8(_main_buffer_1_77;)
+C0 E0
+74 data8(_main_buffer_1_77;0x0008;>>;)
+C0 E0
+74 40
+C0 E0
+12 addr16(_sprintf;)  
+E5 81
+24 FA
+F5 81
+75 data8(_LCDprint_PARM_2;) 02
+D2 bit(_LCDprint_PARM_3;)
+90 data16(_main_buffer_1_77;)  
+75 F0 40
+12 addr16(_LCDprint;)  
+E4
+C0 E0
+C0 E0
+C0 E0
+C0 E0
+85 data8(_main_phase_diff_deg_1_77;) 82
+85 data8(_main_phase_diff_deg_1_77;0x0001;+;) 83
+85 data8(_main_phase_diff_deg_1_77;0x0002;+;) F0
+E5 data8(_main_phase_diff_deg_1_77;0x0003;+;)
+12 addr16(___fslt;)  
+AA 82
+E5 81
+24 FC
+F5 81
+EA
+60 rel2(L018106?;)
+C2 83
+D2 82
+80 rel2(L018107?;)
+D2 83
+C2 82
 90 01 F4
 12 addr16(_waitms;)  
-02 addr16(L018075?;)  
+02 addr16(L018109?;)  
 </CODE>
 
 <CODE R_CSEG>
@@ -1529,13 +1783,13 @@ D2 bit(_LCDprint_PARM_3;)
 5C
 45 46 4D 38 5F 41 44 43 2E 63 
 00
-4D 61 72 20 20 35 20 32 30 32 34 
+4D 61 72 20 20 37 20 32 30 32 34 
 00
-30 34 3A 31 30 3A 30 30 
+31 35 3A 35 35 3A 31 31 
 00
 50 65 72 69 6F 64 28 54 29 3A 20 20 25 37 2E 36 66
 20 6D 73 20 20 46 72 65 71 28 66 29 3A 20 20 25
-37 2E 36 66 20 73 20 
+37 2E 36 66 20 48 7A 20 
 0A
 00
 31 2F 34 20 50 65 72 69 6F 64 3A 20 25 37 2E 36 66
@@ -1556,9 +1810,19 @@ D2 bit(_LCDprint_PARM_3;)
 1B
 5B 41 
 00
-52 66 3A 25 32 64 20 53 70 3A 25 32 64 20 48 7A 
+46 3A 20 25 33 64 48 7A 20 54 3A 20 25 32 64 6D 73
+
 00
-56 72 3A 25 34 2E 34 66 20 56 
+50 68 61 73 65 20 64 69 66 3A 20 25 33 2E 32 66 20
+64 65 67 
+00
+56 72 6D 73 28 73 29 3A 20 25 32 2E 32 66 20 56 
+00
+56 72 6D 73 28 72 29 3A 20 25 32 2E 32 66 20 56 
+00
+43 6F 6E 6E 65 63 74 20 47 75 69 64 65 
+00
+53 41 4D 50 4C 45 20 7C 20 52 45 46 
 00
 </CODE>
 

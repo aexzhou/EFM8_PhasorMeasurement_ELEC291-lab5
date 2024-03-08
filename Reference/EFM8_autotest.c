@@ -1,37 +1,25 @@
-// FreqEFM8.c: Measure the frequency of a signal on pin T0.
-//
-// By:  Jesus Calvino-Fraga (c) 2008-2018
-//
-// The next line clears the "C51 command line options:" field when compiling with CrossIDE
-//  ~C51~
-  
 #include <EFM8LB1.h>
 #include <stdio.h>
+//#include <port_declarations.h>
 
-#define SYSCLK      72000000L  // SYSCLK frequency in Hz
-#define BAUDRATE      115200L  // Baud rate of UART in bps
+#define SYSCLK    72000000L // SYSCLK frequency in Hz
+#define BAUDRATE    115200L // Baud rate of UART in bps
 
-#define LCD_RS P1_7
+#define LCD_RS P2_6
 // #define LCD_RW Px_x // Not used in this code.  Connect to GND
-#define LCD_E  P2_0
-#define LCD_D4 P1_3
-#define LCD_D5 P1_2
-#define LCD_D6 P1_1
-#define LCD_D7 P1_0
+#define LCD_E  P2_5
+#define LCD_D4 P2_4
+#define LCD_D5 P2_3
+#define LCD_D6 P2_2
+#define LCD_D7 P2_1
 #define CHARS_PER_LINE 16
-#define pb P0_1
-
-unsigned char overflow_count;
 
 char _c51_external_startup (void)
 {
-	// Disable Watchdog with key sequence
+	// Disable Watchdog with 2-byte key sequence
 	SFRPAGE = 0x00;
 	WDTCN = 0xDE; //First key
 	WDTCN = 0xAD; //Second key
-  
-	VDM0CN |= 0x80;
-	RSTSRC = 0x02;
 
 	#if (SYSCLK == 48000000L)	
 		SFRPAGE = 0x10;
@@ -70,14 +58,14 @@ char _c51_external_startup (void)
 	#else
 		#error SYSCLK must be either 12250000L, 24500000L, 48000000L, or 72000000L
 	#endif
-	
+
 	P0MDOUT |= 0x10; // Enable UART0 TX as push-pull output
 	XBR0     = 0x01; // Enable UART0 on P0.4(TX) and P0.5(RX)                     
-	XBR1     = 0X10; // Enable T0 on P0.0
+	XBR1     = 0X00;
 	XBR2     = 0x40; // Enable crossbar and weak pull-ups
 
 	#if (((SYSCLK/BAUDRATE)/(2L*12L))>0xFFL)
-		#error Timer 0 reload value is incorrect because (SYSCLK/BAUDRATE)/(2L*12L) > 0xFF
+		#error Timer 0 reload value is incorrect because ((SYSCLK/BAUDRATE)/(2L*12L))>0xFF
 	#endif
 	// Configure Uart 0
 	SCON0 = 0x10;
@@ -91,7 +79,8 @@ char _c51_external_startup (void)
 	
 	return 0;
 }
- 
+
+
 // Uses Timer3 to delay <us> micro-seconds. 
 void Timer3us(unsigned char us)
 {
@@ -108,11 +97,6 @@ void Timer3us(unsigned char us)
 	{
 		while (!(TMR3CN0 & 0x80));  // Wait for overflow
 		TMR3CN0 &= ~(0x80);         // Clear overflow indicator
-		if (TF0)
-		{
-		   TF0=0;
-		   overflow_count++;
-		}
 	}
 	TMR3CN0 = 0 ;                   // Stop Timer3 and clear overflow flag
 }
@@ -120,21 +104,11 @@ void Timer3us(unsigned char us)
 void waitms (unsigned int ms)
 {
 	unsigned int j;
-	for(j=ms; j!=0; j--)
-	{
-		Timer3us(249);
-		Timer3us(249);
-		Timer3us(249);
-		Timer3us(250);
-	}
+	unsigned char k;
+	for(j=0; j<ms; j++)
+		for (k=0; k<4; k++) Timer3us(250);
 }
 
-void TIMER0_Init(void)
-{
-	TMOD&=0b_1111_0000; // Set the bits of Timer/Counter 0 to zero
-	TMOD|=0b_0000_0101; // Timer/Counter 0 used as a 16-bit counter
-	TR0=0; // Stop Timer/Counter 0
-}
 void LCD_pulse (void)
 {
 	LCD_E=1;
@@ -222,69 +196,21 @@ int getsn (char * buff, int len)
 	buff[j]=0;
 	return len;
 }
-char buffer[17];
 
-void main (void) 
+void main (void)
 {
-	unsigned long F;
-	double C;
-	double P;
-	int flag = 0;
-	LCD_4BIT();	
-	TIMER0_Init();
-	waitms(500); // Give PuTTY a chance to start.
-	printf("\x1b[2J"); // Clear screen using ANSI escape sequence.
-
-	printf ("EFM8 Frequency measurement using Timer/Counter 0.\n"
-	        "File: %s\n"
-	        "Compiled: %s, %s\n\n",
-	        __FILE__, __DATE__, __TIME__);
-	        
-
-	LCDprint("Capacitance(uF)   ", 1, 1);
-
+	char buff[17];
+	// Configure the LCD
+	LCD_4BIT();
+	
+   	// Display something in the LCD
+	LCDprint("LCD 4-bit test:", 1, 1);
+	LCDprint("Hello, World!", 2, 1);
 	while(1)
 	{
-		TL0=0;
-		TH0=0;
-		overflow_count=0;
-		TF0=0;
-		TR0=1; // Start Timer/Counter 0
-		waitms(1000);
-		TR0=0; // Stop Timer/Counter 0
-		F=overflow_count*0x10000L+TH0*0x100L+TL0;
-		C=1.44/(F*((long)1550+2*(long)1550))*1000000;
-		P = 1/F;
-		printf("f=%luHz", F);
+		printf("Type what you want to display in line 2 (16 char max): ");
+		getsn(buff, sizeof(buff));
 		printf("\n");
-		if((pb == 0) && (flag == 0)){
-			flag = 1;
-		} else if((pb == 0) && (flag == 1)){
-			flag = 2;
-		} else if((pb == 0) && (flag == 2)){
-			flag = 0;
-		} 
-			
-			
-		
-		
-		
-		if(flag == 0){
-		LCDprint("Capacitance(uF)   ", 1, 1);
-		sprintf(buffer, "%guF", C);
-		LCDprint(buffer, 2, 1);
-		} else if(flag == 1){
-		LCDprint("Frequency(Hz)   ", 1, 1);
-		sprintf(buffer, "%luHz", F);
-		LCDprint(buffer, 2, 1);		
-		} else if(flag == 2){
-		LCDprint("Period(s)   ", 1, 1);
-		sprintf(buffer, "%fS", P);
-		LCDprint(buffer, 2, 1);		
-		}		
-
-
-		printf("\x1b[0K"); // ANSI: Clear from cursor to end of line.
+		LCDprint(buff, 2, 1);
 	}
-	
 }
