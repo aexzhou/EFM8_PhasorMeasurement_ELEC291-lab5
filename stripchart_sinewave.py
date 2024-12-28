@@ -17,20 +17,17 @@ ser = serial.Serial(
 ser.isOpen()
 
 strin = ser.readline()  # input is a string
-#print (strin)
 
 def data_gen():
     t = data_gen.t
     while True:
        t+=1
-       #val=100.0*math.sin(t*2.0*3.1415/100.0)
        strin = ser.readline()
        print(strin)
        string_value = strin.decode('utf-8')
        numeric_string = ''.join(char for char in string_value if char.isdigit() or char == '.')
        val = float(numeric_string) / 100
        print(val)
-       #val = strin
        yield t, val
 
 def run(data):
@@ -39,7 +36,7 @@ def run(data):
     if t>-1:
         xdata.append(t)
         ydata.append(y)
-        if t>xsize: # Scroll to the left.
+        if t>xsize: # scroll to the left.
             ax.set_xlim(t-xsize, t)
         line.set_data(xdata, ydata)
 
