@@ -8,6 +8,7 @@
 #define BAUDRATE 115200L
 #define SARCLK 18000000L
 
+
 char _c51_external_startup (void)
 {
 	// Disable Watchdog with key sequence

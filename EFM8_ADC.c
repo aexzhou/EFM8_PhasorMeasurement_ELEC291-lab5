@@ -8,7 +8,6 @@
 #include <stdlib.h>
 #include <EFM8LB1.h>
 // ~C51~  
-
 #define SYSCLK 72000000L
 #define BAUDRATE 115200L
 #define SARCLK 18000000L

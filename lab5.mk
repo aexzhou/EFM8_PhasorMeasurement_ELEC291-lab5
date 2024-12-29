@@ -3,6 +3,7 @@ CC=c51
 COMPORT = $(shell type COMPORT.inc)
 OBJS=PeriodEFM8.obj lcd.obj
 
+
 EFM8_ADC.hex: $(OBJS)
 	$(CC) $(OBJS)
 	@del *.asm *.lst *.lkr 2> nul
